@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>22 Maximum Likelihood | _main.knit</title>
+  <title>23 Maximum Likelihood | _main.knit</title>
   <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="22 Maximum Likelihood | _main.knit" />
+  <meta property="og:title" content="23 Maximum Likelihood | _main.knit" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="22 Maximum Likelihood | _main.knit" />
+  <meta name="twitter:title" content="23 Maximum Likelihood | _main.knit" />
   
   
   
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="two-way-independent-anova.html"/>
+<link rel="prev" href="in-class-assignments.html"/>
 
 <script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -157,7 +157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19" data-path="comparing-two-means-using-t-tests.html"><a href="comparing-two-means-using-t-tests.html"><i class="fa fa-check"></i><b>19</b> Comparing Two Means using <em>t</em>-tests</a></li>
 <li class="chapter" data-level="20" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>20</b> Analysis of Variance (ANOVA)</a></li>
 <li class="chapter" data-level="21" data-path="two-way-independent-anova.html"><a href="two-way-independent-anova.html"><i class="fa fa-check"></i><b>21</b> Two-Way Independent ANOVA</a></li>
-<li class="chapter" data-level="22" data-path="maximum-likelihood-1.html"><a href="maximum-likelihood-1.html"><i class="fa fa-check"></i><b>22</b> Maximum Likelihood</a></li>
+<li class="chapter" data-level="22" data-path="in-class-assignments.html"><a href="in-class-assignments.html"><i class="fa fa-check"></i><b>22</b> In-Class Assignments</a></li>
+<li class="chapter" data-level="23" data-path="maximum-likelihood-1.html"><a href="maximum-likelihood-1.html"><i class="fa fa-check"></i><b>23</b> Maximum Likelihood</a></li>
 </ul>
 
       </nav>
@@ -175,15 +176,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="maximum-likelihood-1" class="section level1 hasAnchor" number="22">
-<h1><span class="header-section-number">22</span> Maximum Likelihood<a href="maximum-likelihood-1.html#maximum-likelihood-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="maximum-likelihood-1" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">23</span> Maximum Likelihood<a href="maximum-likelihood-1.html#maximum-likelihood-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
 <li><p>The primary source for the following lecture material are primarily derived from I.J. Myung’s paper “Tutorial on maximum likelihood estimation”. Journal of Mathematical Psychology 47 (2003) 90-100. The interested reader is directed to review this paper.</p></li>
 <li><p>In this lecture we will understand an alternative to parameter estimation using least-squares estimation, maximum likelihood estimation (MLE).</p></li>
 <li><p>MLE is a preferred method of parameter estimation in statistics and is a <em>general</em> parameter estimation approach, in particular in non-linear modeling and/or with non-normally distributed data. Because of the prevelance of non-normally distributed data in the natural sciences (e.g. data from counting, categorical data, skewed ratio data) an examination and familiarization of this approach is useful.</p></li>
 </ul>
-<div id="general-exprimental-approach-1" class="section level2 hasAnchor" number="22.1">
-<h2><span class="header-section-number">22.1</span> General Exprimental Approach<a href="maximum-likelihood-1.html#general-exprimental-approach-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="general-exprimental-approach-1" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> General Exprimental Approach<a href="maximum-likelihood-1.html#general-exprimental-approach-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Because many phenomenon of interest are not directly observable, we formulate hypotheses to test and these hypothesis are stated in terms of probability using statistical models.</p></li>
 <li><p>The goal of statistical modeling is to understand underlying processes by testing the viability (e.g. quality, robustness) of the model.</p></li>
@@ -199,15 +200,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Evaluating goodness of fit</p></li>
 </ol>
 </div>
-<div id="two-approaches-to-parameter-estimation-1" class="section level2 hasAnchor" number="22.2">
-<h2><span class="header-section-number">22.2</span> Two approaches to parameter estimation:<a href="maximum-likelihood-1.html#two-approaches-to-parameter-estimation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="two-approaches-to-parameter-estimation-1" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> Two approaches to parameter estimation:<a href="maximum-likelihood-1.html#two-approaches-to-parameter-estimation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>LSE (least-squares estimation), for normally-distributed data</p></li>
 <li><p>MLE, a general approach for parameter estimation</p></li>
 </ol>
 </div>
-<div id="the-probability-density-function-1" class="section level2 hasAnchor" number="22.3">
-<h2><span class="header-section-number">22.3</span> The probability density function<a href="maximum-likelihood-1.html#the-probability-density-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-probability-density-function-1" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">23.3</span> The probability density function<a href="maximum-likelihood-1.html#the-probability-density-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The goal of data analysis is to identify the population that is most likely to have generated the sample - i.e. we will estimate the parameters of the candidate model that will produce these observations.</p>
 <p>The data vector <span class="math inline">\(y = (y_1, y_2, ..., y_m)\)</span> is a random sample from a population distributed in some unknown way.</p>
 <p>Populations are identified using a probability distribution and unique values of the parameters - As the parameter changes in value, different probability distributions are generated.</p>
@@ -219,11 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Different distributions are defined using different parameters (and different mathematical formulations), so <em>w</em> is distribution-specific.</p></li>
 </ul>
 <p>If we have specified a distribution that has a certain set of parameters, for example:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
 <p>We can use a given probability distribution and parameter set to determine the probability of obtaining a value in a population.</p>
 <p>Example:</p>
 <p>Children’s IQ scores are normally distributed with a mean of 100 and a standard deviation of 15. What is the probability of a randomly selected child having an IQ between 80 and 120?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 <p>In this case the area under the curve is 0.818 or 81.8% of the integral of the distribution from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>. So, if we take 100 random draws from the population of children’s IQs, we will get values of IQ &gt; 80 and &lt; 120, 81 to 82 times…</p>
 <p>Let’s examine the statement:</p>
 <p><span class="math inline">\(p(80 &lt; IQ &lt; 120\)</span> | <span class="math inline">\(\mu = 100, \sigma = 15) = 0.818\)</span>.</p>
@@ -234,15 +235,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>or</p>
 <p><span class="math inline">\(p(IQ &gt; 120\)</span> | <span class="math inline">\(\mu = 100, \sigma = 15)\)</span></p>
 <p>The right side of the equation does not change because it describes the fixed shape of the distribution of the population that “creates” the observations. So when we are investigating probability of an event we are quantifying the integral of the curve for the given parameter set bounded by the <em>left</em> side of the equation. We change the left side to derive new probability values.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
 <p>We can determine the probability of obtaining <span class="math inline">\(p(y_1, y_2, ..., y_m)\)</span> | <span class="math inline">\(w)\)</span> if the observations are independent.</p>
 <p>Think about taking multiple random draws from the population described by the parameter set <em>w</em>. An analog here is thinking about coin flipping, the probability of realizing specific outcomes from multiple trials is determined by multiplication (e.g. probability of observing two “tails” flips is the product of the independent single observations).</p>
 <p>So, the notation below is <em>Pi</em> (product) notation. This is used in mathematics to indicate repeated multiplication.</p>
 <p><span class="math inline">\(p(y_1, y_2, ..., y_m)\)</span> | <span class="math inline">\(w) = p(y_1\)</span>| <span class="math inline">\(w) \times p(y_2\)</span>| <span class="math inline">\(w) \times ...p(y_n\)</span>| <span class="math inline">\(w)\)</span></p>
 <p><span class="math inline">\(p(y_1, y_2, ..., y_m)\)</span> | <span class="math inline">\(w) = \prod_{i = 1}^{n}{p(y_i | w)}\)</span></p>
 </div>
-<div id="the-likelihood-function-1" class="section level2 hasAnchor" number="22.4">
-<h2><span class="header-section-number">22.4</span> The likelihood function<a href="maximum-likelihood-1.html#the-likelihood-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-likelihood-function-1" class="section level2 hasAnchor" number="23.4">
+<h2><span class="header-section-number">23.4</span> The likelihood function<a href="maximum-likelihood-1.html#the-likelihood-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now we will discuss the likelihood function that is derived by considering that the data are fixed and that the shape of the (parent) distribution is random.</p>
 <p>In this approach we are evaluating the inverse problem of the PDF. Specifically, given the observed data and a model of interest, we are interested in finding the unique parameter vector <em>w</em>, among all the possible combinations of parameters that is most likely to have produced the data.</p>
 <p>We have already observed the data and now want to define the likelihood function by reversing the roles (i.e. what is random what is fixed) of the data vector <em>y</em> and the parameter vector <em>w</em>.</p>
@@ -250,11 +251,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So, the data are fixed, and we modify the parameter vector <em>w</em> (in the case of IQ, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>)</p>
 <p>Assume we have some vector of observed data <em>y</em>, these are sampled from some population, for now, assume we take a single value.</p>
 <p>What is the likelihood that <span class="math inline">\(\mu = 100\)</span> and <span class="math inline">\(\sigma = 15\)</span> given our sampled IQ is <span class="math inline">\(y = 120\)</span>?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <p>What if we have a vector of observations <span class="math inline">\(n = 5\)</span>, with mean values centered on 120? So, we want to find the distribution parameters that maximize the likelihood.
 We still think that the normal distribution is the most appropriate distribution as a candidate distribution.</p>
 <p><span class="math inline">\(y = (100, 110, 120, 130, 140)\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -263,7 +264,7 @@ We still think that the normal distribution is the most appropriate distribution
           </div>
         </div>
       </div>
-<a href="two-way-independent-anova.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="in-class-assignments.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
