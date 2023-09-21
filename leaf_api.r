@@ -1,0 +1,1 @@
+Sys.setenv(OPENAI_API_KEY = "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")

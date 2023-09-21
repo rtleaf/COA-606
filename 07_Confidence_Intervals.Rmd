@@ -1,0 +1,180 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+# Confidence Interval
+
+Confidence intervals are statements about probability. For example, a confidence interval of a parameter with a 95% confidence level means that you are confident that 95 out of 100 times the estimate of the parameter will fall between the upper and lower values specified by the confidence interval.
+
+How do we determine confidence intervals? 
+
+The first step is to determine a confidence level.
+
+The confidence level is 1 - $\alpha$.
+
+We will never know the magnitude of the true error of our esimated value. Instead, what we can estimate is the  combined effect of sampling error and process error (the precision of $\mu$). so, we attach a probability that the error is a certain size. Now, we want to solve for the statistic.
+
+$\bar{X}  = \mu \pm Error$
+
+Thought experiment: If we take an infinite number of samples from the population, we will get an estimate of the error term, $\sigma$. We cannot take an infinite number of samples (for obvious reasons). 
+
+So, we need to estimate the value of the error that occurs from estimating the mean. This is called the standard error of the mean $S_{\overline{X}}$. 
+
+## Example using *Z*-score
+
+Let's first assume we know the population level parameters, $\mu$ and $\sigma$.
+
+We can use the *Z*-score. What is the *Z* value (bounds of negative and positive) in which 95% of the values are under the curve?
+
++ Let's look at a [Z Table](http://www.z-table.com/)
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+par(mfrow = c(1,1)) # This tells R to put 1 row, 1 columns
+plot(x = seq(-3,3, length.out = 100), 
+     y = dnorm(seq(-3,3,length.out = 100)), ylab = "", type = "l", yaxt = 'n', xlab = "Quantile")
+abline(v = c(-1.96, 1.96), lwd = 2)
+#x axis labels and percentages need to be added 
+```
+
+$\mu = \bar{X} \pm 1.96\sigma$ (95% Certainty)
+
+$\mu = \bar{X} \pm ?  \sigma$ (99% Certainty)
+
++ The above presumes that we have knowledge of the population parameters. We do not sample populations and infinite number of times. 
+
+## Confidence Intervals of the Mean from samples - using the *t*-distribution
+
+In this example we will use the *t*-distribution.
+
+The t-distribution, also known as Student's t-distribution, is a probability distribution that is widely used in statistical inference and hypothesis testing when the sample size is small or when the population standard deviation is unknown. Here are the key characteristics of the t-distribution:
+
+1.    Shape: The t-distribution is symmetric and bell-shaped, similar to the normal distribution. However, it has heavier tails, which means it has more probability in the tails compared to the normal distribution.
+
+2.    Degrees of freedom: The shape of the t-distribution is determined by its degrees of freedom (df). The degrees of freedom represent the sample size minus one (*df* = *n* - 1), where *n* is the number of observations in the sample. As the degrees of freedom increase, the t-distribution approaches the shape of the standard normal distribution. When the sample size is large (typically considered as n > 30), the t-distribution is nearly identical to the standard normal distribution.
+
+3.    Mean and variance: The mean of the t-distribution is 0, just like the standard normal distribution. However, the variance of the t-distribution depends on the degrees of freedom. For a *t*-distribution with df degrees of freedom, the variance is df / (df - 2) if df > 2. If the degrees of freedom are less than or equal to 2, the variance is undefined.
+
+4.    Tails: The t-distribution has thicker tails compared to the normal distribution. This means that extreme values are more likely to occur in the tails of the distribution, making it more robust to outliers and deviations from normality.
+
+Overall, the t-distribution is a valuable statistical tool when dealing with small sample sizes or uncertain population parameters, providing a way to make inferences and draw conclusions from limited data.
+
+Let's look at a [t Table](http://www.ttable.org/)
+
+```{r, echo=FALSE}
+# Required package
+library(ggplot2)
+
+# Function to generate t-distribution data
+generate_t_distribution <- function(df) {
+  x <- seq(-4, 4, length.out = 1000)
+  y <- dt(x, df = df)
+  data.frame(x, y)
+}
+
+# Degrees of freedom
+df_values <- c(1, 5, 10, 30)
+
+# Generate t-distribution data for each degree of freedom
+t_distributions <- lapply(df_values, generate_t_distribution)
+
+# Create a new plot
+plot <- ggplot() +
+  theme_minimal() +
+  labs(x = "x", y = "Density", title = "t-Distribution with Different Degrees of Freedom")
+
+# Add t-distribution curves for each degree of freedom to the plot
+for (i in 1:length(t_distributions)) {
+  plot <- plot + 
+    geom_line(data = t_distributions[[i]], aes(x, y), 
+              color = rainbow(length(t_distributions))[i], 
+              linetype = i) +
+    scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash"))
+}
+
+# Display the plot
+plot
+
+```
+
+To determine the sampling interval from populations with unknown $\sigma$ we will use our best estimate of $\sigma$, which is $s$ (sd).
+
+$SE = \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}$
+
+## Contrast standard deviation and standard error:
+
+Standard error and standard deviation are two related but distinct measures used in statistics.
+
+Standard Deviation:
+Standard deviation (SD) is a measure of the dispersion or variability of a set of data points. It quantifies how spread out the values are from the mean. A larger standard deviation indicates greater variability, while a smaller standard deviation indicates less variability. It is calculated as the square root of the variance.
+
+Standard Error:
+Standard error (SE) is a measure of the variability of a sample statistic. It quantifies how much the sample statistic (e.g., mean, proportion, regression coefficient) varies from sample to sample. The standard error provides an estimate of the precision or accuracy of the sample statistic as an estimate of the population parameter. In other words, it represents the average amount that the sample statistic differs from the true population parameter.
+
+The key difference between standard deviation and standard error lies in the populations they describe:
+
+Standard deviation characterizes the variability within a single sample or the entire population. It tells us how the individual data points are dispersed around the mean. For example, if you have a sample of test scores, the standard deviation would indicate how much the scores deviate from the mean score.
+
+Standard error, on the other hand, pertains to the sampling distribution of a statistic. It reflects the variability in the estimates of a parameter across different samples. For example, if you take multiple random samples from a population and calculate the mean of each sample, the standard error would measure the spread or variability of those sample means.
+
+In summary, the standard deviation quantifies the variability within a dataset, while the standard error quantifies the variability of a sample statistic (such as the mean) across different samples. The standard error provides information about the precision or reliability of the sample statistic as an estimate of the population parameter.
+
+## Calculate Confidence Interval
+
+Here, because we have incomplete knowledge of the population, we will use the *t* distribution to model the population variability. The distribution is flatter (has larger tails). What does this mean to our estimate of the confidence interval?
+
+
+To model the confidence interval we assume that the univariate distribution is *t* distributed. 
+
+$CI = \bar{X} \pm t_{\alpha, df}{s_{\bar{X}}}$ (95% Certainty, with *n* =  10?)
+
+$CI = \bar{X} \pm t_{\alpha, df}{s_{\bar{X}}}$ (99% Certainty, with *n* =  10?)
+
+$CI = \bar{X} \pm t_{\alpha, df}{s_{\bar{X}}}$ (99% Certainty, with *n* =  50?)
+
+Here is some code to document the calculation.
+
+```{r, eval = F}
+# Sample data
+data <- c(5.1, 4.9, 4.7, 4.8, 5.0, 4.9, 5.1, 4.8, 5.0, 4.9)
+
+# Confidence level
+confidence_level <- 0.95
+
+# Sample mean
+sample_mean <- mean(data)
+
+# Sample standard deviation
+sample_sd <- sd(data)
+
+# Sample size
+sample_size <- length(data)
+
+# Degrees of freedom
+df <- sample_size - 1
+
+# Critical value for the t-distribution
+critical_value <- qt((1 - confidence_level) / 2, df)
+
+# Margin of error
+margin_of_error <- critical_value * (sample_sd / sqrt(sample_size))
+
+# Confidence interval
+confidence_interval <- c(sample_mean - margin_of_error, sample_mean + margin_of_error)
+
+# Print the results
+cat("Sample Mean:", sample_mean, "\n")
+cat("Sample Standard Deviation:", sample_sd, "\n")
+cat("Sample Size:", sample_size, "\n")
+cat("Confidence Level:", confidence_level, "\n")
+cat("Degrees of Freedom:", df, "\n")
+cat("Critical Value:", critical_value, "\n")
+cat("Margin of Error:", margin_of_error, "\n")
+cat("Confidence Interval:", confidence_interval, "\n")
+
+```
+

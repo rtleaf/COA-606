@@ -1,0 +1,180 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+# Multiple Linear Regression
+
+Model is fit by minimizing the sum of squared differences between the line and the actual data points - method of least squares.
+
+We still use our base equation:
+
+$outcome=model+error$
+
+But this time the model it is a bit more complicated. 
+
+When we add predictors, we add parameters ($\beta$ terms). 
+
+So each predictor variable has its own coefficient (parameter) and the outcome is predicted from a combination of all variables multiplied by their respective coefficients ($\beta$ terms).
+
+## Multiple Predictors
+
+*Y* is the outcome variable, $\beta_1$ is the coefficient of X1,$\beta_n$ is the coefficient of $X_n$.
+
+We seek to find combinations of $\beta$ values (parameters) that minimize the sum of squares error:
+
+$outcome_i=model_i+error_i$
+
+$error_i = outcome_i - model_i$
+
+As you know, we quantify the error the model fitting using $SS$.
+
+$Y_i=(b_0 + b_1X_{1i}+b_2X_{2i}+\ldots+b_nX_{ni})+\varepsilon_i$
+
+$\varepsilon_i=Y_i-(b_0 + b_1X_{1i}+b_2X_{2i}+\ldots+b_nX_{ni})$
+
+## Album Sales Model
+
+From our previous example above of record sales data, we know that advertising accounts for 33% of the variation in album sales.
+
+Remember: 
+
+$R^2=\frac{SS_M}{SS_T}$
+
+$R^2=0.3313$
+
+Therefore a large proportion of variation remains unexplained.
+
+Lets bring a new predictor variable into the mix to see if we can increase the amount of residual variation described by the model: How many times the song was played on the radio during the week prior to its release. 
+
+## Multiple Predictors Model
+
+We will incorporate a new "airplay" variable.
+
+So we have a model with three parameters and two slope coefficients. Because there are two predictors, so we can view the model in two dimensions:
+
+$E(Album \:Sales_i)=\beta_0+\beta_1X_{advertising \: budget_i}+\beta_2X_{airplay_i}$
+
+## Regression "Plane"
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+#install.packages("scatterplot3d")
+library(scatterplot3d)
+library(MASS)
+mu <- c(250,35,1000)
+stddev <- c(100, 35, 500)
+
+corMat <- matrix(c(1, 0.78, 0.63,
+                   0.78, 1, 0.27,
+                   0.63, 0.27, 1),
+                 ncol = 3)
+covMat <- stddev %*% t(stddev) * corMat
+covMat
+out <- as.data.frame(mvrnorm(n = 212, mu = mu, Sigma = covMat, empirical = FALSE))
+
+out$V1.s <- (out$V1 - min(out$V1)) #*1000+10 #x
+out$V2.s <- (out$V2 - min(out$V2))/10+45 #y
+out$V3.s <- (out$V3 - min(out$V3)) #*200+30 #z
+
+plot3d <- scatterplot3d(out$V2.s, out$V3.s, out$V1.s, pch = 16, xlab = "No. of Plays on Radio 1 per Week", ylab = "Album Sales (Thousands)", zlab = "Advertising Budget (Thousands of Pounds)", angle = 55)
+my.lm <- lm(V1.s ~ V2.s + V3.s, data = out)
+plot3d$plane3d(my.lm, lty.box = "solid")
+
+```
+
+## Multiple Linear Regression
+
+|Cities               |Y  |X~1~|X~2~|X~3~|X~4~|X~5~ |X~6~|
+|---                  |---|--- |--- |--- |--- |---  |--- |
+|Pheonix              |10 |70.3|213 |582 |6.0 |7.05 |36  |
+|Little Rock          |13 |61.0|91  |132 |8.2 |48.52|100 | 
+|San Francisco        |12 |56.7|453 |716 |8.7 |20.66|67  |
+|Denver               |17 |51.9|454 |515 |9.0 |12.95|86  |
+|Hartford             |56 |49.1|412 |158 |9.0 |43.37|127 |
+|Wilmington           |36 |54.0|80  |80  |9.0 |40.25|114 |
+|Washington           |29 |57.3|434 |757 |9.3 |38.89|111 |
+|Jacksonville         |14 |68.4|136 |529 |8.8 |54.57|116 |
+|Miami                |10 |75.5|207 |335 |9.0 |59.80|128 |
+|Atlanta              |24 |61.5|368 |497 |9.1 |48.34|115 |
+|Chicago              |110|50.6|3344|3369|10.4|34.44|122 |
+|Indianapolis         |28 |52.3|361 |746 |9.7 |38.74|121 |
+|Des Moines           |17 |49.0|104 |201 |11.2|30.85|103 |
+|Wichita              |8  |56.6|125 |277 |12.7|30.58|82  |
+|Louisville           |30 |55.6|291 |593 |8.3 |43.11|123 |
+|New Orleans          |9  |68.3|204 |361 |8.4 |56.77|113 |
+|Baltimore            |47 |55.0|625 |905 |9.6 |41.31|111 |
+|Detroit              |35 |49.9|1064|1513|10.1|30.96|129 |
+|Minneapolis- St. Paul|29 |43.5|699 |744 |10.6|25.94|137 |
+|Kansas City          |14 |54.5|381 |507 |10.0|37.00|99  |
+|St. Louis            |56 |55.9|775 |622 |9.5 |35.89|105 |
+|Omaha                |14 |51.5|181 |347 |10.9|30.18|98  |
+|Alburquerque         |11 |56.8|46  |244 |8.9 |7.77 |58  |
+|Albany               |46 |47.6|44  |116 |8.8 |33.36|135 |
+|Buffalo              |11 |47.1|391 |463 |12.4|36.11|166 |
+|Cincinnati           |23 |54.0|462 |453 |7.1 |39.04|132 | 
+
+*Table of air pollution in 41 U.S. cities associatied with six environmental variables*
+
+## Model Interpretation
+
+We regress SO~2~ content in the air on average temperature X~1~ and the number of manufacturing enterprises, X~2~
+
+$\hat{Y} = 77.231 + 1.0480X_1 + 0.02431X_2$
+
+A one unit change in $X_2$ results in a 0.02431 increase in *Y*.
+
+A one unit change in $X_1$ results in a 1.048 increase in *Y*.
+
+## Test of Null Hypothesis
+
+We can analyze the null hypothesis that all of the regression coefficients are equal to zero using an ANOVA analysis. This approach is analogous to that used in simple linear regression.
+
+## Significance Testing
+
+In general, a significant *F* value will be associated with the rejection of the null hypothesis for some regression coefficients. 
+
+## Multicollinearity
+
+Sometimes it is possible to have a significant *F* without significant regression coefficients. Multicollinearity occurs when there is multicollinearity among variables.
+
++ This happens when two variables are highly correlated. 
+
++ Result in untrustworthy coefficients - serves to increase the variance of the estimate of the $\beta$ values.
+
++ Example: inclusion of one predictor results in R2 = 0.80. 
+
++ When you add a highly correlated variable, the variance it accounts for is already described by the first variable - it does not account for unique variance. 
+
++ So we only get a slight increase in our *R* value.
+
++ We can deal with this by evaluating the variables prior to inclusion into the model.
+
+## Determination of Predictors to Include?
+
+One of the most widespread ways is to use "stepwise" methods, you specify a direction either forward or backward.
+
+Forward selection:
+
++ Initial model with only the constant b0 is made
++ Add single predictor that best predicts the outcome by selecting the one with the greatest correlation with the outcome
++ If fit is improved, then the predictor is retained
++ Repeat
+
+Backward selection: 
+
++ As above but remove coefficients one at a time.
+
+## Model Design Considerations 1
+
++ Predictor variables must be either continuous or categorical.
+
++ Predictors should have non-zero variance.
+
++ Predictors should not be highly correlated (avoid multicollinearity).
+
++ It is desirable to employ a regression that is parsimonious - as few as necessary but as many as needed.
+

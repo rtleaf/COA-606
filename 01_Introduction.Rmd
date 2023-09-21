@@ -1,0 +1,312 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    toc_depth: 1
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+# Univariate Data
+
+*Univariate* is a describes a type of data which consists of observations of only a single characteristic. 
+
+## Variables and Frequency Distributions
+
+*Zar 4th ed. (1.1, 1.3, 1.4)*
+
+The properties and characteristics of an object that can assume two or more different values are called *variables*. 
+
+These are the values that comprise our data.
+
+Examples: 
+
+* Heights of graduate students
+* Foot size of toddlers at 10 days old
+* Taxomonic diversity (number of species) in a habitat
+
+We need to understand the characteristics of variables prior to analysis because different types of measurements will require different methods of analysis.
+
+The next step after data collection is to organize the data into a meaningful form so that similarities and contrasts can be seen easily. 
+
+One of the common methods for organizing univariate data is to construct frequency distributions either in a table or as a figure. 
+
+The frequency distribution is an organized representation of the number of observations in each category on the scale of measurement. These allow researchers to have a glance at the entire data conveniently. 
+
+Frequency distributions allow the experimenter to understand if there are observations that are high or low and also whether observations are concentrated in one area or spread out across the entire scale.
+
+```{r,results='hide',message=FALSE, echo=FALSE, warning=FALSE, eval=FALSE}
+par(mfrow = c(1,2)) # This tells R to put 1 row, 2 columns
+obs = rnorm(n = 10)
+hist(obs, 
+     main = "", 
+     xlab = "Observations", 
+     freq = T)
+box()
+
+obs = rnorm(n = 10, sd = 2)
+hist(obs, 
+     main = "", 
+     xlab = "Observations", 
+     ylab = " ",
+     freq = T)
+box()
+dev.off()
+
+```
+
+## Categorical Variable Types
+
+### Binary variables
+
+There are only two categories, e.g.
+
++ dead or alive,
+
++ present or absent,
+
++ positive or negative (e.g. for a disease),
+
++ the value of some quantity of interest is zero or positive, 
+
++ or the value of some quantity of interest exceeds some threshold value.
+
+### Nominal variables
+
+There are more than two categories, e.g.
+
++ Whether the subject is an omnivore, vegetarian, vegan, or carnivore.
+
++ The subject's taxonomic group (e.g. genera, species, phyla), 
+
+### Ordinal variable
+
+Similar to a nominal variable but the categories are ordered.
+
++ Whether people got a fail, a pass, a merit or a distinction in their exam.
+
++ Intensity of infection (e.g. none, mild, moderate, severe)
+
+### R Code
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[2])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[2] %>% cat()
+```
+
+### Frequency Distributions of a Categorical Variable 
+
++ A tally of how frequently occurring a value is among categories.
+
+```{r, results='hide',message=FALSE, echo=FALSE, warning=FALSE}
+require(tidyverse)
+freq.air <- airports::usairports %>% dplyr::filter(state %in% state.abb) %>% group_by(state) %>% summarize(`number of airports` = length(state),
+                                                                                                           'number of counties' = length(unique(county))) %>% arrange(desc(`number of airports`))  %>% slice_head(n = 10)
+
+barplot(freq.air$`number of airports` ~ freq.air$state, 
+        xlab = 'State', 
+        ylab = 'Frequency of Airports per State')
+
+freq.air %>% knitr::kable()
+```
+
+### R Code
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[22])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[22] %>% cat()
+```
+
+## Continuous Variables
+
+Equal intervals on the variable represent equal differences in the property being measured, e.g.
+
++ the difference between 6 and 8 is equivalent to the difference between 13 and 15,
+
++ Density or frequency of organisms in a transect or at a sampling station, 
+
++ Body Mass Index or some measure of condition of an organism.
+
+### Frequency Distribution of a Continuous Variable
+
+A question often asked: What interval to choose? 
+
+Your knowledge of the domain will guide this. As a first approach, the width of the class can be determined by dividing the range of observations by the number of classes. 
+
+The following are some guidelines regarding class widths:
+
+1.) It is advisable to have equal class widths. Unequal class widths should be used only when large gaps exist in data.
+
+2.) The class intervals should be mutually exclusive and nonoverlapping.
+
+3.) Open-ended classes at the lower and upper side (e.g., < 10, > 100) should be avoided, why?
+
+<center>
+**Determination of the Amount of Phosphorous in Leaves: A Frequency Table of Continuous Data**
+
+| Phosphorous concentration |  Frequency |
+| :---:            | :---: |
+| 8.1 to 8.2  | 2  |
+| 8.2 to 8.3  | 6  |
+| 8.3 to 8.4  | 8  |
+| 8.4 to 8.5  | 11 |
+| 8.5 to 8.6  | 17 |
+| 8.6 to 8.7  | 17 |
+| 8.7 to 8.8  | 24 |
+| 8.8 to 8.9  | 18 |      
+| 8.9 to 9.0  | 13 |
+| 9.0 to 9.1  | 10 |       
+| 9.1 to 9.2  | 4  | 
+Total frequency = 130 = n
+</center>
+
+```{r, results='hide',message=FALSE, echo=FALSE, warning=FALSE}
+# Histogram for fig 2.2.3
+par(mfrow = c(1,1)) # This tells R to put 1 row, 2 columns
+stuff.to.plot <- c(rep(8.1,2), rep(8.3,6), rep(8.4,8), rep(8.5,11), rep(8.6,17), rep(8.7,17), rep(8.8,24), rep(8.9,18), rep(9.0,13), rep(9.1,10), rep(9.2,4))
+hist(stuff.to.plot, 
+     main = "", xlab = "Phosphorous (mg/g of leaf)", 
+     xlim = c(8.1,9.3), freq = T)
+box()
+```
+
+### Cumulative Distribution of a Continuous Variable
+```{r, results='hide',message=FALSE, echo=FALSE, warning=FALSE}
+# Histogram for fig 2.2.3
+par(mfrow = c(1,1), mar = c(4,4,1,4)) # This tells R to put 1 row, 2 columns
+x <- c(8.15	,
+       8.25	,
+       8.35	,
+       8.45	,
+       8.55	,
+       8.65	,
+       8.75	,
+       8.85	,
+       8.95	,
+       9.05	,
+       9.15)
+
+y <- c(2,8,16,27,44,61,85,103,116,126,130)
+y2 <- y/130
+plot(x,y, 
+     main = "", 
+     xlab = "Phosphorous (mg/g of leaf)", 
+     ylab = "Frequency", 
+     xlim = c(8.0,9.3), 
+     ylim = c(-10,140), 
+     type = 'b',
+     pch=16,
+     axes = F)
+axis(side=2)
+axis(side=1)
+
+text(x = x, y = y, labels = paste0(round(y2,2)*100,'%'), pos = 3)
+text(x = x, y = y, labels = x, pos = 1)
+box()
+
+```
+
+
+Determination of the Amount of Phosphorous in Leaves: A Frequency Table of Continuous Data
+
+|                           |           |                Cumulative Frequency                 |
+|:---:                        |:---:        | :---:                      |  :---:                      |             
+| Phosphorous concentration | Frequency | Starting with Low Values | Starting with High Values |
+| 8.15 to 8.25  | 2  |   2 | 130 |
+| 8.25 to 8.35  | 6  |   8 | 128 |
+| 8.35 to 8.45  | 8  |  16 | 122 |   
+| 8.45 to 8.55  | 11 |  27 | 114 |
+| 8.55 to 8.65  | 17 |  44 | 103 |
+| 8.65 to 8.75  | 17 |  61 | 86  |
+| 8.75 to 8.85  | 24 |  85 | 69  |
+| 8.85 to 8.95  | 18 | 103 | 45  |    
+| 8.95 to 9.05  | 13 | 116 | 27  |
+| 9.05 to 9.15  | 10 | 126 | 14  |     
+| 9.15 to 9.25  | 4  | 130 | 4   |
+
+Total frequency = 130 = n
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[1])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[1] %>% cat()
+```
+
+### Box and Whisker Plot of a Continuous Variable
+
+This graph, first described by Tukey, can also be used to illustrate the distribution of data. 
+
+There is a vertical or horizontal rectangle (box), the ends of which correspond to the upper and lower quartiles (75th and 25th percentile, respectively). 
+
+Hence the middle 50% of observations are represented by the box. 
+
+The length of the box indicates the variability of the data. The line inside the box denotes the median (sometimes marked as a plus sign). 
+
+The position of the median indicates whether the data are skewed or not. If the median is closer to the upper quartile, then they are negatively skewed and if it is near the lower quartile, then positively skewed.
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+par(mfrow = c(1,2))
+par(mar = rep(0,4))
+a. <- rnorm(n = 150,3,4)
+b. <- rnorm(n = 150,5,1)
+boxplot(a., horizontal=F, xaxt = 'n', yaxt = 'n', ylim = range(c(a.,b.)))
+boxplot(b., horizontal=F, xaxt = 'n', yaxt = 'n', ylim = range(c(a.,b.)))
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[3])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[3] %>% cat()
+```
+
+### Violin Plots
+
+Violin plots are an alternative to box plots that solves the issues regarding displaying the underlying distribution of the observations, as these plots show a kernel density estimate of the data. 
+
+same summary statistics as box plots:
+
++ the white dot represents the median.
+
++ the thick gray bar in the center represents the interquartile range.
+
++ the thin gray line represents the rest of the distribution, except for points that are determined to be “outliers” using a method that is a function of the interquartile range.
+
+On each side of the gray line is a kernel density estimation to show the distribution shape of the data. Wider sections of the violin plot represent a higher probability that members of the population will take on the given value; the skinnier sections represent a lower probability.
+
+```{r, results='hide',message=FALSE, echo=FALSE, warning=FALSE}
+library("vioplot")
+
+par(mfrow=c(2,1), mar = c(4,4,1,1))
+mu<-2
+si<-0.6
+bimodal<-c(rnorm(100,-2*mu,si),rnorm(1000,mu*2,si))
+uniform<-runif(200,-4,4)
+normal<-rnorm(200,0,3)
+vioplot(bimodal,uniform,normal)
+boxplot(bimodal,uniform,normal)
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[4])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[4] %>% cat()
+```
+
+
+
+

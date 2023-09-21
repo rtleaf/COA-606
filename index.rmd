@@ -1,0 +1,118 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+    toc_depth: 1
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+load("chatgpt.biometry.bookdown.RData")
+syl.comp <- read.csv("Syllabus Components.csv")
+```
+
+# `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Title")])`
+
+Date: `r format(Sys.time(), '%d %B %Y')`
+
+Instructor: `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Instructor")])`
+
+Office: `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Office")])`
+
+Office Hours: `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Office Hours")])`
+
+Email: `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Email")])`
+
+Course Meeting Day and Time: `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Course Meeting Days")])`, `r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Course Meeting Time")])`
+
+Repository of Readings: https://tinyurl.com/mrx7hdxe
+
+Repository of Videos and Transcripts: https://tinyurl.com/bde2ejnc
+
+Repository of HW: https://tinyurl.com/3nvwe38h
+
+In-class assignment: https://rtleaf.github.io/coa-606-in-class
+
+## Course Description and Objectives
+This course addresses basic approaches to experimental design, statistical analysis, and presentation of quantitative information.
+
+## At the conclusion of this course: 
+
+By the end of this course, you will be able to:
+
+*	Define what comprises the field of statistical analysis.
+*	What is meant by random samples, random sampling, and understanding how these aspects of sampling are critical for description and inference.
+*	Explain the differences and similarities among variables, statistics, and parameters.
+*	Define a cumulative density function and a probability density function and describe several common distributional families (e.g., normal, binomial, chi-square).
+*	Understand and be familiar with the applications of:
+*	Frequency distributions
+*	Power analysis
+*	Summary statistics as a tool for describing data
+*	Means comparison techniques for testing hypotheses
+*	ANOVA comparison techniques for testing hypothesis
+*	Linear regression techniques for describing relationships between random variables.
+*	Make appropriate decisions as a part of a statistical data analysis.
+
+## Course Materials - Online and in the Caylor Library
+`r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Course Materials 1")])`
+
+`r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Course Materials 2")])`
+
+## Course Scheduling
+```{r, echo=FALSE, message=FALSE}
+gs.scale <- read.csv("course_scheduling.csv")
+gs.scale <- gs.scale[,1:3]
+names(gs.scale) <- c("Day","Activity", "Reading")
+knitr::kable(gs.scale)
+```
+
+## Course Workload Statement
+`r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Course Workload Statement")])`
+
+## Course Evaluation
+```{r, echo=FALSE, message=FALSE}
+gs.scale <- read.csv("Grading Scale.csv")
+names(gs.scale) <- c("Percentage", "Letter Grade")
+knitr::kable(gs.scale)
+```
+
+## Course Evaluation - Participation and Attendence
+`r paste0(syl.comp$VAR2[which(syl.comp$VAR1 == "Participation and Attendence")])`
+
+## Homework policy
+*	There is no due date for the HW, you may turn it in anytime. 
+
+*	Graded HW will be returned withing 5 working days of its receipt. 
+
+* Prepare your HW as an organized and clear hard copy, make it easy for me to give you full credit.
+
+*	However, no work will be accepted after 4 PM Monday, December 4, 2023.
+
+## Grading scale
+```{r, echo=FALSE, message=FALSE}
+course.eval <- read.csv("Course Evaluation.csv")
+names(course.eval) <- c("Evaluation type",	"Number",	"Points per item",	"Total points")
+knitr::kable(course.eval)
+```
+
+## Exam Bank
+The bank of exams and study material can be found here:
+https://tinyurl.com/3d8akhts
+
+## Academic Support Resources
+If a student knows or believes that they have a disability which is covered by the Americans with Disabilities Act (ADA) and makes them eligible to receive classroom accommodations, they should contact the Office for Disability Accommodations (ODA) for information regarding the registration process. Disabilities covered by the ADA may include but are not limited to ADHD, learning disabilities, psychiatric disabilities, physical disabilities, chronic health disorders, temporary illnesses or injuries and pregnancies. Students should contact ODA if they are not certain whether their documented medical condition qualifies for ODA services. Students are only required to disclose their disability to the Office for Disability Accommodations. All information submitted to ODA by the student is held with strict confidentiality.
+
+## Mental Well-Being Statement
+I recognize that students sometimes experience challenges that make learning difficult. If you find that life stressors such as anxiety, depression, relationship problems, difficulty concentrating, alcohol or drug problems, or other stressful experiences are interfering with your academic or personal success, consider contacting Student Counseling Services on campus at 601-266-4829. More information is also available at https://www.usm.edu/student-counseling- services. All students are eligible for free, confidential individual or group counseling services. In the event of emergency, please call 911 or contact the counselor on call at 601-606-HELP (4357).
+
+## Nondiscrimination Statement
+The University of Southern Mississippi offers to all persons equal access to educational, programmatic and employment opportunities without regard to age, sex, sexual orientation, disability, pregnancy, gender identity, genetic information, religion, race, color, national origin, and/or veteran status pursuant to applicable state and federal law.
+
+## Confidentiality and Mandatory Reporting
+As an instructor, one of my responsibilities is to help create and maintain a safe learning environment. I have a mandatory reporting responsibility related to my role as a faculty member. I am required to share information regarding sexual misconduct or information about a crime that may have occurred on the USM campus with certain University officials responsible for the investigation and remediation of sexual misconduct. The information will remain private and will only be shared with those officials necessary to resolve the matter. If you would like to speak in confidence, resources available to students include Confidential Advisors with the Shafer Center for Crisis Intervention, the Counseling Center, and Student Health Services. More information on these resources and University Policies is available at https://www.usm.edu/sexual-misconduct.
+
+## Academic Integrity
+All students at the University of Southern Mississippi are expected to demonstrate the highest levels of academic integrity. Forms of academic dishonesty include cheating (including copying from others work), plagiarism (representing another persons words or ideas as your own; failure to properly cite the source of your information, argument, or concepts), falsification of documents, disclosure of or use of test material or other assignment content to another student, submission of the same paper or other assignment to more than one class without the explicit approval of all faculty members involved, unauthorized academic collaboration with others, conspiracy to engage in academic misconduct.

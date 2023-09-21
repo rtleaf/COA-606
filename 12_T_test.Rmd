@@ -1,0 +1,324 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+# Comparing Two Means using *t*-tests
+
+A common situation is the comparison of the means of two populations.
+
+An example of a *t*-test is to evaluate the mean blood clotting times between populations that were given two drugs.  
+
++ $H_0: \mu_B = \mu_G$, where $\mu$ is the mean blood clotting time (in minutes)
+
+If the samples came from two normally distributed populations and the variances of the populations are equal ,we can use a two sample *t*-test. These conform to the assumptions of parametric statistics.
+
++ Two samples of data are collected and the sample means calculated. 
+
++ The calculated means might differ by either a little or a lot.
+
+## Small differences in mean samples values
+
+We expect their means to be equal or very close. In this case, it is possible (even likely) for the population means to differ by chance alone (due to sampling error). We wwould expect that large differences in the mean values would occur very infrequently.
+
+$H_0: \mu_B = \mu_G$
+
+Alternatively, we can pose this as the difference in the mean:
+
+$H_0: \mu_B - \mu_G = 0$.
+
++ We are interested in understanding the magnitude of difference between the sample means.
+
++ We use the standard error as a gauge of the variability between sample means. 
+
+## Large differences in mean samples values
+
+If the difference between the samples we have collected is large, then we can infer one of two things:
+
+1.) There is no effect of the two blood clotting medicine and by chance we calculated two sample means that are atypical of the population from which they came.
+      
+2.) The two samples come from different populations (populations with different mean values). In this scenario, the difference between samples represents a genuine difference between the samples (and we falsify the null hypothesis).
+
+So, this is the null model we are testing; did the samples come from the same population or did the samples come from the different populations?
+
+If the observed difference between the sample means is large: The more confident we become that the second explanation is correct (i.e. that the null hypothesis should be rejected).
+
+## Example
+
++ Is arachnophobia (fear of spiders) specific to real spiders or is a picture enough?
+
++ 24 arachnophobic individuals
+
+Experimental Manipulation:
+
++ n = 12 randomly chosen participants were exposed to a real spider.
+
++ n = 12 randomly chosen participants were exposed to a picture of the same spider.
+
++ We monitor the anxiety produced.
+
+## We will evaluate these data using a linear model
+
+Consider an experiment where 'Groups' were exposed to a "Picture of a Spider" and an "Actual Spider"
+
+The response variable is the level of Anxiety (A)
+
+$\hat{A_i}=b_0+b_1G_i$
+
+The independent variable *G* has only two values "Group 1" and "Group 2" ie. The "real" and "picture" groups.
+
+```{r,message=FALSE, echo=FALSE}
+
+a1 = c(20.67124, 36.79956, 38.36280, 26.76544, 36.46704, 15.36294, 20.63903, 23.93972, 40.35177, 41.79260, 31.16043, 28.42174)
+a2 = c(23.68506, 59.23398, 35.84786, 47.14871, 44.51467, 52.42887, 61.94535, 52.43209, 39.05075, 57.72527, 48.60876, 41.13388)
+df. <- data.frame(Group = c(rep("Picture", 12), 
+                            rep("Real Spider", 12)), 
+                  Anxiety = c(a1,a2))
+
+df.$G <- c(rep(0,12),rep(1,12))
+
+print(df.)
+
+par(mfrow = c(2,1))
+par(mar = c(3,5,3,1))
+hist(df.[which(df. == "Picture"),2], 
+     main = "Picture",
+     breaks = seq(10,64,by = 4))
+abline(v = mean(df.[which(df. == "Picture"),2]), col = 'red', lwd = 3)
+hist(df.[which(df. == "Real Spider"),2], 
+     main = "Real Spider",
+     breaks = seq(10,64,by = 4))
+abline(v = mean(df.[which(df. == "Real Spider"),2]), col = 'red', lwd = 3)
+     
+```
+
+## Picture Group
+
+We can code the variable, *G*, as a 'dummy' variable. It will take on the values one or zero. We can assign one group to have a value of zero, and one group to have a value of one. In the case of the 'picture' group, we will assign a value of *G* to be zero. 
+
+$G_{picture}=0$
+
+$\hat{A_i}=b_0+b_1G_i$
+
+The expected anxiety of group "picture" is the mean of anxiety of group "picture".
+
+$\bar{A}_{Picture}=b_0+b_1G_{picture}$
+
+$\bar{A}_{Picture}=b_0+b_1\times0$
+
+$\bar{A}_{Picture}=b_0$
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+
+a1 = c(20.67124, 36.79956, 38.36280, 26.76544, 36.46704, 15.36294, 20.63903, 23.93972, 40.35177, 41.79260, 31.16043, 28.42174)
+a2 = c(23.68506, 59.23398, 35.84786, 47.14871, 44.51467, 52.42887, 61.94535, 52.43209, 39.05075, 57.72527, 48.60876, 41.13388)
+df. <- data.frame(Group = c(rep("Picture", 12), 
+                            rep("Real Spider", 12)), 
+                  Anxiety = c(a1,a2))
+
+plot(x = jitter(c(rep(1,12),rep(2,12))), y = df.$Anxiety, 
+     type = 'n', xaxt = 'n',xlab = "",ylab = "Anxiety")
+points(x = jitter(c(rep(1,12),rep(2,12)),0.2), y = df.$Anxiety, pch = 21)
+segments(x0 = 0.75, y0 = mean(a1),
+         x1 = 1.25, lwd = 2)
+text(labels = paste("B0 =",round(mean(a1),2),"mean picture anxiety"), x= 1.25, y = mean(a1), pos = 3)
+
+
+```
+
+## Real Spider Group
+
+Again, we can code the variable, *G*, as a 'dummy' variable. It can take on the values one or zero. 
+
+We have assigned a value of *G* to be zero for the "picture" group. So, for the "real" group, we will assign the dummy variable *G* to equal one. 
+
+$G_{real}=1$
+
+$\hat{A_{G=1}}=b_0+b_1G_i$
+
+$\hat{A_i}=30.06+b_1\times1$
+
+$\hat{A_i}=30.06+b_1$
+
+$b_1 = \hat{A_i}-30.06$
+
+$b_1$ = Difference between means
+
+$b_1=\bar{A}_{Real}-\bar{A}_{Picture}$
+
+Our task is to understand if this $\beta_1$ value is significantly different from zero.
+
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+
+
+a1 = c(20.67124, 36.79956, 38.36280, 26.76544, 36.46704, 15.36294, 20.63903, 23.93972, 40.35177, 41.79260, 31.16043, 28.42174)
+a2 = c(23.68506, 59.23398, 35.84786, 47.14871, 44.51467, 52.42887, 61.94535, 52.43209, 39.05075, 57.72527, 48.60876, 41.13388)
+df. <- data.frame(Group = c(rep("Picture", 12), 
+                            rep("Real Spider", 12)), 
+                  Anxiety = c(a1,a2))
+
+plot(x = jitter(c(rep(1,12),rep(2,12))), y = df.$Anxiety, 
+     type = 'n', xaxt = 'n',xlab = "",ylab = "Anxiety")
+points(x = jitter(c(rep(1,12),rep(2,12)),0.2), y = df.$Anxiety, pch = 21)
+
+segments(x0 = 0.75, y0 = mean(a1),
+         x1 = 1.25, lwd = 2)
+text(labels = paste("Mean Picture =",round(mean(a1),2)), x= 1, y = mean(a1), pos = 3)
+
+
+segments(x0 = 1.75, y0 = mean(a2),
+         x1 = 2.25, lwd = 2)
+text(labels = paste("Mean Real =",round(mean(a2),2)), x= 1.75, y = mean(a2), pos = 3)
+
+
+```
+
+## Output from a Regression
+
+Let's see how this is analyzed in the linear regression approach using R:
+
+```{r, echo=FALSE}
+a1 = c(20.67124, 36.79956, 38.36280, 26.76544, 36.46704, 15.36294, 20.63903, 23.93972, 40.35177, 41.79260, 31.16043, 28.42174)
+a2 = c(23.68506, 59.23398, 35.84786, 47.14871, 44.51467, 52.42887, 61.94535, 52.43209, 39.05075, 57.72527, 48.60876, 41.13388)
+df. <- data.frame(Group = c(rep("Picture", 12), 
+                            rep("Real Spider", 12)), 
+                  Anxiety = c(a1,a2))
+
+df.$Group <- as.factor(df.$Group)
+
+summary(lm(df.$Anxiety~df.$Group))
+
+anova(lm(df.$Anxiety~df.$Group))
+
+```
+
+## The Independent *t-test*
+
+I am using the variable *Y* for the observations - this is a departure from Zar's presentation but the mechanics are identical.
+
+$t=\frac{\bar{Y}_1-\bar{Y}_2}{\sqrt{\frac{S^2_p}{n_1}+\frac{S^2_p}{n_2}}}$
+
++ The numerator is the difference between sample means.
+
++ The denominator is the standard error of the difference between the sample means. This quantity is a measure of the variability of the data within the two samples.
+
+$S^2_p=\frac{(n_1-1)S^2_1+(n_2-1)S^2_2}{n_1+n_2-2}$
+
+$S^2_p=\frac{SS_1+SS_2}{v_1+v_2}$
+
+Here v~1~ and v~2~ are the degrees of freedom, v~1~ = n~1~ - 1 and v~2~ = n~2~ -1
+
+The test value is compared to the critical value at a given $\alpha$
+
+$t_{\alpha,2,df}$
+  
+  + Need to set $\alpha$ value.
+  + One or two-tailed test?
+  + v~1~ = n~1~ - 1 and v~2~ = n~2~ - 1
+
+## Lets use the data from Zar as a worked example.
+
+$H_0: \mu_1 = \mu_2$
+$H_A: \mu_1\ne\mu_2$
+
+
+$H_0: \mu_1 - \mu_2 = 0$
+$H_A: \mu_1-\mu_2\ne0$
+
+|Given drug B|Given drug G|
+|:---:|:---:|
+|8.8|9.9|
+|8.4|9.0|
+|7.9|11.1|
+|8.7|9.6|
+|9.1|8.7|
+|9.6|10.4|
+|   |9.5|
+|------|
+|$n_1=6$|$n_2=7$|
+|$\nu_1=5$|$\nu_2=6$|
+|$\bar{Y}_1=$ 8.75 min | $\bar{Y}_2=$ 9.74 min|
+|SS~1~ = 1.6950 min^2^ | \ SS~2~ = 4.0171 min^2^|
+
+$S^2_p=\frac{SS_1+SS_2}{v_1+v_2}=\frac{1.6950+4.0171}{5+6}=\frac{5.7121}{11}=0.5193 \: \mbox{min}^2$
+
+$s_{\bar{Y_1}-\bar{Y}_2}=\sqrt{\frac{S^2_p}{n_1}+\frac{S^2_p}{n_2}}=\sqrt{\frac{0.5193}{6}+\frac{0.5193}{7}}=\sqrt{0.0866+0.0742}$
+
+$=\sqrt{0.1608}=0.40\mbox{min}$
+
+$t=\frac{\bar{Y}_1-\bar{Y}_2}{s_{\bar{Y}_1-\bar{Y}_2}}$
+
+## Determine test value
+
+$t=\frac{\bar{Y}_1-\bar{Y}_2}{s_{\bar{Y}_1-\bar{Y}_2}}=\frac{8.75-9.74}{0.40}=\frac{-0.99}{0.40}=-2.475$
+
+$|t|=|\frac{\bar{Y}_1-\bar{Y}_2}{s_{\bar{Y}_1-\bar{Y}_2}}|=2.475$
+
+## Determine critical value
+
+$t_{0.05(2),v}=t_{0.05(2),11}=2.201$
+
+Therefore, reject H~0~
+
+$P(|t|\ge2.475)<0.05$
+$\: \:$ 
+$P=0.031$
+
+## When Assumptions are Broken
+
++ Non-parameteric *t*-test Mann-Whitney "U" Test
+
++Do not require estimation of $\mu$ and $\sigma$.
+
++No assumptions about distributions.
+
++ Convert data to RANKS of data.
+
++ Two sample rank test
+
++ Rank from highest to lowest, the greatest value in either group is given a one, second given a two..
+
+$U=n_1n_2+\frac{n_1(n_1+1)}{2}-R_1$
+
++ n~1~ and n~2~ are the number of observation sin samples 1 and 2. 
++ R~1~ is the sum of the ranks in sample 1 
+
+H~0~: Male and female students are the same height.
+H~A~: Male and female students are not the same height.
+
+$\alpha=0.05$
+
+|Height of males|Height of females|Ranks of male heights|Ranks of female heights|
+|:---:|:---:|:---:|:---:|
+|193 cm |178 cm |1   |6   |
+|188   |173   |2   |8   |
+|185   |168   |3   |10   |
+|183   |165   |4   |11   |
+|180   |163   |5   |12   |
+|175   |   |7   |   |
+|170   |   |9   |   |
+|---|
+|$n_1=7$|$n_2=5$|$R_1=31$|$R_2=47$|
+
+$U=n_1n_2+\frac{n_1(n_1+1)}{2}-R_1$
+
+$(7)(5)+\frac{(7)(8)}{2}-31$
+
+$35+28-31$
+
+$32$
+
+$U^1=n_1n_2-U$
+
+$(7)(5)-32$
+
+$U_{0.05(2),5,7}=30$
+
+Because 32>30, H~0~ is rejected.
+
+Therefore, we conclude that height is different for male and female students. 

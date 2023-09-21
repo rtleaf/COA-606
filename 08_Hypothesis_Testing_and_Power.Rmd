@@ -1,0 +1,443 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+# Null Hypothesis Significance Testing (NHST)
+
+Zar 6.4
+
+NHST is a method of statistical inference by which an experimental factor is tested against a hypothesis of no effect (the null hypothesis) or no relationship based on a given observation.
+
++ The first step in doing any statistical test is to state a testable hypothesis:
+
++ $H_0$   Null hypothesis
++ $H_A$   Alternative hypothesis
+
++ Declare $\alpha$ level (this determines your quantile value)
+
+This is the level of significance that is a reference point to determine whether the results that you have is different from the null-hypothesis of no effect. 
+
+Fisher recommended using $\alpha = 0.05$ to judge whether an effect is significant or not. 
+
+If you recall, this alpha level is roughly two standard deviations away from the mean for the normal distribution.
+
+From Fisher: ‘The value for which *p* = 0.05, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this point as a limit in judging whether a deviation is to be considered significant or not’. 
+
+How small the level of significance is, is left to researchers (domain knowledge).
+
+The experimental procedure: 
+
++ Collect Data
+
++ State falsifiable null hypothesis
+
++ Conduct statistical test
+
++ Compare the test statistic to the critical value (determined by $\alpha$). This provides some measure of objectivity.
+
++ State the resulting probability (the *p*-value), less than or greater than $\alpha$.
+
+The p-value is the *probability* of obtaining test results at least as extreme as the results actually observed if the null hypothesis is true.
+
+## State testable hypothesis
+
++ These are a set of mutually exclusive and exhaustive outcomes
+
++ The test statistic will support one or the other outcomes
+
+<Br>
+
+$H_0: \mu = 0$,  $H_A:\mu \ne 0$
+
+$H_0: \mu = 3.5 cm$,  $H_A:\mu \ne 3.5 cm$
+
+$H_0: \mu = 10.5 kg$,  $H_A:\mu \ne 10.5 kg$
+
+<Br>
+
+## Example of testing significance using *Z*-scores.
+
+Let's examine a simple statistical test. We will test the hypothesis: Is the mean fuel consumption of a population of buses equal to 20 mpg?
+
++ What is the null hypothesis?
+
+We need information about the population (remember we are using *Z*-score so we know the population-level parameters $\mu$ and $\sigma$).
+
+Determine the associated probability that the mean is 20 mpg given:
+
+$\sigma$ = 0.3, $\mu$ = 19.1
+
+$Z_{calc} = \frac{\overline{X} - \mu}{\sigma}$
+
+
+What is the probability that we would get $Z_{calc}$?
+
+Let's compare this to the test value of $Z$, $Z_{test}$.
+
+$Z_{test}$ is the quantile of $Z$ that results from a given $\alpha$.
+
+Given our declared $\alpha$, how does the resulting probability compare?
+
++ Remember, $\alpha$ is defined prior to statistical testing
+
+If our  $Z_{calc}$ > $Z_{test}$, then we are in a 'region of rejection', i.e. rejection of the null hypothesis.
+
+Now we have a way to objectively reject or accept the null hypothesis.
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+par(mfrow = c(1,1)) # This tells R to put 1 row, 1 columns
+plot(x = seq(-4,4, length.out = 100), y = dnorm(seq(-4,4,length.out = 100)), xlab = "Z", ylab = "Y", type = "l", yaxt = 'n')
+abline(v = -1.96)
+abline(v = 1.96)
+#Needs "-1.96", "1.45", and "1.96" arrows on x axis 
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[21])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[21] %>% cat()
+```
+
+## Example of testing significance to detect normality.
+
+There are a variety of quantitative ways to assess goodness of fit (GOF) of normality. These are statistical tests and we will evaulate them using models and data.
+
+### Kolmogorov-Smirnoff Test
+This is a commonly used statistical test to see if your data is normally distributed.
+
+The Kolmogorov-Smirnov Goodness of Fit Test (K-S test) compares the distribution of observations (your univariate data) with those from a specified candidate distribution to understand if they come from the same distribution (in this case normal). We will test to see if our observations (data) are close to the expectations (those values we would expect if the data came from a normal distribution).
+
+In this test (and all statistical tests) we will determine if the difference in observed and expected values indicate that the distribution is similar or different. If the difference between observation and expectation is small, then we would likely say that the data are distributed normally. If the difference in observed and expected values is large then we say that the data must come from some other distribution, and the data are not normally distributed.
+
+The hypotheses for the test are:
+
+Null hypothesis ($H_0$): the data comes from the specified distribution.
+
+Alternate Hypothesis ($H_A$): at least one value does not match the specified distribution.
+
+$H_0: P = P_0$
+
+$H_A: P \ne P_0$
+
+Here *P* is the sample density and $P_0$ is a specified distribution.
+
+So, we need to evaluate two distributions, the one resulting from our sampling (*s*, sampled cumulative distribution $F_S(x)$ and the ones we would expect from a theoretical cumulative distribution, $F_T(x)$.
+
+The difference between the two distribution functions is evaluated by the test statistic *D*, the greatest vertical distance between $F_S(x)$ and $F_T(x)$.
+
+$D = \underset{\rm x}{sup}|F_S(x) - F_T(x)|$, 
+
+where $\underset{\rm x}{sup}$ is the *supremum* of the set of distances. Intuitively, the statistic takes the largest absolute difference between the two distribution functions across all x values.
+
+The K-S test statistic measures the largest distance between the EDF $F_{data}$ and the theoretical function $F_{data}$, measured in a vertical direction (Kolmogorov as cited in Stephens 1992). 
+
+The question is whether these data are normally distributed:
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+set.seed(1)
+vals <- round(rnorm(30),1) %>% table() 
+vals <-  t(vals) %>% as.data.frame()
+vals <- vals[,c(2,3)]
+names(vals) <- c("Obs","Frequency")
+
+vals$cumulative.freq <- cumsum(vals$Frequency)
+vals$cumulative.freq <- round(cumsum(vals$Frequency)/max(cumsum(vals$Frequency)),3)
+
+names(vals) <- c('Observations', 
+                 'Frequency',
+                 'F_S(x)')
+
+barplot(vals$Frequency ~ vals$Observations, 
+        xlab = 'Observations', 
+        ylab = 'Frequency')
+
+```
+
+
+First we will create a CDF (Cumulative Distribution Function) for the sample data (*n* = 30 observations), $F_S(x)$),
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+set.seed(1)
+vals <- round(rnorm(30),1) %>% table() 
+vals <-  t(vals) %>% as.data.frame()
+vals <- vals[,c(2,3)]
+names(vals) <- c("Obs","Frequency")
+
+vals$cumulative.freq <- cumsum(vals$Frequency)
+vals$cumulative.freq <- round(cumsum(vals$Frequency)/max(cumsum(vals$Frequency)),3)
+vals$fraction <- stringr::str_c(vals$Frequency,"/30",sep = "")
+vals$cum.fraction <- stringr::str_c(cumsum(vals$Frequency),"/30",sep = "")
+
+vals[,2] <- stringr::str_c(vals[,2]," (",vals[,4],")")
+vals[,3] <- stringr::str_c(vals[,3]," (",vals[,5],")")
+vals <- vals[,c(1:3)]
+
+names(vals) <- c('Observations', 
+                 'Freq. (Relative Freq)',
+                 'Cumulative Frequency, F_S(x)')
+
+head(vals,4) %>% knitr::kable()%>%
+  kable_styling(full_width = F)
+
+```
+
+Now, we find the associated *Z* score for each value of the empirically derived Cumulative Frequency ($F_S(x)$):
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+set.seed(1)
+vals <- round(rnorm(30),1) %>% table() 
+vals <-  t(vals) %>% as.data.frame()
+vals <- vals[,c(2,3)]
+names(vals) <- c("Obs","Frequency")
+vals$Obs <- vals$Obs %>% as.character() %>% as.numeric()
+
+vals$cumulative.freq <- cumsum(vals$Frequency)
+vals$cumulative.freq <- round(cumsum(vals$Frequency)/max(cumsum(vals$Frequency)),3)
+vals$Z_score <- round((vals$Obs - mean(vals$Obs))/sd(vals$Obs),3)
+
+names(vals) <- c('Observations', 
+                 'Frequency',
+                 'F_S(x)',
+                 'Z.score.obs')
+
+head(vals,4) %>% knitr::kable()%>%
+  kable_styling(full_width = F)
+
+```
+
+Now, we find the associated probability for each *Z* score from the empirical cumulative distribution, this is $F_T(x)$. We get these from the *Z* table in Zar. P(Z = -2.205)?
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+set.seed(1)
+vals <- round(rnorm(30),1) %>% table() 
+vals <-  t(vals) %>% as.data.frame()
+vals <- vals[,c(2,3)]
+names(vals) <- c("Obs","Frequency")
+vals$Obs <- vals$Obs %>% as.character() %>% as.numeric()
+
+vals$cumulative.freq <- cumsum(vals$Frequency)
+vals$cumulative.freq <- round(cumsum(vals$Frequency)/max(cumsum(vals$Frequency)),3)
+vals$Z_score <- round((vals$Obs - mean(vals$Obs))/sd(vals$Obs),3)
+vals$col4 <- round(pnorm(vals$Z_score, mean(vals$Obs), sd(vals$Obs)),3)
+
+names(vals) <- c('Observations', 
+                 'Frequency',
+                 'F_S(x)',
+                 'Z.score.obs',
+                 'F_T(X)')
+
+head(vals,4) %>% knitr::kable()%>%
+  kable_styling(full_width = F)
+
+```
+
+Finally, we will calculate the test statistic *D*. This if you recall is the maximum difference in the absolute value of $F_S(x) and F_T(x)$.
+
+Remember:
+
+$D = \underset{\rm x}{sup}|F_S(x) - F_T(x)|$.
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+set.seed(1)
+vals <- round(rnorm(30),1) %>% table() 
+vals <-  t(vals) %>% as.data.frame()
+vals <- vals[,c(2,3)]
+names(vals) <- c("Obs","Frequency")
+vals$Obs <- vals$Obs %>% as.character() %>% as.numeric()
+
+vals$cumulative.freq <- cumsum(vals$Frequency)
+vals$cumulative.freq <- round(cumsum(vals$Frequency)/max(cumsum(vals$Frequency)),3)
+vals$Z_score <- round((vals$Obs - mean(vals$Obs))/sd(vals$Obs),3)
+vals$col4 <- round(pnorm(vals$Z_score, mean(vals$Obs), sd(vals$Obs)),3)
+
+names(vals) <- c('Observations', 
+                 'Frequency',
+                 'F_S(x)',
+                 'Z.score.obs',
+                 'F_T(X)')
+
+vals$D <- abs(vals$`F_S(x)`-vals$`F_T(X)`)
+
+vals %>% knitr::kable()%>%
+  kable_styling(full_width = F)%>%
+  row_spec(which.max(vals$D), bold = T, color = "white", background = "red")
+
+
+
+```
+
+The open question then, how do we use the calculated $D$ value, $D = 0.100$ for evaluating our $n = 30$ samples?
+
+Use the lookup table in Zar 4th edition, Appendix Table B.9
+
+or [Critical Values of D](http://fcaglp.unlp.edu.ar/~observacional/papers/PDFs/statistics/app3.pdf)
+
+This will give us the 'critical value' for the test.
+
+The test value is $D = 0.100$, the critical value is $\alpha = 0.05$ and $n = 30$ is 0.24170.
+
+Remember, we are testing the Null hypothesis ($H_0$) that the data comes from the specified distribution.
+
+If our test value of $D$ exceed the critical value we would reject the null hypothesis. However, it does not. 
+
+$D = 0.100$
+
+$0.100 < D_{critical, n = 30, \alpha = 0.05}$.
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[15])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[15] %>% cat()
+```
+
+### Shapiro Wilk test
+
+This is one we will use extensively.
+
+The Shapiro-Wilk test is a statistical test used to assess the normality of a dataset. It was developed by Samuel Sanford Shapiro and Martin Wilk in 1965. 
+
+The test determines whether a given sample comes from a population that follows a normal distribution.
+
+The null hypothesis of the Shapiro-Wilk test is that the data is normally distributed. The alternative hypothesis is that the data does not follow a normal distribution. The test calculates a test statistic, W, which is based on the observed and expected values of the ordered sample values. The test statistic is then compared to critical values from the Shapiro-Wilk table or determined using software.
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[20])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[20] %>% cat()
+```
+
+
+
+
+# One- and Two-Tailed Tests
+
+In a two-tailed test, the alternative hypothesis is typically expressed as "not equal to" or "different from" the null hypothesis. It allows for the possibility of the observed data being significantly greater or significantly smaller than what would be expected under the null hypothesis.
+
+Two-tailed tests are often used when the research question or hypothesis is not specific about the direction of the effect or when there is a genuine interest in detecting differences in both directions.
+
+In some cases we care about the direction of the difference (is the value less than or greater than some value). In statistical hypothesis testing (NHST), a one-tailed test refers to a type of hypothesis test that focuses on the possibility of a significant difference or relationship in only one direction, either greater than or less than the null hypothesis.
+
+Use one-tailed test
+
++ In general, one-tailed hypotheses about a mean are: 
++ $H_0:\mu\ge\mu_0$ and $H_A:\mu<\mu_0$
++ In which case, H~0~ is rejected if the test statistic is in the left-hand tail of the distribution or:
++ $H_0:\mu\le\mu_0$ and $H_A:\mu>\mu_0$
+
+Contrast the region of rejection for these.
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+par(mfrow = c(2,1), mar=c(4,4,1,1)) 
+plot(x = seq(-4,4, length.out = 100), y = dnorm(seq(-4,4,length.out = 100)), xlab = "Z (a)", ylab = "Y", type = "l", yaxt = 'n')
+abline(v = -1.96)
+abline(v = 1.96)
+#Needs "-1.96", "1.45", and "1.96" arrows on x axis 
+
+plot(x = seq(-4,4, length.out = 100), y = dnorm(seq(-4,4,length.out = 100)), xlab = "Z (b)", ylab = "Y", type = "l", yaxt = 'n')
+abline(v = -1.645)
+
+#Needs "-1.645" 
+```
+
+
+# Statistical Power
+
+Statistical power is:
+
+The probability that the test correctly rejects the null hypothesis. That is, the probability of a true positive result. 
+
+Zar defines statistical power as: "The probability that the statistical test will correctly reject the null hypothesis".
+
+The power of a hypothesis test is between 0 and 1; 
+
+If the power is close to 1, the hypothesis test is very good at detecting a false null hypothesis.
+
+## Type-1 and Type-2 Errors
+
+Sometimes we:
+
++ Reject the null hypothesis when it is true. 
++ Accept the alternative hypothesis when it is false.
+
+These are error that we have made and occure even when following the correct statistical procedure and doing all of the calculations correctly.
+
+How do these errors arise?
+
+## Type 1 ($\alpha$) Error
+
+Type 1 error or alpha error - probability of rejecting $H_0$ when it is true.
+
+Type 1 error rate is equal to $\alpha$.
+
+Type 1 error: "rejecting the null hypothesis when it is true." We rejected the null hypothesis but did so erroneously.The samples available to us indicated that a difference existed when there was in fact no difference and the null hypothesis should have been accepted.
+
+Type 1 error is termed '$\alpha$ error' because it is equal to $\alpha$ 
+
+Now we have some criteria to choose alpha.
+
+So if your $\alpha$, or critical value is 0.10 we have a 10% probability of rejecting the null hypothesis when we should have, in fact, accepted it.
+
+## Type 2 ($\beta$) Error
+
+Type 2 error: "accepting the null hypothesis when it is false."
+
+Type 2 error or '$\beta$ error' is equal to $\beta$.
+
+## Tables of Error Types
+
+|   | If H~0~ is true | If H~0~ is false |
+|:---:|:---:|:---:|
+| If H~0~ is rejected  | Type I error   | No error   |
+| If H~0~ is not rejected  | No error   | Type II error  |
+
+*Two Types of Errors in Hypothesis Testing*
+
+|   | If H~0~ is true | If H~0~ is false |
+|:---:|:---:|:---:|
+| If H~0~ is rejected  | $\alpha$   | $1-\beta$ ("power") No error   |
+| If H~0~ is not rejected  | No error $1-\alpha$   | $\beta$ |
+
+*Long-term Probabilities of Outcomes in Hypothesis Testing* 
+
+Beta is commonly set at 0.2, but may be set by the researchers to be smaller. Consequently, power may be as low as 0.8, but may be higher. Powers lower than 0.8, while not impossible, would typically be considered too low for most areas of research.
+
+## What Influences Statistical Power?
+
+These are listed in Zar, we can take them step by step to learn why power is influenced.
+
+1. Significance level (or alpha)
+
+2. Sample Size - Power depends on sample size. Other things being equal, larger sample size yields higher power. 
+
+3. Variance - Power also depends on variance: smaller variance yields higher power.
+
+4. Experimental Design - Power can sometimes be increased by adopting a different experimental design that has lower error variance. For example, stratified sampling can reduce error variance and hence increase power. 
+
+5. Magnitude of the effect of the variable.
+

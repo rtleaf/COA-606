@@ -1,0 +1,282 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+# Measures of Dispersion 
+
+## Range 
+
+The smallest score subtracted from the largest score in the observation, e.g. 
+
++ Number of contacts of n = 11 randomly selected social media users.
++ 22, 40, 53, 57, 93, 98, 103, 108, 116, 121, 252
++ *You can see that these observations are ordered (from smallest to largest)*
++ Range = 252 - 22 = 230
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[8])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[8] %>% cat()
+```
+
+## The Interquartile Range
+
+Identify the values that split the sorted data into four equal parts.
+
++ *First* or *lower quartile* (the range values of the first 25% of values in ordered sequence)
+
++ *Second* quartile (the range values of the first 25 to 50% of values in ordered sequence)
+
++ *Third* quartile (the range values of the first 50 to 75% of values in ordered sequence)
+
++ *Fourth* quartile (the range values of the first 75 to 100% of values in ordered sequence)
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+# Histogram for fig 2.2.1 and 2.2.2
+par(mfrow = c(1,2)) # This tells R to put 1 row, 2 columns
+a. <- rnorm(n = 1000, mean = 50, sd = 15)
+hist(a., main = "Large Deviation (from the mean)", xlab = "Score", xlim = c(0,100))
+box()
+abline(h = 0)
+abline(v = quantile(a.), col = "red", lwd = 2)
+text(labels = seq(1,4), 
+     x = caTools::runmean(quantile(a.),2,endrule = 'trim'), 
+     y = rep(10, 4), col = "red")
+
+b. <- rnorm(n = 1000, mean = 50, sd = 8)
+hist(b., main = "Small Deviation (from the mean)", xlab = "Score", xlim = c(0,100))
+box()
+abline(h = 0)
+abline(v = quantile(b.), col = "red", lwd = 2)
+
+text(labels = seq(1,4), 
+     x = caTools::runmean(quantile(b.),2,endrule = 'trim'), 
+     y = rep(10, 4), col = "red")
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[9])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[9] %>% cat()
+```
+
+## Other quantiles
+
+In an ordered list of observations, any quantile can be determined.
+
+Let's examine the quantiles of interest for the 'air time' from flights departing NYC's airports in 2013 with destination of the Atlanta aiport "ATL" with Delta Airlines.
+
+```{r,message=FALSE, echo=FALSE}
+require(tidyverse)
+require(knitr)
+
+nycflights13::flights %>%
+  dplyr::filter(dest == "ATL") %>% 
+  dplyr::filter(`carrier` == c("DL")) %>% 
+  dplyr::filter(!is.na(`air_time`)) %>% 
+  head(5) %>% 
+  dplyr::select(-c(`year`,	`month`,	`day`,	`dep_time`,	`sched_dep_time`,
+                   `dep_delay`,	`arr_time`,	`sched_arr_time`,	`arr_delay`,`time_hour`)) %>% 
+  kable()
+
+```  
+
+Let's look at the quantiles of air time for these flights.
+
+```{r,message=FALSE, echo=FALSE}
+require(tidyverse)
+require(knitr)
+
+z <- nycflights13::flights %>%
+  dplyr::filter(dest == "ATL") %>% 
+  dplyr::filter(`carrier` == c("DL")) %>% 
+  dplyr::filter(!is.na(`air_time`))
+
+quantile(z$`air_time`, c(0,0.05,seq(0.1,0.9, by = 0.1), 0.95, 1))
+
+```  
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[10])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[10] %>% cat()
+```
+
+
+## Error and Deviations from Expectations
+
+Error is the difference between a value obtained from a data collection process and the 'true' value for the population. 
+
+We can evaluate error for a single data point or we can evaluate the total error of our sample relative to our expectation of what the population value might be.
+
+## Quantifying Error
+
+A deviation is the difference between the mean (*expected*) and the *observed* data (the outcome of the sample). The deviation of *observed* and *expected* value is called: the residual, error, or residual error. 
+
+The expected value is the one that we would encounter most frequently. The expected value, in the context of the normal distribution, is the mean value.
+
+When the normal fitting models: 
+
+$deviation = X_i - \bar{X}$
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+par(mfrow = c(1,1), mar = c(4,4,1,4))  
+
+y <- round(c(-0.2762588, -0.1360962,  1.0356247,  0.6471835,  0.2600352,  1.5552141),2)
+x <- seq(1, length(y))
+y <- y - mean(y)
+plot(x,y, 
+     main = "", xlab = "Sample from Lecturer in my Department", 
+     ylab = "Deviation", 
+     pch=16, type = 'h')
+points(x,y, pch = 20)
+abline(h = 0)
+
+```
+
+Should we use the Total Error as an estimate of uncertainty?
+
+We could sum $i^{th}$ error terms from 1 to n.
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+y <- round(c(-0.2762588, -0.1360962,  1.0356247,  0.6471835,  0.2600352,  1.5552141),2)
+x <- seq(1, length(y))
+y <- y - mean(y)
+
+```
+
+
+|*i*|Score|Score - mean(Score)|
+| :----: |    :----:   |          :----: |
+| 1 | -0.28  |-0.795 |
+| 2 |  -0.14 |-0.655 |
+| 3 |   1.04|0.525  |
+| 4 | 0.65  |0.135   |
+| 5 |  0.26 |-0.255  |
+|  6 | 1.56 |1.045 |
+
+$\Sigma(X_i - \bar{X}) = 0$
+
+## Sum of Squared Errors
+
+We could add the deviations to find out the total error, but the deviations 'cancel out' (some are positive and others negative)
+
+Therefore, we square each deviation. If we add these squared deviations we get the sum of squared errors (SS).
+
+|*i*|Score|Deviation|Squared Deviation 
+| :----: |    :----:   |  :----: |:----: |
+| 1 | -0.28  |-0.795 |0.632|
+| 2 |  -0.14 |-0.655 |0.429|
+| 3 |   1.04|0.525  |0.276|
+| 3 | 0.65  |0.135   |0.018|
+| 4 |  0.26 |-0.255  |0.065|
+|  5 | 1.56 |1.045 |1.092|
+
+$SS = \Sigma(X_i - \bar{X})^2 = 2.512$
+
+The sum of squares is a good measure of overall variability, but is dependent on the number of scores.
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[11])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[11] %>% cat()
+```
+
+
+## Variance
+
+In statistics, when we talk about population, we mean the entire universe of possible values of a stochastic (random) variable. Population variance: 
+
+$\sigma^2 = \frac{SS}{N} = \frac{\Sigma^n_{i=1}(X_i-\mu)^2}{N}$
+
+Most of the time, we don’t sample the entire population because it is too complex or simply not feasible. Think, for instance, at a problem when you want to analyze the heights of the oak trees in a forest. You can, of course, measure every single tree of the forest and so have collected statistics about the entire forest, but this could be very expensive and would take a very long time. So, we don't generally know $\mu$.
+
+We calculate the average variability (average variability of each sample).
+
+So, obtain a sample of, let’s say, 20 trees and try to relate sample statistics and population statistics. 
+
+Sample variance: $s^2 = \frac{SS}{n-1} = \frac{\Sigma(X_i-\bar{X})^2}{n-1}$
+
+Population variance: $\sigma^2 = \frac{SS}{N} = \frac{\Sigma_{i=1}^N(X_i-\mu)^2}{N}$
+
+Why *n-1* instead of *N*? 
+
+When we compute the difference between each value and the mean of those values (*observed* - *expected*), we don't know the true mean of the population; all you know is the mean of your sample. 
+
+In general, we do not know the population mean, the sample mean is the mean of the data and should be close to the true population mean. 
+
+The value computed in the sample variance will be an underestimate of the population sample mean and cannot be larger; we have likely not sampled the full range of the values in the population. Therefore, the sample variance will be an underestimate of the population variance.
+
+To make up for this, divide by *n-1* rather than *N*. This is called Bessel's correction.
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[12])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[12] %>% cat()
+```
+
+
+
+## Standard Deviation 
+
+The variance has one problem: it is measured in units^2^ (The original units, like the numbers are squared.).
+
+This isn't a very meaningful metric so we take the square root value.
+
+This is the sample standard deviation (*sd* or *s*): 
+
+$sd = s = \sqrt\frac{\Sigma^n_{i=1}(X_i-\bar{X})^2}{n-1}$
+
+$\sigma = \sqrt\frac{\Sigma^N_{i=1}(X_i-\mu)^2}{N}$
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[13])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[13] %>% cat()
+```
+
+
+## Summary of Variance Estimates
+
+The sum of squares, variance, and standard deviation represent the same thing:
+
++ The fit of the mean to the data, how well the mean represents the observed data
++ The variability in the data when modeled using the mean 
+
+## Coefficient of Variation
+
+The coefficient of variation (CV) is a  measure of the dispersion (measured by standard deviation) of data points in a data series around the mean. The coefficient of variation represents the ratio of the standard deviation to the mean, and it is a useful statistic for comparing the degree of variation from one data series to another, even if the means are drastically different from one another.
+
+$CV = \frac{s}{\bar{X}}$
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[14])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[14] %>% cat()
+```

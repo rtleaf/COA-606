@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Measures of Dispersion | _main.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Measures of Dispersion | _main.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Measures of Dispersion | _main.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="measures-of-central-tendency.html"/>
+<link rel="next" href="the-normal-distribution.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="book_assets/kePrint-0.0.1/kePrint.js"></script>
+<link href="book_assets/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Biometry for the Coastal Sciences (COA 606)</a></li>
+<li class="chapter" data-level="2" data-path="univariate-data.html"><a href="univariate-data.html"><i class="fa fa-check"></i><b>2</b> Univariate Data</a></li>
+<li class="chapter" data-level="3" data-path="best-practices-for-data-management.html"><a href="best-practices-for-data-management.html"><i class="fa fa-check"></i><b>3</b> Best Practices For Data Management</a></li>
+<li class="chapter" data-level="4" data-path="working-in-r.html"><a href="working-in-r.html"><i class="fa fa-check"></i><b>4</b> Working in R</a></li>
+<li class="chapter" data-level="5" data-path="data-classes-in-r.html"><a href="data-classes-in-r.html"><i class="fa fa-check"></i><b>5</b> Data Classes in R</a></li>
+<li class="chapter" data-level="6" data-path="data-input-and-output-io.html"><a href="data-input-and-output-io.html"><i class="fa fa-check"></i><b>6</b> Data input and output (IO)</a></li>
+<li class="chapter" data-level="7" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>7</b> Sampling</a></li>
+<li class="chapter" data-level="8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>8</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>9</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="10" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>10</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="11" data-path="the-normal-distribution.html"><a href="the-normal-distribution.html"><i class="fa fa-check"></i><b>11</b> The Normal Distribution</a></li>
+<li class="chapter" data-level="12" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>12</b> Confidence Interval</a></li>
+<li class="chapter" data-level="13" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>13</b> Null Hypothesis Significance Testing (NHST)</a></li>
+<li class="chapter" data-level="14" data-path="one--and-two-tailed-tests.html"><a href="one--and-two-tailed-tests.html"><i class="fa fa-check"></i><b>14</b> One- and Two-Tailed Tests</a></li>
+<li class="chapter" data-level="15" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>15</b> Statistical Power</a></li>
+<li class="chapter" data-level="16" data-path="bivariate-relationships.html"><a href="bivariate-relationships.html"><i class="fa fa-check"></i><b>16</b> Bivariate Relationships</a></li>
+<li class="chapter" data-level="17" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>17</b> Linear Regression</a></li>
+<li class="chapter" data-level="18" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="19" data-path="comparing-two-means-using-t-tests.html"><a href="comparing-two-means-using-t-tests.html"><i class="fa fa-check"></i><b>19</b> Comparing Two Means using <em>t</em>-tests</a></li>
+<li class="chapter" data-level="20" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>20</b> Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="21" data-path="two-way-independent-anova.html"><a href="two-way-independent-anova.html"><i class="fa fa-check"></i><b>21</b> Two-Way Independent ANOVA</a></li>
+<li class="chapter" data-level="22" data-path="maximum-likelihood-1.html"><a href="maximum-likelihood-1.html"><i class="fa fa-check"></i><b>22</b> Maximum Likelihood</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="measures-of-dispersion" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Measures of Dispersion<a href="measures-of-dispersion.html#measures-of-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="range" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Range<a href="measures-of-dispersion.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The smallest score subtracted from the largest score in the observation, e.g. </p>
+<ul>
+<li>Number of contacts of n = 11 randomly selected social media users.</li>
+<li>22, 40, 53, 57, 93, 98, 103, 108, 116, 121, 252</li>
+<li><em>You can see that these observations are ordered (from smallest to largest)</em></li>
+<li>Range = 252 - 22 = 230</li>
+</ul>
+<div id="r-code-8" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> R Code<a href="measures-of-dispersion.html#r-code-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to report the range, minimum, and maximum
+## of a set of values.</code></pre>
+<pre><code>## ```R
+## # create a vector of values
+## values &lt;- c(5, 2, 8, 3, 11, 6)
+## 
+## # calculate the range
+## range &lt;- max(values) - min(values)
+## 
+## # calculate the minimum value
+## minimum &lt;- min(values)
+## 
+## # calculate the maximum value
+## maximum &lt;- max(values)
+## 
+## # print the results
+## cat(&#39;Range:&#39;, range, &#39;\n&#39;)  # print the range value
+## cat(&#39;Minimum:&#39;, minimum, &#39;\n&#39;)  # print the minimum value
+## cat(&#39;Maximum:&#39;, maximum, &#39;\n&#39;)  # print the maximum value
+## ```
+## 
+## The comments describe each line of code, explaining what the code does. The `cat()` function is used to print the results to the console. You can modify the values of the `values` vector to get the range, minimum, and maximum of any set of numbers.</code></pre>
+</div>
+</div>
+<div id="the-interquartile-range" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> The Interquartile Range<a href="measures-of-dispersion.html#the-interquartile-range" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Identify the values that split the sorted data into four equal parts.</p>
+<ul>
+<li><p><em>First</em> or <em>lower quartile</em> (the range values of the first 25% of values in ordered sequence)</p></li>
+<li><p><em>Second</em> quartile (the range values of the first 25 to 50% of values in ordered sequence)</p></li>
+<li><p><em>Third</em> quartile (the range values of the first 50 to 75% of values in ordered sequence)</p></li>
+<li><p><em>Fourth</em> quartile (the range values of the first 75 to 100% of values in ordered sequence)</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div id="r-code-9" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> R Code<a href="measures-of-dispersion.html#r-code-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to report values of the interquartile range
+## from a simulated set of values.</code></pre>
+<pre><code>## ```
+## # Generate a simulated set of values
+## set.seed(123)  # set the random seed for reproducibility
+## values &lt;- rnorm(100)  # generate 100 normally distributed values
+## 
+## # Calculate the interquartile range
+## q25 &lt;- quantile(values, 0.25)  # calculate the 25th quartile of the values
+## q75 &lt;- quantile(values, 0.75)  # calculate the 75th quartile of the values
+## iqr &lt;- q75 - q25  # calculate the interquartile range
+## 
+## # Report the interquartile range
+## cat(&#39;The interquartile range is:&#39;, iqr)  # print the interquartile range to the console
+## ```</code></pre>
+</div>
+</div>
+<div id="other-quantiles" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Other quantiles<a href="measures-of-dispersion.html#other-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In an ordered list of observations, any quantile can be determined.</p>
+<p>Let’s examine the quantiles of interest for the ‘air time’ from flights departing NYC’s airports in 2013 with destination of the Atlanta aiport “ATL” with Delta Airlines.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+carrier
+</th>
+<th style="text-align:right;">
+flight
+</th>
+<th style="text-align:left;">
+tailnum
+</th>
+<th style="text-align:left;">
+origin
+</th>
+<th style="text-align:left;">
+dest
+</th>
+<th style="text-align:right;">
+air_time
+</th>
+<th style="text-align:right;">
+distance
+</th>
+<th style="text-align:right;">
+hour
+</th>
+<th style="text-align:right;">
+minute
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+461
+</td>
+<td style="text-align:left;">
+N668DN
+</td>
+<td style="text-align:left;">
+LGA
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+1743
+</td>
+<td style="text-align:left;">
+N3739P
+</td>
+<td style="text-align:left;">
+JFK
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+128
+</td>
+<td style="text-align:right;">
+760
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+575
+</td>
+<td style="text-align:left;">
+N326NB
+</td>
+<td style="text-align:left;">
+EWR
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+746
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+1547
+</td>
+<td style="text-align:left;">
+N6703D
+</td>
+<td style="text-align:left;">
+LGA
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+126
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+2047
+</td>
+<td style="text-align:left;">
+N935DL
+</td>
+<td style="text-align:left;">
+LGA
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+126
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+59
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s look at the quantiles of air time for these flights.</p>
+<pre><code>##   0%   5%  10%  20%  30%  40%  50%  60%  70%  80%  90%  95% 100% 
+##   65   98  101  104  106  109  111  114  117  120  125  129  176</code></pre>
+<div id="r-code-10" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> R Code<a href="measures-of-dispersion.html#r-code-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to report values of the quantiles from a
+## simulated set of values.</code></pre>
+<pre><code>## Sure, here are the inline comments to the provided R code:
+## 
+## ```R
+## # Simulated set of values
+## set.seed(123) # Setting the seed for R&#39;s random number generator for reproducibility
+## x &lt;- rnorm(100) # Generating a set of 100 random values from a normal distribution
+## 
+## # Calling quantile function to report the quantiles
+## quantile(x) # Using the `quantile()` function to report the 25th, 50th (median), and 75th quantiles in R
+## ```
+## 
+## This will output the following:
+## ```
+##        0%       25%       50%       75%      100% 
+## -2.345697 -0.727719 -0.013617  0.659230  2.415835 
+## ```
+## 
+## 
+## ```R
+## # Reporting 10th, 50th, and 90th percentiles
+## quantile(x, c(0.1, 0.5, 0.9)) # Using the `quantile()` function to report the 10th, 50th (median), and 90th percentiles
+## ```
+## 
+## This will output the following:
+## ```
+##          10%          50%```
+##           90% 
+## -1.2305730  1.3307126 
+## ```
+## 
+## I hope this helps clarify the use of `quantile()` function in R! Let me know if you have any further questions.</code></pre>
+</div>
+</div>
+<div id="error-and-deviations-from-expectations" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Error and Deviations from Expectations<a href="measures-of-dispersion.html#error-and-deviations-from-expectations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Error is the difference between a value obtained from a data collection process and the ‘true’ value for the population.</p>
+<p>We can evaluate error for a single data point or we can evaluate the total error of our sample relative to our expectation of what the population value might be.</p>
+</div>
+<div id="quantifying-error" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Quantifying Error<a href="measures-of-dispersion.html#quantifying-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A deviation is the difference between the mean (<em>expected</em>) and the <em>observed</em> data (the outcome of the sample). The deviation of <em>observed</em> and <em>expected</em> value is called: the residual, error, or residual error.</p>
+<p>The expected value is the one that we would encounter most frequently. The expected value, in the context of the normal distribution, is the mean value.</p>
+<p>When the normal fitting models:</p>
+<p><span class="math inline">\(deviation = X_i - \bar{X}\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>Should we use the Total Error as an estimate of uncertainty?</p>
+<p>We could sum <span class="math inline">\(i^{th}\)</span> error terms from 1 to n.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><em>i</em></th>
+<th align="center">Score</th>
+<th align="center">Score - mean(Score)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">-0.28</td>
+<td align="center">-0.795</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">-0.14</td>
+<td align="center">-0.655</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">1.04</td>
+<td align="center">0.525</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">0.65</td>
+<td align="center">0.135</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">0.26</td>
+<td align="center">-0.255</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">1.56</td>
+<td align="center">1.045</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\Sigma(X_i - \bar{X}) = 0\)</span></p>
+</div>
+<div id="sum-of-squared-errors" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Sum of Squared Errors<a href="measures-of-dispersion.html#sum-of-squared-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We could add the deviations to find out the total error, but the deviations ‘cancel out’ (some are positive and others negative)</p>
+<p>Therefore, we square each deviation. If we add these squared deviations we get the sum of squared errors (SS).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><em>i</em></th>
+<th align="center">Score</th>
+<th align="center">Deviation</th>
+<th align="center">Squared Deviation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">-0.28</td>
+<td align="center">-0.795</td>
+<td align="center">0.632</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">-0.14</td>
+<td align="center">-0.655</td>
+<td align="center">0.429</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">1.04</td>
+<td align="center">0.525</td>
+<td align="center">0.276</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">0.65</td>
+<td align="center">0.135</td>
+<td align="center">0.018</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">0.26</td>
+<td align="center">-0.255</td>
+<td align="center">0.065</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">1.56</td>
+<td align="center">1.045</td>
+<td align="center">1.092</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(SS = \Sigma(X_i - \bar{X})^2 = 2.512\)</span></p>
+<p>The sum of squares is a good measure of overall variability, but is dependent on the number of scores.</p>
+<div id="r-code-11" class="section level3 hasAnchor" number="10.6.1">
+<h3><span class="header-section-number">10.6.1</span> R Code<a href="measures-of-dispersion.html#r-code-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to calculated the Sum of Squared Errors
+## from a simulated set of values.</code></pre>
+<pre><code>## ```r
+## # Simulate a set of values
+## set.seed(123) # set the seed for reproducibility
+## values &lt;- rnorm(10) # generate 10 random numbers from a normal distribution
+## 
+## # Calculate the mean of the values
+## mean_values &lt;- mean(values) # find the average of the generated values
+## 
+## # Calculate the Sum of Squared Errors
+## sse &lt;- sum((values - mean_values)^2) # calculate the sum of squared errors from the mean
+## 
+## # Print the results
+## cat(&#39;The Sum of Squared Errors is:&#39;, sse) # print the calculated value of Sum of Squared Errors
+## ```</code></pre>
+</div>
+</div>
+<div id="variance" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Variance<a href="measures-of-dispersion.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In statistics, when we talk about population, we mean the entire universe of possible values of a stochastic (random) variable. Population variance:</p>
+<p><span class="math inline">\(\sigma^2 = \frac{SS}{N} = \frac{\Sigma^n_{i=1}(X_i-\mu)^2}{N}\)</span></p>
+<p>Most of the time, we don’t sample the entire population because it is too complex or simply not feasible. Think, for instance, at a problem when you want to analyze the heights of the oak trees in a forest. You can, of course, measure every single tree of the forest and so have collected statistics about the entire forest, but this could be very expensive and would take a very long time. So, we don’t generally know <span class="math inline">\(\mu\)</span>.</p>
+<p>We calculate the average variability (average variability of each sample).</p>
+<p>So, obtain a sample of, let’s say, 20 trees and try to relate sample statistics and population statistics.</p>
+<p>Sample variance: <span class="math inline">\(s^2 = \frac{SS}{n-1} = \frac{\Sigma(X_i-\bar{X})^2}{n-1}\)</span></p>
+<p>Population variance: <span class="math inline">\(\sigma^2 = \frac{SS}{N} = \frac{\Sigma_{i=1}^N(X_i-\mu)^2}{N}\)</span></p>
+<p>Why <em>n-1</em> instead of <em>N</em>?</p>
+<p>When we compute the difference between each value and the mean of those values (<em>observed</em> - <em>expected</em>), we don’t know the true mean of the population; all you know is the mean of your sample.</p>
+<p>In general, we do not know the population mean, the sample mean is the mean of the data and should be close to the true population mean.</p>
+<p>The value computed in the sample variance will be an underestimate of the population sample mean and cannot be larger; we have likely not sampled the full range of the values in the population. Therefore, the sample variance will be an underestimate of the population variance.</p>
+<p>To make up for this, divide by <em>n-1</em> rather than <em>N</em>. This is called Bessel’s correction.</p>
+<div id="r-code-12" class="section level3 hasAnchor" number="10.7.1">
+<h3><span class="header-section-number">10.7.1</span> R Code<a href="measures-of-dispersion.html#r-code-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to calculated the variance from a simulated
+## set of values.</code></pre>
+<pre><code>## ```
+## # Simulate data
+## # set the seed of the random number generator to ensure reproducibility 
+## set.seed(123)
+## # generate 100 values from a standard normal distribution and store them in the vector x 
+## x &lt;- rnorm(100)
+## 
+## # Calculate variance
+## # use the var() function to calculate the variance of vector x and store the result in the variable variance_x
+## variance_x &lt;- var(x)
+## 
+## # Print variance
+## # print the value of variance_x to the console 
+## print(variance_x)
+## ```</code></pre>
+</div>
+</div>
+<div id="standard-deviation" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Standard Deviation<a href="measures-of-dispersion.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The variance has one problem: it is measured in units<sup>2</sup> (The original units, like the numbers are squared.).</p>
+<p>This isn’t a very meaningful metric so we take the square root value.</p>
+<p>This is the sample standard deviation (<em>sd</em> or <em>s</em>):</p>
+<p><span class="math inline">\(sd = s = \sqrt\frac{\Sigma^n_{i=1}(X_i-\bar{X})^2}{n-1}\)</span></p>
+<p><span class="math inline">\(\sigma = \sqrt\frac{\Sigma^N_{i=1}(X_i-\mu)^2}{N}\)</span></p>
+<div id="r-code-13" class="section level3 hasAnchor" number="10.8.1">
+<h3><span class="header-section-number">10.8.1</span> R Code<a href="measures-of-dispersion.html#r-code-13" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to calculated the standard deviation from a
+## simulated set of values.</code></pre>
+<pre><code>## ```R
+## # Generate a simulated set of values
+## set.seed(123) # set the seed for reproducibility
+## simulated_data &lt;- rnorm(n = 100, mean = 10, sd = 2) # create a vector of 100 values drawn from a normal distribution with mean 10 and standard deviation 2
+## 
+## # Calculate the standard deviation
+## sd(simulated_data) # calculate the standard deviation of the simulated data
+## ```</code></pre>
+</div>
+</div>
+<div id="summary-of-variance-estimates" class="section level2 hasAnchor" number="10.9">
+<h2><span class="header-section-number">10.9</span> Summary of Variance Estimates<a href="measures-of-dispersion.html#summary-of-variance-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The sum of squares, variance, and standard deviation represent the same thing:</p>
+<ul>
+<li>The fit of the mean to the data, how well the mean represents the observed data</li>
+<li>The variability in the data when modeled using the mean</li>
+</ul>
+</div>
+<div id="coefficient-of-variation" class="section level2 hasAnchor" number="10.10">
+<h2><span class="header-section-number">10.10</span> Coefficient of Variation<a href="measures-of-dispersion.html#coefficient-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The coefficient of variation (CV) is a measure of the dispersion (measured by standard deviation) of data points in a data series around the mean. The coefficient of variation represents the ratio of the standard deviation to the mean, and it is a useful statistic for comparing the degree of variation from one data series to another, even if the means are drastically different from one another.</p>
+<p><span class="math inline">\(CV = \frac{s}{\bar{X}}\)</span></p>
+<div id="r-code-14" class="section level3 hasAnchor" number="10.10.1">
+<h3><span class="header-section-number">10.10.1</span> R Code<a href="measures-of-dispersion.html#r-code-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to calculated the coefficient of variation
+## from a simulated set of values.</code></pre>
+<pre><code>## ```
+## # set the seed to ensure reproducibility
+## set.seed(123)
+## 
+## # generate a simulated set of 100 values from a normal distribution with mean=20 and sd=5
+## sim_values &lt;- rnorm(100, mean=20, sd=5)
+## 
+## # calculate the coefficient of variation by dividing the standard deviation of the values by the mean of the values
+## cv &lt;- sd(sim_values) / mean(sim_values)
+## 
+## # print the result
+## cv
+## ```
+## 
+## This code generates a simulated set of 100 values based on a normal distribution with a mean of 20 and a standard deviation of 5, calculates the coefficient of variation for the generated values, and prints the result. By setting the seed, we ensure that the same set of values will be generated each time the code is run. You can adjust the parameters of the `rnorm()` function to generate different sets of values based on your needs.</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="measures-of-central-tendency.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-normal-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

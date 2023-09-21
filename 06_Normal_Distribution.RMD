@@ -1,0 +1,388 @@
+---
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+# The Normal Distribution
++ The normal distribution is probably the most common distribution in all of probability and statistics. 
+
+## The Normal Probability Density Function
+
+The probability density function for the normal distribution is defined as:
+
+$y_i = \frac{1}{\sigma\sqrt2\pi}e^{-(X_i-\mu)^2/2\sigma^2}$
+
+We can think of the model in this way (mathematical approach):
+
+$f(X) = \frac{1}{\sigma\sqrt2\pi}e^{-(X_i-\mu)^2/2\sigma^2}$
+
+Where the parameters (the symbols ) represent the mean, $\mu$ and the standard deviation, $\sigma$.
+
++ What are some of the general characteristics of this model? *Can you describe its shape?*
++ What are the parameters of the model? *These are the quantities we will estimate in the fitting process.*
++ What are the variables used in the model? *These are the observations.*
+
+```{r,message=FALSE, echo=FALSE}
+# Figures 30 and 31 (went out of order)
+par(mfrow = c(1,2))
+par(mar = rep(1,4))
+xlim. <- c(-3.5,5.5)
+plot(x = seq(xlim.[1],xlim.[2], length.out = 100), y = dnorm(seq(xlim.[1],xlim.[2],length.out = 100)), 
+     xlab = "", ylab = "Y", type = "l", yaxt = 'n', xlim = xlim.,
+     main = "Different Means, Identical SD")
+lines(x = seq(xlim.[1],xlim.[2], length.out = 100) + 1, y = dnorm(seq(xlim.[1],xlim.[2],length.out = 100)), lwd = 2)
+lines(x = seq(xlim.[1],xlim.[2], length.out = 100) + 2, y = dnorm(seq(xlim.[1],xlim.[2],length.out = 100)), lwd = 3)
+
+
+xlim. <- c(-4,4)
+
+plot(x = seq(xlim.[1],xlim.[2], length.out = 100), 
+     y = dnorm(seq(xlim.[1],xlim.[2],length.out = 100), mean = 0, sd = 0.5), 
+     xlab = "", ylab = NA, type = "l", yaxt = 'n', xlim = xlim.,
+     main = "Same Mean, Different SD")
+
+lines(x = seq(xlim.[1],xlim.[2], length.out = 100), 
+      y = dnorm(seq(xlim.[1],xlim.[2],length.out = 100), mean = 0, sd = 1.5), 
+      col = 'darkgray', lwd = 2)
+
+labels <- c(expression(paste(mu,"-3",sigma)), expression(paste(mu,"-2",sigma)))
+
+```
+
+Below, two distributions are plotted from the 'Standard Normal Distribution', in this formulation:
+
+${\sigma=1}$ and ${\mu=0}$.
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+set.seed(3000)
+xseq<-seq(-4,4,.01)
+densities<-dnorm(xseq, 0,1)
+cumulative<-pnorm(xseq, 0, 1)
+randomdeviates<-rnorm(1000,0,1)
+par(mfrow=c(1,2), mar=c(3,4,4,2))
+plot(xseq, densities,xlab="", ylab="Density", type="l",lwd=2, cex=2, main="PDF of Standard Normal", cex.axis=.8)
+plot(xseq, cumulative, xlab="", ylab="Cumulative Probability",type="l",lwd=2, cex=2, main="CDF of Standard Normal", cex.axis=.8)
+```
+
+The normal distribution is an example of a continuous univariate probability distribution with infinite support. 
+
+By infinite support, we mean that we can calculate values of the probability density function for all outcomes between $-\infty$ and $+\infty$.
+
+For clarification, the density value on the y-axis is not the resulting probability of obtaining the sampled value.
+
+Well, how do we get the probability from a probability density function?
+
+We need to integrate the density function given the value of the parameters. 
+
+So from our example distribution with mean = 0 and standard deviation = 1, we can find the probability that an observed value will bebetween 0 and 1 by finding the area shown in the image below.
+
+```{r, results='hide',message=FALSE, echo=FALSE}
+set.seed(3000)
+xseq<-seq(-4,4,.01)
+densities<-dnorm(xseq, 0,1)
+cumulative<-pnorm(xseq, 0, 1)
+randomdeviates<-rnorm(1000,0,1)
+plot(xseq, densities,xlab="", ylab="Density", type="l",lwd=2, cex=2, main="PDF of Standard Normal", cex.axis=.8)
+abline(v = c(0,1), lwd = 2)
+```
+
+<center>
+$\int_0^1f(x;\mu,\sigma)dx = P(0 < X < 1)$
+</center>
+
+We can read this as “the integral of the probability density function between 0 and 1 (on the left-hand side) is equal to the probability that the outcome of the random variable is between zero and 1 (on the right-hand side)”.
+
+We can cover all possible values if we evaluate the density from $-\infty$ to $+\infty$. 
+
+Therefore the following has to be true for the function to be a probability density function:
+
+<center>
+$\int_{-\infty}^{\infty}f(x)dx = 1$.
+</center>
+
+One last thing here: The probability of the random variable being equal to a specific outcome is 0, because the integral over x values of x to x is equal to zero.
+
+The definition of the definite integral: 
+
+$\int_{a}^{b}f(x)dx = \underset{\rm n \rightarrow\infty}{lim}\sum_{i = 1}^n{f(x_i)\Delta{x}}$,
+
+where $x_i = a + i\Delta{x}$ and $\Delta{x} = \frac{b-a}{n}$.
+
+If $a - b = 0$, then $\Delta{x} = 0$.
+
+So the integral is zero:
+
+$\int_{a}^{b}f(x)dx = \underset{\rm n \rightarrow\infty}{lim}\sum_{i = 1}^n{0}$,
+
+$\underset{\rm n \rightarrow\infty}{lim}\sum_{i = 1}^n{0} = \underset{\rm n \rightarrow\infty}{lim}{0}$,
+
+$\underset{\rm n \rightarrow\infty}{lim}{0} = 0$.
+
+```{r, eval=FALSE, echo=FALSE}
+## Taking samples from a Normal Distribution
+
+Normal distribution sampling theorem:
+  
+  + Sampling distribution is normal when the population distribution is normal.
++ Sample mean = population mean
++ Sample sd = population *s*
+  
+  ## Central limit theorem
+  
+  + The central limit theorem (CLT) states that the distribution of sample means approximates a normal distribution as the sample size becomes larger regardless of the population distribution shape.
+
+```
+
+## *Z*-scores
+
+*Z*-scores are a way to center and scale the observations to understand how many standard deviations each value is away from the mean.
+
+*Z*-score values are measures of the 'distance' in standard deviations of a single value.
+
+$Z_i = \frac{X_i-\mu}{\sigma}$
+
++ Standardizing a score with respect to the other scores in the group.
++ Expresses a score in terms of how many standard deviations it is away from the mean.
++ Converts a distribution to a z-score distribution.
++ Z-scores have mean = 0 and standard deviation = 1.
+
+### Centering with the mean
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+par(mfrow = c(1,2))
+par(mar = rep(3,4))
+set.seed(1)
+
+plot(x = seq(-10,10, length.out = 100), 
+     y = dnorm(seq(-10,10, length.out = 100), mean = 3, sd = 2), 
+     ylab = "", type = "l", yaxt = 'n', lwd = 2,xlab = "",xlim = c(-10,10),
+     main = "Normal Distribution with \n mean = 3, sd = 2")
+samp <- c(-5.25, 0.5, 4.75)
+abline(v = samp)
+abline(v = 3, col = "red",lwd = 2, lty = 2)
+text(x = samp, y = 0.1, labels = round(samp,2), pos = 3, col = 'blue',cex = 1)
+
+plot(x = seq(-10,10,  length.out = 100), 
+     y = dnorm(seq(-10,10,  length.out = 100), mean = 0, sd = 2), 
+     ylab = "", type = "l", yaxt = 'n', lwd = 2,xlab = "",xlim = c(-10,10),
+     main = "Normal Distribution with \n mean = 0, sd = 2")
+samp <- samp - 3
+abline(v = samp)
+abline(v = 0, col = "red",lwd = 2, lty = 2)
+text(x = samp, y = 0.1, labels = round(samp,2), pos = 3, col = 'blue',cex = 1)
+
+```
+
+### Scaling by the standard deviation
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+par(mfrow = c(1,2))
+par(mar = rep(3,4))
+set.seed(1)
+
+plot(x = seq(-10,10,  length.out = 100), 
+     y = dnorm(seq(-10,10,  length.out = 100), mean = 0, sd = 2), 
+     ylab = "", type = "l", yaxt = 'n', lwd = 2,xlab = "",xlim = c(-10,10),
+     main = "Normal Distribution with \n mean = 0, sd = 2")
+samp <- samp
+abline(v = samp)
+text(x = samp, y = 0.1, labels = round(samp,2), pos = 3, col = 'blue',cex = 1)
+
+plot(x = seq(-10,10,  length.out = 100), 
+     y = dnorm(seq(-10,10,  length.out = 100), mean = 0, sd = 1), 
+     ylab = "", type = "l", yaxt = 'n', lwd = 2,xlab = "",xlim = c(-5,5),
+     main = "Normal Distribution with \n mean = 0, sd = 1")
+samp = samp/2
+abline(v = samp)
+text(x = samp, y = 0.1, labels = round(samp,2), pos = 3, col = 'blue',cex = 1)
+
+```
+
+## Properties of *Z*-scores
+
+A *Z*-scores, measure that quantifies how many standard deviations an observation is away from the mean of a distribution. Because of the scaling and centering we can quickly (and easily) convert any distribution of normally distributed random variables into *Z*-scores using the standard normal distribution ($\mu = 0$ and $\sigma = 1$).
+
+The quantile value of:
+
++ 1.96 is the maximum 2.5% of the standard normal distribution.
+
++ -1.96 is the minimum 2.5% of the standard normal distribution.
+
+Thus, 95% of z-scores lie between $-1.96 \le x_i \le 1.96$.
+
++ 99% of z-scores lie between $-2.58 \le x_i \le 2.58$.
+
++ 99.9% of them lie between $-3.29 \le x_i \le 3.29$. 
+
++ Let's look at a [Z Table](http://www.z-table.com/) to reinforce our understanding (Table B2 in Zar 4th edition).
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[19])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[19] %>% cat()
+```
+
+## Areas under the Normal Curve for different quantile values 
+```{r, results='hide',message=FALSE, echo=FALSE}
+par(mfrow = c(1,1)) # This tells R to put 1 row, 1 columns
+plot(x = seq(-4,4, length.out = 100), 
+     y = dnorm(seq(-4,4,length.out = 100)), ylab = "", type = "l", yaxt = 'n', xlab = "Quantile", lwd = 2)
+abline(v = c(-1.96, 1.96), lwd = 2, col = "green")
+abline(v = c(-2.58, 2.58), lwd = 2, col = "blue")
+abline(v = c(-3.29, 3.29), lwd = 2, col = "red")
+
+#x axis labels and percentages need to be added 
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[17])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[17] %>% cat()
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[18])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[18] %>% cat()
+```
+
+## Checking for normality
+
+Because many statistical tests we will be considering in this course are useful only if data are normally distributed we will need a way to assess if this is true.
+
+Are the observations normally distributed?
+
+### Qualitative Measures
+
+### QQ plot
+
+The QQ plot (Quantile Quantile) plot is a scatter plot that compares two sets of data. 
+
+Here we will compare the observations (real-world data) to a theoretical data set that we would expect to see if the data came from a normal distribution with the sample $\bar{X}$ and $s$, the reference data.
+
+If the distribution of the data is the same, the result will be a straight line. Each data value of the data is plotted along this reference line using the scale parameter.
+
+So, the question is, do these data come from a population of normally distributed values.
+
+```{r,message=FALSE, echo=FALSE}
+
+require(kableExtra)
+set.seed(1)
+
+obs <- round(rnorm(100),3) %>% sort()
+hist(obs,20)
+```
+
+First, rank your data and assign a probability to each value of the original data (empirical probability).
+
+```{r,message=FALSE, echo=FALSE}
+
+require(kableExtra)
+set.seed(1)
+
+obs <- round(rnorm(100),3) %>% sort()
+rank.y <- order(obs)
+probability <- (rank.y - 0.5)/length(obs)
+
+df <- data.frame(obs = obs, 
+                 rank.obs = rank.y, 
+                 probability = probability,
+                 theoretical.quantiles = round(qnorm(probability),3),
+                 observed.quantiles = round((obs - mean(obs))/(sd(obs)),3))
+
+df %>% head %>% kable() %>%
+  kable_styling(full_width = F)
+
+```
+
+We build on the rank order of the data points to calculate the corresponding probabilty values. 
+
+$p = \frac{rank-\frac{1}{2}}{n}$.
+
+We then determine the theoretical quantiles, the theoretical standard normal quantiles for the calculated probability values.
+
+The quantiles from the observed data are *Z* scores calculated from the observed data $X_i$, $\bar{X}$, and $s$.
+
+```{r,message=FALSE, echo=FALSE}
+
+require(kableExtra)
+set.seed(1)
+
+obs <- round(rnorm(100),3) %>% sort()
+rank.y <- order(obs)
+probability <- (rank.y - 0.5)/length(obs)
+
+df <- data.frame(obs = obs, 
+                 rank.obs = rank.y, 
+                 probability = probability,
+                 theoretical.quantiles = round(qnorm(probability),3),
+                 observed.quantiles = round((obs - mean(obs))/(sd(obs)),3))
+
+
+
+plot(df$observed.quantiles, df$theoretical.quantiles,
+     xlab = "Observed quantiles", ylab = "Theoretical quantiles")
+
+abline(a = 0, b = 1, col = 'red', lwd = 2)
+
+```
+
+Now lets look at the simulated data drawn from a non-normal distribution:
+
+Question, do these data come from a normal distribution?
+
+```{r,message=FALSE, echo=FALSE}
+require(kableExtra)
+set.seed(1)
+
+par(mfrow = c(2,2))
+par(mar = c(3,3,1,1))
+obs <- round(c(rnorm(50),rnorm(50,mean = 2, sd = 0.3)),3) %>% sort()
+rank.y <- order(obs)
+probability <- (rank.y - 0.5)/length(obs)
+
+hist(obs,20)
+
+df <- data.frame(obs = obs, 
+                 rank.obs = rank.y, 
+                 probability = probability,
+                 theoretical.quantiles = round(qnorm(probability),3),
+                 observed.quantiles = round((obs - mean(obs))/(sd(obs)),3))
+
+plot(df$observed.quantiles, df$theoretical.quantiles,
+     xlab = "Observed quantiles", ylab = "Theoretical quantiles")
+abline(a = 0, b = 1, col = 'red', lwd = 2)
+
+
+# df %>% head %>% kable() %>%
+#   kable_styling(full_width = F)%>%
+#   row_spec(5, bold = T, color = "white", background = "red")
+
+plot(df$rank.obs, (df$theoretical.quantiles - df$observed.quantiles), xlab = "Rank",ylab = "Obs - Exp")
+abline(h = 0)
+
+```
+
+### R Code
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+gsub('(.{1,90})(\\s|$)', '\\1\n', paste(prefix., input.content[16])) %>% cat()
+```
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+responses.gpt[16] %>% cat()
+```
