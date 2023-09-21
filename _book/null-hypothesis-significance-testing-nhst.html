@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>13 Null Hypothesis Significance Testing (NHST) | _main.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="13 Null Hypothesis Significance Testing (NHST) | _main.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="13 Null Hypothesis Significance Testing (NHST) | _main.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="confidence-interval.html"/>
+<link rel="next" href="one--and-two-tailed-tests.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="book_assets/kePrint-0.0.1/kePrint.js"></script>
+<link href="book_assets/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Biometry for the Coastal Sciences (COA 606)</a></li>
+<li class="chapter" data-level="2" data-path="univariate-data.html"><a href="univariate-data.html"><i class="fa fa-check"></i><b>2</b> Univariate Data</a></li>
+<li class="chapter" data-level="3" data-path="best-practices-for-data-management.html"><a href="best-practices-for-data-management.html"><i class="fa fa-check"></i><b>3</b> Best Practices For Data Management</a></li>
+<li class="chapter" data-level="4" data-path="working-in-r.html"><a href="working-in-r.html"><i class="fa fa-check"></i><b>4</b> Working in R</a></li>
+<li class="chapter" data-level="5" data-path="data-classes-in-r.html"><a href="data-classes-in-r.html"><i class="fa fa-check"></i><b>5</b> Data Classes in R</a></li>
+<li class="chapter" data-level="6" data-path="data-input-and-output-io.html"><a href="data-input-and-output-io.html"><i class="fa fa-check"></i><b>6</b> Data input and output (IO)</a></li>
+<li class="chapter" data-level="7" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>7</b> Sampling</a></li>
+<li class="chapter" data-level="8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>8</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>9</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="10" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>10</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="11" data-path="the-normal-distribution.html"><a href="the-normal-distribution.html"><i class="fa fa-check"></i><b>11</b> The Normal Distribution</a></li>
+<li class="chapter" data-level="12" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>12</b> Confidence Interval</a></li>
+<li class="chapter" data-level="13" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>13</b> Null Hypothesis Significance Testing (NHST)</a></li>
+<li class="chapter" data-level="14" data-path="one--and-two-tailed-tests.html"><a href="one--and-two-tailed-tests.html"><i class="fa fa-check"></i><b>14</b> One- and Two-Tailed Tests</a></li>
+<li class="chapter" data-level="15" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>15</b> Statistical Power</a></li>
+<li class="chapter" data-level="16" data-path="bivariate-relationships.html"><a href="bivariate-relationships.html"><i class="fa fa-check"></i><b>16</b> Bivariate Relationships</a></li>
+<li class="chapter" data-level="17" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>17</b> Linear Regression</a></li>
+<li class="chapter" data-level="18" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="19" data-path="comparing-two-means-using-t-tests.html"><a href="comparing-two-means-using-t-tests.html"><i class="fa fa-check"></i><b>19</b> Comparing Two Means using <em>t</em>-tests</a></li>
+<li class="chapter" data-level="20" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>20</b> Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="21" data-path="two-way-independent-anova.html"><a href="two-way-independent-anova.html"><i class="fa fa-check"></i><b>21</b> Two-Way Independent ANOVA</a></li>
+<li class="chapter" data-level="22" data-path="maximum-likelihood-1.html"><a href="maximum-likelihood-1.html"><i class="fa fa-check"></i><b>22</b> Maximum Likelihood</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="null-hypothesis-significance-testing-nhst" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">13</span> Null Hypothesis Significance Testing (NHST)<a href="null-hypothesis-significance-testing-nhst.html#null-hypothesis-significance-testing-nhst" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Zar 6.4</p>
+<p>NHST is a method of statistical inference by which an experimental factor is tested against a hypothesis of no effect (the null hypothesis) or no relationship based on a given observation.</p>
+<ul>
+<li><p>The first step in doing any statistical test is to state a testable hypothesis:</p></li>
+<li><p><span class="math inline">\(H_0\)</span> Null hypothesis</p></li>
+<li><p><span class="math inline">\(H_A\)</span> Alternative hypothesis</p></li>
+<li><p>Declare <span class="math inline">\(\alpha\)</span> level (this determines your quantile value)</p></li>
+</ul>
+<p>This is the level of significance that is a reference point to determine whether the results that you have is different from the null-hypothesis of no effect.</p>
+<p>Fisher recommended using <span class="math inline">\(\alpha = 0.05\)</span> to judge whether an effect is significant or not.</p>
+<p>If you recall, this alpha level is roughly two standard deviations away from the mean for the normal distribution.</p>
+<p>From Fisher: ‘The value for which <em>p</em> = 0.05, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this point as a limit in judging whether a deviation is to be considered significant or not’.</p>
+<p>How small the level of significance is, is left to researchers (domain knowledge).</p>
+<p>The experimental procedure:</p>
+<ul>
+<li><p>Collect Data</p></li>
+<li><p>State falsifiable null hypothesis</p></li>
+<li><p>Conduct statistical test</p></li>
+<li><p>Compare the test statistic to the critical value (determined by <span class="math inline">\(\alpha\)</span>). This provides some measure of objectivity.</p></li>
+<li><p>State the resulting probability (the <em>p</em>-value), less than or greater than <span class="math inline">\(\alpha\)</span>.</p></li>
+</ul>
+<p>The p-value is the <em>probability</em> of obtaining test results at least as extreme as the results actually observed if the null hypothesis is true.</p>
+<div id="state-testable-hypothesis" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> State testable hypothesis<a href="null-hypothesis-significance-testing-nhst.html#state-testable-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>These are a set of mutually exclusive and exhaustive outcomes</p></li>
+<li><p>The test statistic will support one or the other outcomes</p></li>
+</ul>
+<p><Br></p>
+<p><span class="math inline">\(H_0: \mu = 0\)</span>, <span class="math inline">\(H_A:\mu \ne 0\)</span></p>
+<p><span class="math inline">\(H_0: \mu = 3.5 cm\)</span>, <span class="math inline">\(H_A:\mu \ne 3.5 cm\)</span></p>
+<p><span class="math inline">\(H_0: \mu = 10.5 kg\)</span>, <span class="math inline">\(H_A:\mu \ne 10.5 kg\)</span></p>
+<p><Br></p>
+</div>
+<div id="example-of-testing-significance-using-z-scores." class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Example of testing significance using <em>Z</em>-scores.<a href="null-hypothesis-significance-testing-nhst.html#example-of-testing-significance-using-z-scores." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s examine a simple statistical test. We will test the hypothesis: Is the mean fuel consumption of a population of buses equal to 20 mpg?</p>
+<ul>
+<li>What is the null hypothesis?</li>
+</ul>
+<p>We need information about the population (remember we are using <em>Z</em>-score so we know the population-level parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>).</p>
+<p>Determine the associated probability that the mean is 20 mpg given:</p>
+<p><span class="math inline">\(\sigma\)</span> = 0.3, <span class="math inline">\(\mu\)</span> = 19.1</p>
+<p><span class="math inline">\(Z_{calc} = \frac{\overline{X} - \mu}{\sigma}\)</span></p>
+<p>What is the probability that we would get <span class="math inline">\(Z_{calc}\)</span>?</p>
+<p>Let’s compare this to the test value of <span class="math inline">\(Z\)</span>, <span class="math inline">\(Z_{test}\)</span>.</p>
+<p><span class="math inline">\(Z_{test}\)</span> is the quantile of <span class="math inline">\(Z\)</span> that results from a given <span class="math inline">\(\alpha\)</span>.</p>
+<p>Given our declared <span class="math inline">\(\alpha\)</span>, how does the resulting probability compare?</p>
+<ul>
+<li>Remember, <span class="math inline">\(\alpha\)</span> is defined prior to statistical testing</li>
+</ul>
+<p>If our <span class="math inline">\(Z_{calc}\)</span> &gt; <span class="math inline">\(Z_{test}\)</span>, then we are in a ‘region of rejection’, i.e. rejection of the null hypothesis.</p>
+<p>Now we have a way to objectively reject or accept the null hypothesis.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<div id="r-code-19" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> R Code<a href="null-hypothesis-significance-testing-nhst.html#r-code-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to determine how many standard deviations
+## away from the mean a given data point is and if this is statistically significant.</code></pre>
+<pre><code>## ```
+## # create data vector
+## data &lt;- c(5, 7, 9, 11, 13, 15)
+## 
+## # calculate mean and standard deviation of data
+## mean_data &lt;- mean(data)  # calculates the mean of the data vector
+## sd_data &lt;- sd(data)  # calculates the standard deviation of the data vector
+## 
+## # calculate the number of standard deviations a given data point is away from the mean
+## given_data_point &lt;- 12  # defines the value to calculate the z-score for
+## num_sd_away &lt;- (given_data_point - mean_data) / sd_data  # calculates the z-score for the given data point
+## 
+## # determine if the number of standard deviations is statistically significant
+## if (abs(num_sd_away) &gt;= 1.96) {  # checks if the absolute value of z-score is greater than or equal to 1.96 
+##   cat(&#39;The given data point is statistically significant.\n&#39;)  # if true, prints that the given data point is statistically significant
+## } else {
+##   cat(&#39;The given data point is not statistically significant.\n&#39;)  # if false, prints that the given data point is not statistically significant
+## }
+## ```</code></pre>
+</div>
+</div>
+<div id="example-of-testing-significance-to-detect-normality." class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Example of testing significance to detect normality.<a href="null-hypothesis-significance-testing-nhst.html#example-of-testing-significance-to-detect-normality." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are a variety of quantitative ways to assess goodness of fit (GOF) of normality. These are statistical tests and we will evaulate them using models and data.</p>
+<div id="kolmogorov-smirnoff-test" class="section level3 hasAnchor" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> Kolmogorov-Smirnoff Test<a href="null-hypothesis-significance-testing-nhst.html#kolmogorov-smirnoff-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a commonly used statistical test to see if your data is normally distributed.</p>
+<p>The Kolmogorov-Smirnov Goodness of Fit Test (K-S test) compares the distribution of observations (your univariate data) with those from a specified candidate distribution to understand if they come from the same distribution (in this case normal). We will test to see if our observations (data) are close to the expectations (those values we would expect if the data came from a normal distribution).</p>
+<p>In this test (and all statistical tests) we will determine if the difference in observed and expected values indicate that the distribution is similar or different. If the difference between observation and expectation is small, then we would likely say that the data are distributed normally. If the difference in observed and expected values is large then we say that the data must come from some other distribution, and the data are not normally distributed.</p>
+<p>The hypotheses for the test are:</p>
+<p>Null hypothesis (<span class="math inline">\(H_0\)</span>): the data comes from the specified distribution.</p>
+<p>Alternate Hypothesis (<span class="math inline">\(H_A\)</span>): at least one value does not match the specified distribution.</p>
+<p><span class="math inline">\(H_0: P = P_0\)</span></p>
+<p><span class="math inline">\(H_A: P \ne P_0\)</span></p>
+<p>Here <em>P</em> is the sample density and <span class="math inline">\(P_0\)</span> is a specified distribution.</p>
+<p>So, we need to evaluate two distributions, the one resulting from our sampling (<em>s</em>, sampled cumulative distribution <span class="math inline">\(F_S(x)\)</span> and the ones we would expect from a theoretical cumulative distribution, <span class="math inline">\(F_T(x)\)</span>.</p>
+<p>The difference between the two distribution functions is evaluated by the test statistic <em>D</em>, the greatest vertical distance between <span class="math inline">\(F_S(x)\)</span> and <span class="math inline">\(F_T(x)\)</span>.</p>
+<p><span class="math inline">\(D = \underset{\rm x}{sup}|F_S(x) - F_T(x)|\)</span>,</p>
+<p>where <span class="math inline">\(\underset{\rm x}{sup}\)</span> is the <em>supremum</em> of the set of distances. Intuitively, the statistic takes the largest absolute difference between the two distribution functions across all x values.</p>
+<p>The K-S test statistic measures the largest distance between the EDF <span class="math inline">\(F_{data}\)</span> and the theoretical function <span class="math inline">\(F_{data}\)</span>, measured in a vertical direction (Kolmogorov as cited in Stephens 1992).</p>
+<p>The question is whether these data are normally distributed:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>First we will create a CDF (Cumulative Distribution Function) for the sample data (<em>n</em> = 30 observations), <span class="math inline">\(F_S(x)\)</span>),</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Observations
+</th>
+<th style="text-align:left;">
+Freq. (Relative Freq)
+</th>
+<th style="text-align:left;">
+Cumulative Frequency, F_S(x)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+-2.2
+</td>
+<td style="text-align:left;">
+1 (1/30)
+</td>
+<td style="text-align:left;">
+0.033 (1/30)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-2
+</td>
+<td style="text-align:left;">
+1 (1/30)
+</td>
+<td style="text-align:left;">
+0.067 (2/30)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-1.5
+</td>
+<td style="text-align:left;">
+1 (1/30)
+</td>
+<td style="text-align:left;">
+0.1 (3/30)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-0.8
+</td>
+<td style="text-align:left;">
+2 (2/30)
+</td>
+<td style="text-align:left;">
+0.167 (5/30)
+</td>
+</tr>
+</tbody>
+</table>
+<p>Now, we find the associated <em>Z</em> score for each value of the empirically derived Cumulative Frequency (<span class="math inline">\(F_S(x)\)</span>):</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Observations
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
+<th style="text-align:right;">
+F_S(x)
+</th>
+<th style="text-align:right;">
+Z.score.obs
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-2.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+-2.205
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+-2.007
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-1.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+-1.511
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+-0.816
+</td>
+</tr>
+</tbody>
+</table>
+<p>Now, we find the associated probability for each <em>Z</em> score from the empirical cumulative distribution, this is <span class="math inline">\(F_T(x)\)</span>. We get these from the <em>Z</em> table in Zar. P(Z = -2.205)?</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Observations
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
+<th style="text-align:right;">
+F_S(x)
+</th>
+<th style="text-align:right;">
+Z.score.obs
+</th>
+<th style="text-align:right;">
+F_T(X)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-2.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+-2.205
+</td>
+<td style="text-align:right;">
+0.014
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+-2.007
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-1.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+-1.511
+</td>
+<td style="text-align:right;">
+0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+-0.816
+</td>
+<td style="text-align:right;">
+0.203
+</td>
+</tr>
+</tbody>
+</table>
+<p>Finally, we will calculate the test statistic <em>D</em>. This if you recall is the maximum difference in the absolute value of <span class="math inline">\(F_S(x) and F_T(x)\)</span>.</p>
+<p>Remember:</p>
+<p><span class="math inline">\(D = \underset{\rm x}{sup}|F_S(x) - F_T(x)|\)</span>.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Observations
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
+<th style="text-align:right;">
+F_S(x)
+</th>
+<th style="text-align:right;">
+Z.score.obs
+</th>
+<th style="text-align:right;">
+F_T(X)
+</th>
+<th style="text-align:right;">
+D
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-2.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+-2.205
+</td>
+<td style="text-align:right;">
+0.014
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+-2.007
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.045
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-1.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+<td style="text-align:right;">
+-1.511
+</td>
+<td style="text-align:right;">
+0.064
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+-0.816
+</td>
+<td style="text-align:right;">
+0.203
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.6
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.233
+</td>
+<td style="text-align:right;">
+-0.618
+</td>
+<td style="text-align:right;">
+0.263
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.267
+</td>
+<td style="text-align:right;">
+-0.519
+</td>
+<td style="text-align:right;">
+0.295
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.300
+</td>
+<td style="text-align:right;">
+-0.320
+</td>
+<td style="text-align:right;">
+0.367
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+-0.221
+</td>
+<td style="text-align:right;">
+0.404
+</td>
+<td style="text-align:right;">
+0.071
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.367
+</td>
+<td style="text-align:right;">
+-0.122
+</td>
+<td style="text-align:right;">
+0.443
+</td>
+<td style="text-align:right;">
+0.076
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.433
+</td>
+<td style="text-align:right;">
+-0.023
+</td>
+<td style="text-align:right;">
+0.482
+</td>
+<td style="text-align:right;">
+0.049
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.467
+</td>
+<td style="text-align:right;">
+0.077
+</td>
+<td style="text-align:right;">
+0.521
+</td>
+<td style="text-align:right;">
+0.054
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.176
+</td>
+<td style="text-align:right;">
+0.560
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.533
+</td>
+<td style="text-align:right;">
+0.275
+</td>
+<td style="text-align:right;">
+0.599
+</td>
+<td style="text-align:right;">
+0.066
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.600
+</td>
+<td style="text-align:right;">
+0.374
+</td>
+<td style="text-align:right;">
+0.636
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.633
+</td>
+<td style="text-align:right;">
+0.473
+</td>
+<td style="text-align:right;">
+0.672
+</td>
+<td style="text-align:right;">
+0.039
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.733
+</td>
+<td style="text-align:right;">
+0.573
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.767
+</td>
+<td style="text-align:right;">
+0.672
+</td>
+<td style="text-align:right;">
+0.740
+</td>
+<td style="text-align:right;">
+0.027
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.833
+</td>
+<td style="text-align:right;">
+0.771
+</td>
+<td style="text-align:right;">
+0.771
+</td>
+<td style="text-align:right;">
+0.062
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+0.9
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+0.900
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+0.870
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+0.800
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+0.100
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.933
+</td>
+<td style="text-align:right;">
+1.069
+</td>
+<td style="text-align:right;">
+0.850
+</td>
+<td style="text-align:right;">
+0.083
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.967
+</td>
+<td style="text-align:right;">
+1.466
+</td>
+<td style="text-align:right;">
+0.924
+</td>
+<td style="text-align:right;">
+0.043
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.565
+</td>
+<td style="text-align:right;">
+0.937
+</td>
+<td style="text-align:right;">
+0.063
+</td>
+</tr>
+</tbody>
+</table>
+<p>The open question then, how do we use the calculated <span class="math inline">\(D\)</span> value, <span class="math inline">\(D = 0.100\)</span> for evaluating our <span class="math inline">\(n = 30\)</span> samples?</p>
+<p>Use the lookup table in Zar 4th edition, Appendix Table B.9</p>
+<p>or <a href="http://fcaglp.unlp.edu.ar/~observacional/papers/PDFs/statistics/app3.pdf">Critical Values of D</a></p>
+<p>This will give us the ‘critical value’ for the test.</p>
+<p>The test value is <span class="math inline">\(D = 0.100\)</span>, the critical value is <span class="math inline">\(\alpha = 0.05\)</span> and <span class="math inline">\(n = 30\)</span> is 0.24170.</p>
+<p>Remember, we are testing the Null hypothesis (<span class="math inline">\(H_0\)</span>) that the data comes from the specified distribution.</p>
+<p>If our test value of <span class="math inline">\(D\)</span> exceed the critical value we would reject the null hypothesis. However, it does not.</p>
+<p><span class="math inline">\(D = 0.100\)</span></p>
+<p><span class="math inline">\(0.100 &lt; D_{critical, n = 30, \alpha = 0.05}\)</span>.</p>
+</div>
+<div id="r-code-20" class="section level3 hasAnchor" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> R Code<a href="null-hypothesis-significance-testing-nhst.html#r-code-20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to calculate the Kolmogorov-Smirnoff test
+## of nomality from a simulated set of values.</code></pre>
+<pre><code>## ```
+## # Generate a simulated set of values
+## x &lt;- rnorm(100, mean = 5, sd = 2)  # Generate 100 random numbers from a normal distribution with mean 5 and standard deviation 2. Store the values in x.
+## 
+## # Perform the Kolmogorov-Smirnov test for normality
+## ks.test(x, &#39;pnorm&#39;, mean(x), sd(x))  # Use the ks.test function to perform the Kolmogorov-Smirnov test for normality. The comparison cumulative distribution function used is pnorm, since we are testing for normality. The mean and standard deviation of x are passed as arguments to the function.
+## ```</code></pre>
+</div>
+<div id="shapiro-wilk-test" class="section level3 hasAnchor" number="13.3.3">
+<h3><span class="header-section-number">13.3.3</span> Shapiro Wilk test<a href="null-hypothesis-significance-testing-nhst.html#shapiro-wilk-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is one we will use extensively.</p>
+<p>The Shapiro-Wilk test is a statistical test used to assess the normality of a dataset. It was developed by Samuel Sanford Shapiro and Martin Wilk in 1965.</p>
+<p>The test determines whether a given sample comes from a population that follows a normal distribution.</p>
+<p>The null hypothesis of the Shapiro-Wilk test is that the data is normally distributed. The alternative hypothesis is that the data does not follow a normal distribution. The test calculates a test statistic, W, which is based on the observed and expected values of the ordered sample values. The test statistic is then compared to critical values from the Shapiro-Wilk table or determined using software.</p>
+</div>
+<div id="r-code-21" class="section level3 hasAnchor" number="13.3.4">
+<h3><span class="header-section-number">13.3.4</span> R Code<a href="null-hypothesis-significance-testing-nhst.html#r-code-21" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Provide code in R (using base R functionality) to test that a set of data is normally
+## distributed using the Shapiro-Wilk test</code></pre>
+<pre><code>## ``` R
+## # Generate some sample data
+## data &lt;- rnorm(100) # Using the rnorm() function to generate a random sample of 100 normally distributed data points and assigning it to a variable named &quot;data&quot;
+## 
+## # Test normality using the Shapiro-Wilk test
+## shapiro.test(data) # Using the shapiro.test() function to perform the Shapiro-Wilk test on the data to test the null hypothesis that the data is normally distributed
+## ```</code></pre>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="confidence-interval.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one--and-two-tailed-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
