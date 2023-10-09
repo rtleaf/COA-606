@@ -619,8 +619,6 @@ How can you check this property using the above simulation?
 
 Increase the number of simulations to 100 and then finally to 1000. What do you notice?
 
-
-
 ## Student's $t$ distribution
 
 Generate 500 samples from Student's $t$ distribution with 5 degrees of freedom and plot the historgam. Note: $t$ distribution is going to be covered in some detail later, but here is some initial practice.
@@ -670,6 +668,88 @@ rt(3,df=20)
 hist(rt(30,df=20))
 ```
 
+### Your Turn
+Using what you know about the probabilities of the normal and t-distributions how and can you display these graphically.
+
+
+
+
+
+
+## Confidence Intervals
+
+1. What is a confidence interval and how is it used in statistical analysis?
+2. How does the confidence level relate to the value of $\alpha$?
+3. Why can't we ever truly know the magnitude of the true error of our estimated value?
+4. Explain the importance of the Z-score in the context of confidence intervals.
+5. What is the standard error of the mean and how is it different from the standard deviation?
+6. Describe the t-distribution. When is it preferable over the Z-distribution?
+7. How does the shape of the t-distribution change with degrees of freedom?
+8. Why are the tails of the t-distribution thicker compared to the normal distribution?
+9. How do you interpret the mean and variance of the t-distribution?
+10. What are the differences between standard deviation and standard error?
+
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+```
+
+Using the mtcars dataset in R, compute the mean mpg. What is the 95% confidence interval for the mean mpg using Z-distribution?
+
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+data(mtcars)
+mean_mpg <- mean(mtcars$mpg)
+sd_mpg <- sd(mtcars$mpg)
+n <- length(mtcars$mpg)
+z_value <- qnorm(0.975)
+# And you fill in the rest of the code...
+
+```
+
+Using the same mtcars dataset, compute the 95% confidence interval for the mean mpg using the t-distribution.
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+t_value <- qt(0.975, df=n-1)
+# And you fill in the rest...
+```
+
+How does the confidence interval width change when increasing the sample size? Simulate datasets with sizes 10, 50, 100, 500, and 1000, then compute the 95% confidence interval for each.
+
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+sample_sizes <- c(10, 50, 100, 500, 1000)
+```
+
+For the mtcars dataset, calculate the 90% confidence interval for the mean hp (horsepower) using the t-distribution.
+
+## NHST
+
+1. Describe the main steps involved in Null Hypothesis Significance Testing (NHST). Why is it essential in statistical inference?
+2. Explain the difference between a null hypothesis and an alternative hypothesis.
+3. What is the significance level ($\alpha$), and how is it used in hypothesis testing?
+4. Describe the concept of a p-value in the context of hypothesis testing.
+5. Why is the Z-score used in testing significance? Under what conditions is it most appropriate?
+6. Discuss Fisher's recommendation of using $\alpha = 0.05$.
+7. Describe the Kolmogorov-Smirnov test. When is it used, and what are its hypotheses?
+8. What is the Shapiro-Wilk test, and how does it compare to the Kolmogorov-Smirnov test in assessing normality?
+9. Why might a researcher choose to use a one-tailed test instead of a two-tailed test?
+
+Shapiro-Wilk Test: Check if a given dataset follows a normal distribution. In additon to the statistical test, use some qualitative methods for determining normality.
+
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+data <- rnorm(50, mean = 5, sd = 2)
+
+```
+
+Kolmogorov-Smirnov Test: Test a dataset against a standard normal distribution of data1 and data2.  In additon to the statistical test, use some qualitative methods for determining normality.
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+data1 <- rnorm(50)
+data2 <- c(rnorm(50), rnorm(n = 30, mean = 4, sd = 2))
+
+```
+
+Confidence Interval Calculation: Calculate a 95% confidence interval for a given dataset.
+```{r, results='hide',message=FALSE,fig.show = 'hide'}
+data <- c(150, 155, 152, 158, 153, 156, 159, 157)
+confidence_level <- 0.95
+error <- qt(confidence_level + (1-confidence_level)/2, length(data)-1) * sd(data)/sqrt(length(data))
+```
 
 
 
