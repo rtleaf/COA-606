@@ -1117,11 +1117,11 @@ This might be the first thing that you try if you find a non-linear trend in you
 ## 
 ##     housing, mammals</code></pre>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="in-class-assignments.html#cb146-1" tabindex="-1"></a><span class="fu">hist</span>(openintro<span class="sc">::</span>mammals<span class="sc">$</span>body_wt)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="in-class-assignments.html#cb147-1" tabindex="-1"></a><span class="fu">hist</span>(openintro<span class="sc">::</span>mammals<span class="sc">$</span>brain_wt)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-198-2.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-198-2.png" width="672" /></p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="in-class-assignments.html#cb148-1" tabindex="-1"></a><span class="fu">plot</span>(openintro<span class="sc">::</span>mammals<span class="sc">$</span>body_wt, openintro<span class="sc">::</span>mammals<span class="sc">$</span>brain_wt)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-198-3.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-198-3.png" width="672" /></p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="in-class-assignments.html#cb149-1" tabindex="-1"></a>lm.model <span class="ot">=</span> <span class="fu">lm</span>(brain_wt <span class="sc">~</span> body_wt, <span class="at">data =</span> openintro<span class="sc">::</span>mammals)</span>
 <span id="cb149-2"><a href="in-class-assignments.html#cb149-2" tabindex="-1"></a><span class="fu">anova</span>(lm.model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -1155,7 +1155,7 @@ This might be the first thing that you try if you find a non-linear trend in you
 <p>Maybe a log-transformation in the values might help us to improve the model. For that, we will use the log function, which, by default, computes the natural logarithm of a given number or set of numbers.</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="in-class-assignments.html#cb153-1" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&#39;openintro&#39;</span>)</span>
 <span id="cb153-2"><a href="in-class-assignments.html#cb153-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(openintro<span class="sc">::</span>mammals<span class="sc">$</span>body_wt), <span class="fu">log</span>(openintro<span class="sc">::</span>mammals<span class="sc">$</span>brain_wt))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="in-class-assignments.html#cb154-1" tabindex="-1"></a>lm.model <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(brain_wt) <span class="sc">~</span> <span class="fu">log</span>(body_wt), <span class="at">data =</span> openintro<span class="sc">::</span>mammals)</span>
 <span id="cb154-2"><a href="in-class-assignments.html#cb154-2" tabindex="-1"></a><span class="fu">anova</span>(lm.model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -1576,7 +1576,7 @@ Given a linear relationship of the dependent variable and independent variables:
 <span id="cb180-18"><a href="in-class-assignments.html#cb180-18" tabindex="-1"></a></span>
 <span id="cb180-19"><a href="in-class-assignments.html#cb180-19" tabindex="-1"></a><span class="fu">plot</span>(t.calc, r.val, <span class="at">xlab =</span> <span class="st">&quot;Calculated t value&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;r (the magnitude of the effect size)&quot;</span>)</span>
 <span id="cb180-20"><a href="in-class-assignments.html#cb180-20" tabindex="-1"></a><span class="fu">lines</span>(t.calc, r.val)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 </div>
 </div>
 <div id="one-way-anova" class="section level2 hasAnchor" number="22.16">
@@ -2155,7 +2155,7 @@ First, let’s compute the difference between the means of the two groups:</p>
 <span id="cb223-4"><a href="in-class-assignments.html#cb223-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by =</span> <span class="fl">0.01</span>)</span>
 <span id="cb223-5"><a href="in-class-assignments.html#cb223-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> x<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb223-6"><a href="in-class-assignments.html#cb223-6" tabindex="-1"></a><span class="fu">lines</span>(x,y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-263-1.png" width="672" /></p>
 <ol style="list-style-type: decimal">
 <li>Let’s generate a great many points uniformly distributed in the square [0, 1] ? [0, 1].</li>
 </ol>
@@ -2359,7 +2359,7 @@ In the above box I give some more “lm” functionality using “.” and “-1
 <p>Varying intercept model: <span class="math inline">\(y_{i} = \alpha_{j[i]}+\beta{x_i}+\epsilon_i\)</span></p>
 <p>Varying slope model: <span class="math inline">\(y_{i} = \alpha+\beta_{j[i]}{x_i}+\epsilon_i\)</span></p>
 <p>Varying intercept and slope model: <span class="math inline">\(y_{i} = \alpha_{j[i]}+\beta_{j[i]}{x_i}+\epsilon_i\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-276-1.png" width="672" /></p>
 <p>1.) The first step in a multilevel model is to set up a regression model with varying coefficients.</p>
 <p>2.) The second step in a multilevel model is to set up a regression model of the coefficents.</p>
 </div>

@@ -249,12 +249,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>A left-skewed distribution has a long left tail.</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <ul>
 <li>A right-skewed distribution has a long right tail.
-<img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></li>
+<img src="figure-html/unnamed-chunk-58-1.png" width="672" /></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <div id="r-code-7" class="section level3 hasAnchor" number="9.4.1">
 <h3><span class="header-section-number">9.4.1</span> R Code<a href="measures-of-central-tendency.html#r-code-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## Provide code in R (using base R functionality) to create and plot skewed distributions
@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Different distributions are defined using different parameters (and different mathematical formulations), so <em>w</em> is distribution-specific.</p></li>
 </ul>
 <p>If we have specified a distribution that has a certain set of parameters, for example:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>We can use a given probability distribution and parameter set to determine the probability of obtaining a value in a population.</p>
 <p>Example:</p>
 <p>Children’s IQ scores are normally distributed with a mean of 100 and a standard deviation of 15. What is the probability of a randomly selected child having an IQ between 80 and 120?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>In this case the area under the curve is 0.818 or 81.8% of the integral of the distribution from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>. So, if we take 100 random draws from the population of children’s IQs, we will get values of IQ &gt; 80 and &lt; 120, 81 to 82 times…</p>
 <p>Let’s examine the statement:</p>
 <p><span class="math inline">\(p(80 &lt; IQ &lt; 120\)</span> | <span class="math inline">\(\mu = 100, \sigma = 15) = 0.818\)</span>.</p>
@@ -344,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>or</p>
 <p><span class="math inline">\(p(IQ &gt; 120\)</span> | <span class="math inline">\(\mu = 100, \sigma = 15)\)</span></p>
 <p>The right side of the equation does not change because it describes the fixed shape of the distribution of the population that “creates” the observations. So when we are investigating probability of an event we are quantifying the integral of the curve for the given parameter set bounded by the <em>left</em> side of the equation. We change the left side to derive new probability values.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>We can determine the probability of obtaining <span class="math inline">\(p(y_1, y_2, ..., y_m)\)</span> | <span class="math inline">\(w)\)</span> if the observations are independent.</p>
 <p>Think about taking multiple random draws from the population described by the parameter set <em>w</em>. An analog here is thinking about coin flipping, the probability of realizing specific outcomes from multiple trials is determined by multiplication (e.g. probability of observing two “tails” flips is the product of the independent single observations).</p>
 <p>So, the notation below is <em>Pi</em> (product) notation. This is used in mathematics to indicate repeated multiplication.</p>
@@ -360,11 +360,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So, the data are fixed, and we modify the parameter vector <em>w</em> (in the case of IQ, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>)</p>
 <p>Assume we have some vector of observed data <em>y</em>, these are sampled from some population, for now, assume we take a single value.</p>
 <p>What is the likelihood that <span class="math inline">\(\mu = 100\)</span> and <span class="math inline">\(\sigma = 15\)</span> given our sampled IQ is <span class="math inline">\(y = 120\)</span>?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>What if we have a vector of observations <span class="math inline">\(n = 5\)</span>, with mean values centered on 120? So, we want to find the distribution parameters that maximize the likelihood.
 We still think that the normal distribution is the most appropriate distribution as a candidate distribution.</p>
 <p><span class="math inline">\(y = (100, 110, 120, 130, 140)\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 
 </div>
 </div>
