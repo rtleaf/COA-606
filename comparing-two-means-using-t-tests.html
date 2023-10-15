@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>19 Comparing Two Means using t-tests | _main.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="19 Comparing Two Means using t-tests | _main.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="19 Comparing Two Means using t-tests | _main.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multiple-linear-regression.html"/>
+<link rel="next" href="analysis-of-variance-anova.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="book_assets/kePrint-0.0.1/kePrint.js"></script>
+<link href="book_assets/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Biometry for the Coastal Sciences (COA 606)</a></li>
+<li class="chapter" data-level="2" data-path="univariate-data.html"><a href="univariate-data.html"><i class="fa fa-check"></i><b>2</b> Univariate Data</a></li>
+<li class="chapter" data-level="3" data-path="best-practices-for-data-management.html"><a href="best-practices-for-data-management.html"><i class="fa fa-check"></i><b>3</b> Best Practices For Data Management</a></li>
+<li class="chapter" data-level="4" data-path="working-in-r.html"><a href="working-in-r.html"><i class="fa fa-check"></i><b>4</b> Working in R</a></li>
+<li class="chapter" data-level="5" data-path="data-classes-in-r.html"><a href="data-classes-in-r.html"><i class="fa fa-check"></i><b>5</b> Data Classes in R</a></li>
+<li class="chapter" data-level="6" data-path="data-input-and-output-io.html"><a href="data-input-and-output-io.html"><i class="fa fa-check"></i><b>6</b> Data input and output (IO)</a></li>
+<li class="chapter" data-level="7" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>7</b> Sampling</a></li>
+<li class="chapter" data-level="8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>8</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>9</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="10" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>10</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="11" data-path="the-normal-distribution.html"><a href="the-normal-distribution.html"><i class="fa fa-check"></i><b>11</b> The Normal Distribution</a></li>
+<li class="chapter" data-level="12" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>12</b> Confidence Interval</a></li>
+<li class="chapter" data-level="13" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>13</b> Null Hypothesis Significance Testing (NHST)</a></li>
+<li class="chapter" data-level="14" data-path="one--and-two-tailed-tests.html"><a href="one--and-two-tailed-tests.html"><i class="fa fa-check"></i><b>14</b> One- and Two-Tailed Tests</a></li>
+<li class="chapter" data-level="15" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>15</b> Statistical Power</a></li>
+<li class="chapter" data-level="16" data-path="bivariate-relationships.html"><a href="bivariate-relationships.html"><i class="fa fa-check"></i><b>16</b> Bivariate Relationships</a></li>
+<li class="chapter" data-level="17" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>17</b> Linear Regression</a></li>
+<li class="chapter" data-level="18" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="19" data-path="comparing-two-means-using-t-tests.html"><a href="comparing-two-means-using-t-tests.html"><i class="fa fa-check"></i><b>19</b> Comparing Two Means using <em>t</em>-tests</a></li>
+<li class="chapter" data-level="20" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>20</b> Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="21" data-path="two-way-independent-anova.html"><a href="two-way-independent-anova.html"><i class="fa fa-check"></i><b>21</b> Two-Way Independent ANOVA</a></li>
+<li class="chapter" data-level="22" data-path="in-class-assignments.html"><a href="in-class-assignments.html"><i class="fa fa-check"></i><b>22</b> In-Class Assignments</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="comparing-two-means-using-t-tests" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">19</span> Comparing Two Means using <em>t</em>-tests<a href="comparing-two-means-using-t-tests.html#comparing-two-means-using-t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A common situation is the comparison of the means of two populations.</p>
+<p>An example of a <em>t</em>-test is to evaluate the mean blood clotting times between populations that were given two drugs.</p>
+<ul>
+<li><span class="math inline">\(H_0: \mu_B = \mu_G\)</span>, where <span class="math inline">\(\mu\)</span> is the mean blood clotting time (in minutes)</li>
+</ul>
+<p>If the samples came from two normally distributed populations and the variances of the populations are equal ,we can use a two sample <em>t</em>-test. These conform to the assumptions of parametric statistics.</p>
+<ul>
+<li><p>Two samples of data are collected and the sample means calculated.</p></li>
+<li><p>The calculated means might differ by either a little or a lot.</p></li>
+</ul>
+<div id="small-differences-in-mean-samples-values" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> Small differences in mean samples values<a href="comparing-two-means-using-t-tests.html#small-differences-in-mean-samples-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We expect their means to be equal or very close. In this case, it is possible (even likely) for the population means to differ by chance alone (due to sampling error). We wwould expect that large differences in the mean values would occur very infrequently.</p>
+<p><span class="math inline">\(H_0: \mu_B = \mu_G\)</span></p>
+<p>Alternatively, we can pose this as the difference in the mean:</p>
+<p><span class="math inline">\(H_0: \mu_B - \mu_G = 0\)</span>.</p>
+<ul>
+<li><p>We are interested in understanding the magnitude of difference between the sample means.</p></li>
+<li><p>We use the standard error as a gauge of the variability between sample means.</p></li>
+</ul>
+</div>
+<div id="large-differences-in-mean-samples-values" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> Large differences in mean samples values<a href="comparing-two-means-using-t-tests.html#large-differences-in-mean-samples-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the difference between the samples we have collected is large, then we can infer one of two things:</p>
+<p>1.) There is no effect of the two blood clotting medicine and by chance we calculated two sample means that are atypical of the population from which they came.</p>
+<p>2.) The two samples come from different populations (populations with different mean values). In this scenario, the difference between samples represents a genuine difference between the samples (and we falsify the null hypothesis).</p>
+<p>So, this is the null model we are testing; did the samples come from the same population or did the samples come from the different populations?</p>
+<p>If the observed difference between the sample means is large: The more confident we become that the second explanation is correct (i.e. that the null hypothesis should be rejected).</p>
+</div>
+<div id="example" class="section level2 hasAnchor" number="19.3">
+<h2><span class="header-section-number">19.3</span> Example<a href="comparing-two-means-using-t-tests.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Is arachnophobia (fear of spiders) specific to real spiders or is a picture enough?</p></li>
+<li><p>24 arachnophobic individuals</p></li>
+</ul>
+<p>Experimental Manipulation:</p>
+<ul>
+<li><p>n = 12 randomly chosen participants were exposed to a real spider.</p></li>
+<li><p>n = 12 randomly chosen participants were exposed to a picture of the same spider.</p></li>
+<li><p>We monitor the anxiety produced.</p></li>
+</ul>
+</div>
+<div id="we-will-evaluate-these-data-using-a-linear-model" class="section level2 hasAnchor" number="19.4">
+<h2><span class="header-section-number">19.4</span> We will evaluate these data using a linear model<a href="comparing-two-means-using-t-tests.html#we-will-evaluate-these-data-using-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider an experiment where ‘Groups’ were exposed to a “Picture of a Spider” and an “Actual Spider”</p>
+<p>The response variable is the level of Anxiety (A)</p>
+<p><span class="math inline">\(\hat{A_i}=b_0+b_1G_i\)</span></p>
+<p>The independent variable <em>G</em> has only two values “Group 1” and “Group 2” ie. The “real” and “picture” groups.</p>
+<pre><code>##          Group  Anxiety G
+## 1      Picture 20.67124 0
+## 2      Picture 36.79956 0
+## 3      Picture 38.36280 0
+## 4      Picture 26.76544 0
+## 5      Picture 36.46704 0
+## 6      Picture 15.36294 0
+## 7      Picture 20.63903 0
+## 8      Picture 23.93972 0
+## 9      Picture 40.35177 0
+## 10     Picture 41.79260 0
+## 11     Picture 31.16043 0
+## 12     Picture 28.42174 0
+## 13 Real Spider 23.68506 1
+## 14 Real Spider 59.23398 1
+## 15 Real Spider 35.84786 1
+## 16 Real Spider 47.14871 1
+## 17 Real Spider 44.51467 1
+## 18 Real Spider 52.42887 1
+## 19 Real Spider 61.94535 1
+## 20 Real Spider 52.43209 1
+## 21 Real Spider 39.05075 1
+## 22 Real Spider 57.72527 1
+## 23 Real Spider 48.60876 1
+## 24 Real Spider 41.13388 1</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+</div>
+<div id="picture-group" class="section level2 hasAnchor" number="19.5">
+<h2><span class="header-section-number">19.5</span> Picture Group<a href="comparing-two-means-using-t-tests.html#picture-group" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can code the variable, <em>G</em>, as a ‘dummy’ variable. It will take on the values one or zero. We can assign one group to have a value of zero, and one group to have a value of one. In the case of the ‘picture’ group, we will assign a value of <em>G</em> to be zero.</p>
+<p><span class="math inline">\(G_{picture}=0\)</span></p>
+<p><span class="math inline">\(\hat{A_i}=b_0+b_1G_i\)</span></p>
+<p>The expected anxiety of group “picture” is the mean of anxiety of group “picture”.</p>
+<p><span class="math inline">\(\bar{A}_{Picture}=b_0+b_1G_{picture}\)</span></p>
+<p><span class="math inline">\(\bar{A}_{Picture}=b_0+b_1\times0\)</span></p>
+<p><span class="math inline">\(\bar{A}_{Picture}=b_0\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
+</div>
+<div id="real-spider-group" class="section level2 hasAnchor" number="19.6">
+<h2><span class="header-section-number">19.6</span> Real Spider Group<a href="comparing-two-means-using-t-tests.html#real-spider-group" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Again, we can code the variable, <em>G</em>, as a ‘dummy’ variable. It can take on the values one or zero.</p>
+<p>We have assigned a value of <em>G</em> to be zero for the “picture” group. So, for the “real” group, we will assign the dummy variable <em>G</em> to equal one.</p>
+<p><span class="math inline">\(G_{real}=1\)</span></p>
+<p><span class="math inline">\(\hat{A_{G=1}}=b_0+b_1G_i\)</span></p>
+<p><span class="math inline">\(\hat{A_i}=30.06+b_1\times1\)</span></p>
+<p><span class="math inline">\(\hat{A_i}=30.06+b_1\)</span></p>
+<p><span class="math inline">\(b_1 = \hat{A_i}-30.06\)</span></p>
+<p><span class="math inline">\(b_1\)</span> = Difference between means</p>
+<p><span class="math inline">\(b_1=\bar{A}_{Real}-\bar{A}_{Picture}\)</span></p>
+<p>Our task is to understand if this <span class="math inline">\(\beta_1\)</span> value is significantly different from zero.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+</div>
+<div id="output-from-a-regression" class="section level2 hasAnchor" number="19.7">
+<h2><span class="header-section-number">19.7</span> Output from a Regression<a href="comparing-two-means-using-t-tests.html#output-from-a-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s see how this is analyzed in the linear regression approach using R:</p>
+<pre><code>## 
+## Call:
+## lm(formula = df.$Anxiety ~ df.$Group)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.2945  -6.5733   0.6342   7.1292  14.9657 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)            30.061      2.864  10.496 4.97e-10 ***
+## df.$GroupReal Spider   16.918      4.050   4.177 0.000392 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.921 on 22 degrees of freedom
+## Multiple R-squared:  0.4423, Adjusted R-squared:  0.4169 
+## F-statistic: 17.45 on 1 and 22 DF,  p-value: 0.0003915</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: df.$Anxiety
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## df.$Group  1 1717.4 1717.40  17.448 0.0003915 ***
+## Residuals 22 2165.5   98.43                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="the-independent-t-test" class="section level2 hasAnchor" number="19.8">
+<h2><span class="header-section-number">19.8</span> The Independent <em>t-test</em><a href="comparing-two-means-using-t-tests.html#the-independent-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I am using the variable <em>Y</em> for the observations - this is a departure from Zar’s presentation but the mechanics are identical.</p>
+<p><span class="math inline">\(t=\frac{\bar{Y}_1-\bar{Y}_2}{\sqrt{\frac{S^2_p}{n_1}+\frac{S^2_p}{n_2}}}\)</span></p>
+<ul>
+<li><p>The numerator is the difference between sample means.</p></li>
+<li><p>The denominator is the standard error of the difference between the sample means. This quantity is a measure of the variability of the data within the two samples.</p></li>
+</ul>
+<p><span class="math inline">\(S^2_p=\frac{(n_1-1)S^2_1+(n_2-1)S^2_2}{n_1+n_2-2}\)</span></p>
+<p><span class="math inline">\(S^2_p=\frac{SS_1+SS_2}{v_1+v_2}\)</span></p>
+<p>Here v<sub>1</sub> and v<sub>2</sub> are the degrees of freedom, v<sub>1</sub> = n<sub>1</sub> - 1 and v<sub>2</sub> = n<sub>2</sub> -1</p>
+<p>The test value is compared to the critical value at a given <span class="math inline">\(\alpha\)</span></p>
+<p><span class="math inline">\(t_{\alpha,2,df}\)</span></p>
+<ul>
+<li>Need to set <span class="math inline">\(\alpha\)</span> value.</li>
+<li>One or two-tailed test?</li>
+<li>v<sub>1</sub> = n<sub>1</sub> - 1 and v<sub>2</sub> = n<sub>2</sub> - 1</li>
+</ul>
+</div>
+<div id="lets-use-the-data-from-zar-as-a-worked-example." class="section level2 hasAnchor" number="19.9">
+<h2><span class="header-section-number">19.9</span> Lets use the data from Zar as a worked example.<a href="comparing-two-means-using-t-tests.html#lets-use-the-data-from-zar-as-a-worked-example." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(H_0: \mu_1 = \mu_2\)</span>
+<span class="math inline">\(H_A: \mu_1\ne\mu_2\)</span></p>
+<p><span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span>
+<span class="math inline">\(H_A: \mu_1-\mu_2\ne0\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Given drug B</th>
+<th align="center">Given drug G</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">8.8</td>
+<td align="center">9.9</td>
+</tr>
+<tr class="even">
+<td align="center">8.4</td>
+<td align="center">9.0</td>
+</tr>
+<tr class="odd">
+<td align="center">7.9</td>
+<td align="center">11.1</td>
+</tr>
+<tr class="even">
+<td align="center">8.7</td>
+<td align="center">9.6</td>
+</tr>
+<tr class="odd">
+<td align="center">9.1</td>
+<td align="center">8.7</td>
+</tr>
+<tr class="even">
+<td align="center">9.6</td>
+<td align="center">10.4</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">9.5</td>
+</tr>
+<tr class="even">
+<td align="center">——</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(n_1=6\)</span></td>
+<td align="center"><span class="math inline">\(n_2=7\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\nu_1=5\)</span></td>
+<td align="center"><span class="math inline">\(\nu_2=6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bar{Y}_1=\)</span> 8.75 min</td>
+<td align="center"><span class="math inline">\(\bar{Y}_2=\)</span> 9.74 min</td>
+</tr>
+<tr class="even">
+<td align="center">SS<sub>1</sub> = 1.6950 min<sup>2</sup></td>
+<td align="center"> SS<sub>2</sub> = 4.0171 min<sup>2</sup></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(S^2_p=\frac{SS_1+SS_2}{v_1+v_2}=\frac{1.6950+4.0171}{5+6}=\frac{5.7121}{11}=0.5193 \: \mbox{min}^2\)</span></p>
+<p><span class="math inline">\(s_{\bar{Y_1}-\bar{Y}_2}=\sqrt{\frac{S^2_p}{n_1}+\frac{S^2_p}{n_2}}=\sqrt{\frac{0.5193}{6}+\frac{0.5193}{7}}=\sqrt{0.0866+0.0742}\)</span></p>
+<p><span class="math inline">\(=\sqrt{0.1608}=0.40\mbox{min}\)</span></p>
+<p><span class="math inline">\(t=\frac{\bar{Y}_1-\bar{Y}_2}{s_{\bar{Y}_1-\bar{Y}_2}}\)</span></p>
+</div>
+<div id="determine-test-value" class="section level2 hasAnchor" number="19.10">
+<h2><span class="header-section-number">19.10</span> Determine test value<a href="comparing-two-means-using-t-tests.html#determine-test-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(t=\frac{\bar{Y}_1-\bar{Y}_2}{s_{\bar{Y}_1-\bar{Y}_2}}=\frac{8.75-9.74}{0.40}=\frac{-0.99}{0.40}=-2.475\)</span></p>
+<p><span class="math inline">\(|t|=|\frac{\bar{Y}_1-\bar{Y}_2}{s_{\bar{Y}_1-\bar{Y}_2}}|=2.475\)</span></p>
+</div>
+<div id="determine-critical-value" class="section level2 hasAnchor" number="19.11">
+<h2><span class="header-section-number">19.11</span> Determine critical value<a href="comparing-two-means-using-t-tests.html#determine-critical-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(t_{0.05(2),v}=t_{0.05(2),11}=2.201\)</span></p>
+<p>Therefore, reject H<sub>0</sub></p>
+<p><span class="math inline">\(P(|t|\ge2.475)&lt;0.05\)</span>
+<span class="math inline">\(\: \:\)</span>
+<span class="math inline">\(P=0.031\)</span></p>
+</div>
+<div id="when-assumptions-are-broken" class="section level2 hasAnchor" number="19.12">
+<h2><span class="header-section-number">19.12</span> When Assumptions are Broken<a href="comparing-two-means-using-t-tests.html#when-assumptions-are-broken" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Non-parameteric <em>t</em>-test Mann-Whitney “U” Test</li>
+</ul>
+<p>+Do not require estimation of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
+<p>+No assumptions about distributions.</p>
+<ul>
+<li><p>Convert data to RANKS of data.</p></li>
+<li><p>Two sample rank test</p></li>
+<li><p>Rank from highest to lowest, the greatest value in either group is given a one, second given a two..</p></li>
+</ul>
+<p><span class="math inline">\(U=n_1n_2+\frac{n_1(n_1+1)}{2}-R_1\)</span></p>
+<ul>
+<li>n<sub>1</sub> and n<sub>2</sub> are the number of observation sin samples 1 and 2.</li>
+<li>R<sub>1</sub> is the sum of the ranks in sample 1</li>
+</ul>
+<p>H<sub>0</sub>: Male and female students are the same height.
+H<sub>A</sub>: Male and female students are not the same height.</p>
+<p><span class="math inline">\(\alpha=0.05\)</span></p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Height of males</th>
+<th align="center">Height of females</th>
+<th align="center">Ranks of male heights</th>
+<th align="center">Ranks of female heights</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">193 cm</td>
+<td align="center">178 cm</td>
+<td align="center">1</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">188</td>
+<td align="center">173</td>
+<td align="center">2</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">185</td>
+<td align="center">168</td>
+<td align="center">3</td>
+<td align="center">10</td>
+</tr>
+<tr class="even">
+<td align="center">183</td>
+<td align="center">165</td>
+<td align="center">4</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">180</td>
+<td align="center">163</td>
+<td align="center">5</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">175</td>
+<td align="center"></td>
+<td align="center">7</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">170</td>
+<td align="center"></td>
+<td align="center">9</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">—</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(n_1=7\)</span></td>
+<td align="center"><span class="math inline">\(n_2=5\)</span></td>
+<td align="center"><span class="math inline">\(R_1=31\)</span></td>
+<td align="center"><span class="math inline">\(R_2=47\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(U=n_1n_2+\frac{n_1(n_1+1)}{2}-R_1\)</span></p>
+<p><span class="math inline">\((7)(5)+\frac{(7)(8)}{2}-31\)</span></p>
+<p><span class="math inline">\(35+28-31\)</span></p>
+<p><span class="math inline">\(32\)</span></p>
+<p><span class="math inline">\(U^1=n_1n_2-U\)</span></p>
+<p><span class="math inline">\((7)(5)-32\)</span></p>
+<p><span class="math inline">\(U_{0.05(2),5,7}=30\)</span></p>
+<p>Because 32&gt;30, H<sub>0</sub> is rejected.</p>
+<p>Therefore, we conclude that height is different for male and female students.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
