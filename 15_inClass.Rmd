@@ -812,9 +812,14 @@ pairs(mtcars[,c(1:5)])
 
 Explore and describe the data - what variables are linearly correlated in a qualitative sense? 
 
-We particularly want to focus on variables that are continuous. Why? 
+We particularly focus on continuous variables, why? 
 
-We are going to perform parametric statistical analysis (calculation of the Pearson's *r* and related statistical analysis). So, we will will need to fulfill the assumptions of parametric statistics.
+What is the purpose of inspecting data using R functionality when performing parametric correlation analysis, and how does it help in the analysis?
+
+Describe the key statistics provided by the summary function in R when applied to a dataset, such as the mtcars dataset. How can these statistics be useful for understanding the data's structure and relationships?
+
+
+We are going to perform parametric statistical analysis (calculation of the Pearson's $\rho$ and related statistical analysis). So, we will will need to fulfill the assumptions of parametric statistics.
 
 *Data in each comparison group show a Normal distribution.*
 
@@ -822,7 +827,7 @@ We are going to perform parametric statistical analysis (calculation of the Pear
 
 + In regression analysis and in general linear models, it is the errors that need to be normally distributed.
 
-Data in each comparison group exhibit similar degrees of Homoscedasticity, or Homogeneity of Variance.
+Data in each comparison group exhibit similar degrees of homoscedasticity, or homogeneity of Variance.
 
 + This refers to the need for a similarity in the variance throughout the data. This means that the variable in the populations from which the samples were taken have a similar variance in these populations. In the case of regression, the variance of one variable should be the same as all the other variables.
 
@@ -868,6 +873,16 @@ hb <- runif(n = 100)
 shapiro.test(hb)
 ```
 
+Why is it essential to examine the normality of data when conducting parametric correlation analysis? 
+
+What are the assumptions that need to be met for parametric statistical tests, including correlation analysis? Explain why these assumptions are crucial for accurate results.
+
+How can you test the normality of a dataset quantitatively using statistical tests like the Shapiro-Wilk test in R? What does a significant p-value in this test indicate?
+
+What is the purpose of testing the homogeneity of variance when performing correlation analysis? How can you conduct the Levene test in R to assess homogeneity of variance?
+
+
+
 ### Test the homogeneity of variance
 
 The Levene test is used to test for homogeneity of variance. 
@@ -903,9 +918,21 @@ cor.test(x = mtcars$mpg, y = mtcars$hp, method = 'spearman')
 ```
 
 
+Explain the concept of covariance and its significance in correlation analysis. How is it calculated, and what information does it provide about the relationship between two variables?
+
+What is the Pearson's correlation coefficient, and how does it quantify the strength and direction of a linear relationship between two variables? How is it calculated in R?
+
+Describe the steps involved in hypothesis testing for correlation analysis. What null and alternative hypotheses are typically used when assessing the correlation between two variables?
+
+How do you calculate the coefficient of determination (r-squared) in correlation analysis? What does it represent, and how is it interpreted in the context of the correlation between two variables?
+
+
+
 ### Correlation Simulation 
 
 Function to explore the correlation structure and resulting Spearman and Pearson Correlation rejection rates for user specified number of data points and correlation values.Note bivariate correlation structure is determined using the normal distribiution. This function requires the "MASS" package for successful execution.
+
+Paste the code so that you can run the function 'corr.power.simul'
 
 ```{r, results='hide',message=FALSE, eval=FALSE}
 require(mvtnorm)
@@ -974,12 +1001,15 @@ corr.power.simul(cor.val = 0.55, number.pts = 10)
 ```
 
 
+1. **Power Calculation in Pearson Correlation:** How can you calculate the statistical power of a Pearson correlation test, and what factors should be considered in this calculation? How does the chosen significance level (alpha) influence the power of the test?
 
+2. **Interpreting Type I and Type II Errors:** Explain the consequences of committing a Type I error in Pearson correlation analysis, especially in fields like clinical research. How might a researcher minimize the risk of Type I errors without increasing Type II errors?
 
+3. **Sample Size Determination:** In a graduate-level research study using Pearson correlation analysis, describe the process of determining an appropriate sample size to achieve a desired level of power. How does effect size play a role in this determination?
 
+4. **Spearman Correlation and Nonlinearity:** How does the Spearman correlation handle nonlinear relationships between variables, and what impact does this have on the likelihood of Type I and Type II errors compared to Pearson correlation? Develope some simulation to illustrate the differences.
 
-
-
+5. **Practical Considerations for Real Data:** In applied research, researchers often deal with imperfect data, outliers, and non-normality. Discuss how these factors can affect the power, Type I, and Type II error rates in both Pearson and Spearman correlation analyses. What strategies can be employed to address these challenges?
 
 ## Simple linear regression
 

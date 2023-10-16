@@ -34,8 +34,6 @@ Repository of Videos and Transcripts: https://tinyurl.com/bde2ejnc
 
 Repository of HW: https://tinyurl.com/3nvwe38h
 
-In-class assignment: https://rtleaf.github.io/coa-606-in-class
-
 ## Course Description and Objectives
 This course addresses basic approaches to experimental design, statistical analysis, and presentation of quantitative information.
 

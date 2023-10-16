@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="central-limit-theorem.html#cb41-1" tabindex="-1"></a>DieOutcome <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">10000</span>, <span class="at">replace=</span> <span class="cn">TRUE</span>)</span>
 <span id="cb41-2"><a href="central-limit-theorem.html#cb41-2" tabindex="-1"></a><span class="fu">hist</span>(DieOutcome, <span class="at">col =</span><span class="st">&quot;light blue&quot;</span>)</span>
 <span id="cb41-3"><a href="central-limit-theorem.html#cb41-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">3.5</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>We will take samples of size 10 , from the above 10000 observation of outcome of die roll, take the arithmetic mean and try to plot the mean of sample. we will do this procedure k times (in this case k= 10000 )</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="central-limit-theorem.html#cb42-1" tabindex="-1"></a>x10 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb42-2"><a href="central-limit-theorem.html#cb42-2" tabindex="-1"></a>k <span class="ot">=</span><span class="dv">10000</span></span>
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb42-5"><a href="central-limit-theorem.html#cb42-5" tabindex="-1"></a><span class="fu">hist</span>(x10, <span class="at">col =</span><span class="st">&quot;pink&quot;</span>, <span class="at">main=</span><span class="st">&quot;Sample size =10&quot;</span>,<span class="at">xlab =</span><span class="st">&quot;Outcome of die roll&quot;</span>)</span>
 <span id="cb42-6"><a href="central-limit-theorem.html#cb42-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(x10), <span class="at">col =</span> <span class="st">&quot;Red&quot;</span>)</span>
 <span id="cb42-7"><a href="central-limit-theorem.html#cb42-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fl">3.5</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>By theory , we know as the sample increases, we get better bell shaped curve. As the n apporaches infinity , we get a normal distribution. Lets do this by increasing the sample size to 30, 100 and 1000.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="central-limit-theorem.html#cb43-1" tabindex="-1"></a>x30 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb43-2"><a href="central-limit-theorem.html#cb43-2" tabindex="-1"></a>x100 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
@@ -220,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb43-16"><a href="central-limit-theorem.html#cb43-16" tabindex="-1"></a></span>
 <span id="cb43-17"><a href="central-limit-theorem.html#cb43-17" tabindex="-1"></a><span class="fu">hist</span>(x1000, <span class="at">col =</span><span class="st">&quot;orange&quot;</span>,<span class="at">main=</span><span class="st">&quot;n=1000&quot;</span>,<span class="at">xlab =</span><span class="st">&quot;die roll&quot;</span>)</span>
 <span id="cb43-18"><a href="central-limit-theorem.html#cb43-18" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(x1000), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 </div>
 <div id="example-of-the-clt-coin-flipping" class="section level3 hasAnchor" number="8.0.2">
 <h3><span class="header-section-number">8.0.2</span> Example of the CLT (Coin Flipping)<a href="central-limit-theorem.html#example-of-the-clt-coin-flipping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -231,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb44-4"><a href="central-limit-theorem.html#cb44-4" tabindex="-1"></a>  x[i] <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,<span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))}  </span>
 <span id="cb44-5"><a href="central-limit-theorem.html#cb44-5" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col =</span><span class="st">&quot;light green&quot;</span>, <span class="at">main=</span><span class="st">&quot;Sample size = 100&quot;</span>,<span class="at">xlab =</span><span class="st">&quot;flipping coin &quot;</span>)  </span>
 <span id="cb44-6"><a href="central-limit-theorem.html#cb44-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(x), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 
 </div>
 </div>
