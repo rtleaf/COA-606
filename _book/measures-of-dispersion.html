@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><em>Third</em> quartile (the range values of the first 50 to 75% of values in ordered sequence)</p></li>
 <li><p><em>Fourth</em> quartile (the range values of the first 75 to 100% of values in ordered sequence)</p></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <div id="r-code-9" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> R Code<a href="measures-of-dispersion.html#r-code-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## Provide code in R (using base R functionality) to report values of the interquartile range
@@ -246,85 +246,182 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In an ordered list of observations, any quantile can be determined.</p>
 <p>Let’s examine the quantiles of interest for the ‘air time’ from flights departing NYC’s airports in 2013 with destination of the Atlanta aiport “ATL” with Delta Airlines.</p>
 <table>
-<colgroup>
-<col width="12%" />
-<col width="10%" />
-<col width="12%" />
-<col width="10%" />
-<col width="7%" />
-<col width="13%" />
-<col width="13%" />
-<col width="7%" />
-<col width="10%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th align="left">carrier</th>
-<th align="right">flight</th>
-<th align="left">tailnum</th>
-<th align="left">origin</th>
-<th align="left">dest</th>
-<th align="right">air_time</th>
-<th align="right">distance</th>
-<th align="right">hour</th>
-<th align="right">minute</th>
+<tr>
+<th style="text-align:left;">
+carrier
+</th>
+<th style="text-align:right;">
+flight
+</th>
+<th style="text-align:left;">
+tailnum
+</th>
+<th style="text-align:left;">
+origin
+</th>
+<th style="text-align:left;">
+dest
+</th>
+<th style="text-align:right;">
+air_time
+</th>
+<th style="text-align:right;">
+distance
+</th>
+<th style="text-align:right;">
+hour
+</th>
+<th style="text-align:right;">
+minute
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">DL</td>
-<td align="right">461</td>
-<td align="left">N668DN</td>
-<td align="left">LGA</td>
-<td align="left">ATL</td>
-<td align="right">116</td>
-<td align="right">762</td>
-<td align="right">6</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+461
+</td>
+<td style="text-align:left;">
+N668DN
+</td>
+<td style="text-align:left;">
+LGA
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">DL</td>
-<td align="right">1743</td>
-<td align="left">N3739P</td>
-<td align="left">JFK</td>
-<td align="left">ATL</td>
-<td align="right">128</td>
-<td align="right">760</td>
-<td align="right">6</td>
-<td align="right">10</td>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+1743
+</td>
+<td style="text-align:left;">
+N3739P
+</td>
+<td style="text-align:left;">
+JFK
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+128
+</td>
+<td style="text-align:right;">
+760
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
-<tr class="odd">
-<td align="left">DL</td>
-<td align="right">575</td>
-<td align="left">N326NB</td>
-<td align="left">EWR</td>
-<td align="left">ATL</td>
-<td align="right">120</td>
-<td align="right">746</td>
-<td align="right">6</td>
-<td align="right">15</td>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+575
+</td>
+<td style="text-align:left;">
+N326NB
+</td>
+<td style="text-align:left;">
+EWR
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+746
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+15
+</td>
 </tr>
-<tr class="even">
-<td align="left">DL</td>
-<td align="right">1547</td>
-<td align="left">N6703D</td>
-<td align="left">LGA</td>
-<td align="left">ATL</td>
-<td align="right">126</td>
-<td align="right">762</td>
-<td align="right">7</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+1547
+</td>
+<td style="text-align:left;">
+N6703D
+</td>
+<td style="text-align:left;">
+LGA
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+126
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="left">DL</td>
-<td align="right">2047</td>
-<td align="left">N935DL</td>
-<td align="left">LGA</td>
-<td align="left">ATL</td>
-<td align="right">126</td>
-<td align="right">762</td>
-<td align="right">7</td>
-<td align="right">59</td>
+<tr>
+<td style="text-align:left;">
+DL
+</td>
+<td style="text-align:right;">
+2047
+</td>
+<td style="text-align:left;">
+N935DL
+</td>
+<td style="text-align:left;">
+LGA
+</td>
+<td style="text-align:left;">
+ATL
+</td>
+<td style="text-align:right;">
+126
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+59
+</td>
 </tr>
 </tbody>
 </table>
@@ -379,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The expected value is the one that we would encounter most frequently. The expected value, in the context of the normal distribution, is the mean value.</p>
 <p>When the normal fitting models:</p>
 <p><span class="math inline">\(deviation = X_i - \bar{X}\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <p>Should we use the Total Error as an estimate of uncertainty?</p>
 <p>We could sum <span class="math inline">\(i^{th}\)</span> error terms from 1 to n.</p>
 <table>
