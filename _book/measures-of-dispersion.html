@@ -246,182 +246,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In an ordered list of observations, any quantile can be determined.</p>
 <p>Let’s examine the quantiles of interest for the ‘air time’ from flights departing NYC’s airports in 2013 with destination of the Atlanta aiport “ATL” with Delta Airlines.</p>
 <table>
+<colgroup>
+<col width="12%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="7%" />
+<col width="13%" />
+<col width="13%" />
+<col width="7%" />
+<col width="10%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-carrier
-</th>
-<th style="text-align:right;">
-flight
-</th>
-<th style="text-align:left;">
-tailnum
-</th>
-<th style="text-align:left;">
-origin
-</th>
-<th style="text-align:left;">
-dest
-</th>
-<th style="text-align:right;">
-air_time
-</th>
-<th style="text-align:right;">
-distance
-</th>
-<th style="text-align:right;">
-hour
-</th>
-<th style="text-align:right;">
-minute
-</th>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">flight</th>
+<th align="left">tailnum</th>
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="right">air_time</th>
+<th align="right">distance</th>
+<th align="right">hour</th>
+<th align="right">minute</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-DL
-</td>
-<td style="text-align:right;">
-461
-</td>
-<td style="text-align:left;">
-N668DN
-</td>
-<td style="text-align:left;">
-LGA
-</td>
-<td style="text-align:left;">
-ATL
-</td>
-<td style="text-align:right;">
-116
-</td>
-<td style="text-align:right;">
-762
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0
-</td>
+<tr class="odd">
+<td align="left">DL</td>
+<td align="right">461</td>
+<td align="left">N668DN</td>
+<td align="left">LGA</td>
+<td align="left">ATL</td>
+<td align="right">116</td>
+<td align="right">762</td>
+<td align="right">6</td>
+<td align="right">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-DL
-</td>
-<td style="text-align:right;">
-1743
-</td>
-<td style="text-align:left;">
-N3739P
-</td>
-<td style="text-align:left;">
-JFK
-</td>
-<td style="text-align:left;">
-ATL
-</td>
-<td style="text-align:right;">
-128
-</td>
-<td style="text-align:right;">
-760
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-10
-</td>
+<tr class="even">
+<td align="left">DL</td>
+<td align="right">1743</td>
+<td align="left">N3739P</td>
+<td align="left">JFK</td>
+<td align="left">ATL</td>
+<td align="right">128</td>
+<td align="right">760</td>
+<td align="right">6</td>
+<td align="right">10</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-DL
-</td>
-<td style="text-align:right;">
-575
-</td>
-<td style="text-align:left;">
-N326NB
-</td>
-<td style="text-align:left;">
-EWR
-</td>
-<td style="text-align:left;">
-ATL
-</td>
-<td style="text-align:right;">
-120
-</td>
-<td style="text-align:right;">
-746
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-15
-</td>
+<tr class="odd">
+<td align="left">DL</td>
+<td align="right">575</td>
+<td align="left">N326NB</td>
+<td align="left">EWR</td>
+<td align="left">ATL</td>
+<td align="right">120</td>
+<td align="right">746</td>
+<td align="right">6</td>
+<td align="right">15</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-DL
-</td>
-<td style="text-align:right;">
-1547
-</td>
-<td style="text-align:left;">
-N6703D
-</td>
-<td style="text-align:left;">
-LGA
-</td>
-<td style="text-align:left;">
-ATL
-</td>
-<td style="text-align:right;">
-126
-</td>
-<td style="text-align:right;">
-762
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-0
-</td>
+<tr class="even">
+<td align="left">DL</td>
+<td align="right">1547</td>
+<td align="left">N6703D</td>
+<td align="left">LGA</td>
+<td align="left">ATL</td>
+<td align="right">126</td>
+<td align="right">762</td>
+<td align="right">7</td>
+<td align="right">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-DL
-</td>
-<td style="text-align:right;">
-2047
-</td>
-<td style="text-align:left;">
-N935DL
-</td>
-<td style="text-align:left;">
-LGA
-</td>
-<td style="text-align:left;">
-ATL
-</td>
-<td style="text-align:right;">
-126
-</td>
-<td style="text-align:right;">
-762
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-59
-</td>
+<tr class="odd">
+<td align="left">DL</td>
+<td align="right">2047</td>
+<td align="left">N935DL</td>
+<td align="left">LGA</td>
+<td align="left">ATL</td>
+<td align="right">126</td>
+<td align="right">762</td>
+<td align="right">7</td>
+<td align="right">59</td>
 </tr>
 </tbody>
 </table>
