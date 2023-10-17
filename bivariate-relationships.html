@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>16 Bivariate Relationships | _main.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="16 Bivariate Relationships | _main.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="16 Bivariate Relationships | _main.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistical-power.html"/>
+<link rel="next" href="linear-regression.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="book_assets/kePrint-0.0.1/kePrint.js"></script>
+<link href="book_assets/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Biometry for the Coastal Sciences (COA 606)</a></li>
+<li class="chapter" data-level="2" data-path="univariate-data.html"><a href="univariate-data.html"><i class="fa fa-check"></i><b>2</b> Univariate Data</a></li>
+<li class="chapter" data-level="3" data-path="best-practices-for-data-management.html"><a href="best-practices-for-data-management.html"><i class="fa fa-check"></i><b>3</b> Best Practices For Data Management</a></li>
+<li class="chapter" data-level="4" data-path="working-in-r.html"><a href="working-in-r.html"><i class="fa fa-check"></i><b>4</b> Working in R</a></li>
+<li class="chapter" data-level="5" data-path="data-classes-in-r.html"><a href="data-classes-in-r.html"><i class="fa fa-check"></i><b>5</b> Data Classes in R</a></li>
+<li class="chapter" data-level="6" data-path="data-input-and-output-io.html"><a href="data-input-and-output-io.html"><i class="fa fa-check"></i><b>6</b> Data input and output (IO)</a></li>
+<li class="chapter" data-level="7" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>7</b> Sampling</a></li>
+<li class="chapter" data-level="8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>8</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>9</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="10" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>10</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="11" data-path="the-normal-distribution.html"><a href="the-normal-distribution.html"><i class="fa fa-check"></i><b>11</b> The Normal Distribution</a></li>
+<li class="chapter" data-level="12" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>12</b> Confidence Interval</a></li>
+<li class="chapter" data-level="13" data-path="null-hypothesis-significance-testing-nhst.html"><a href="null-hypothesis-significance-testing-nhst.html"><i class="fa fa-check"></i><b>13</b> Null Hypothesis Significance Testing (NHST)</a></li>
+<li class="chapter" data-level="14" data-path="one--and-two-tailed-tests.html"><a href="one--and-two-tailed-tests.html"><i class="fa fa-check"></i><b>14</b> One- and Two-Tailed Tests</a></li>
+<li class="chapter" data-level="15" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>15</b> Statistical Power</a></li>
+<li class="chapter" data-level="16" data-path="bivariate-relationships.html"><a href="bivariate-relationships.html"><i class="fa fa-check"></i><b>16</b> Bivariate Relationships</a></li>
+<li class="chapter" data-level="17" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>17</b> Linear Regression</a></li>
+<li class="chapter" data-level="18" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="19" data-path="comparing-two-means-using-t-tests.html"><a href="comparing-two-means-using-t-tests.html"><i class="fa fa-check"></i><b>19</b> Comparing Two Means using <em>t</em>-tests</a></li>
+<li class="chapter" data-level="20" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>20</b> Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="21" data-path="two-way-independent-anova.html"><a href="two-way-independent-anova.html"><i class="fa fa-check"></i><b>21</b> Two-Way Independent ANOVA</a></li>
+<li class="chapter" data-level="22" data-path="in-class-assignments.html"><a href="in-class-assignments.html"><i class="fa fa-check"></i><b>22</b> In-Class Assignments</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bivariate-relationships" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">16</span> Bivariate Relationships<a href="bivariate-relationships.html#bivariate-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We often have information on two numeric characteristics for each member of a group and are interested in finding the degree of association between these characteristics.</p>
+<p>For instance, an obstetrician may decide to look up the records of women who delivered in her hospital in the previous year to find out whether there is a relationship between their family incomes and the birth weights of their babies.</p>
+<p>The relationship here means whether the two variables fluctuate together, i.e., does thebirth weight increase (or decrease) as the income increases.</p>
+<p>Parametric approaches</p>
+<ul>
+<li>Pearson’s correlation coefficient</li>
+</ul>
+<p>Nonparametric approaches</p>
+<ul>
+<li>Spearman’s rho</li>
+<li>Kendall’s tau</li>
+</ul>
+<div id="direction-of-relationships" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Direction of Relationships<a href="bivariate-relationships.html#direction-of-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="positive-relationship" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> Positive Relationship<a href="bivariate-relationships.html#positive-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+</div>
+<div id="negative-relationship" class="section level3 hasAnchor" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> Negative Relationship<a href="bivariate-relationships.html#negative-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+</div>
+<div id="no-relationship" class="section level3 hasAnchor" number="16.1.3">
+<h3><span class="header-section-number">16.1.3</span> No Relationship<a href="bivariate-relationships.html#no-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+</div>
+<div id="quantifying-the-magnitude-of-correlation" class="section level3 hasAnchor" number="16.1.4">
+<h3><span class="header-section-number">16.1.4</span> Quantifying the magnitude of correlation<a href="bivariate-relationships.html#quantifying-the-magnitude-of-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>As one variable increases, does the other increase, decrease or not change at all (stay the same)?</p></li>
+<li><p>This can be done by understood by calculating the covariance.</p></li>
+<li><p>We look at how much each score deviates from their respective mean values.</p></li>
+<li><p>If both variables deviate from the mean in a similar way, they are likely to be related (or ‘covary’).</p></li>
+</ul>
+<p>Here is the results (bivariate) of an experiment aimed at understanding the efficacy of advertising:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant number (<em>i</em>)</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">Mean</th>
+<th align="center">SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Adverts Watched (<em>X</em>)</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">6</td>
+<td align="center">8</td>
+<td align="center">5.4</td>
+<td align="center">1.67</td>
+</tr>
+<tr class="even">
+<td align="left">Packets Bought (<em>Y</em>)</td>
+<td align="center">8</td>
+<td align="center">9</td>
+<td align="center">10</td>
+<td align="center">13</td>
+<td align="center">15</td>
+<td align="center">11</td>
+<td align="center">2.92</td>
+</tr>
+</tbody>
+</table>
+<p>Residual error values:</p>
+<p>Remember residuals are the value of the observation - expectation.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant number (<em>i</em>)</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">Mean</th>
+<th align="center">SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Adverts Watched</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">6</td>
+<td align="center">8</td>
+<td align="center">5.4</td>
+<td align="center">1.67</td>
+</tr>
+<tr class="even">
+<td align="left">Packets Bought</td>
+<td align="center">8</td>
+<td align="center">9</td>
+<td align="center">10</td>
+<td align="center">13</td>
+<td align="center">15</td>
+<td align="center">11</td>
+<td align="center">2.92</td>
+</tr>
+<tr class="odd">
+<td align="left">Advertiser Residual</td>
+<td align="center">-0.4</td>
+<td align="center">-1.4</td>
+<td align="center">-1.4</td>
+<td align="center">0.6</td>
+<td align="center">2.6</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Packets residual</td>
+<td align="center">-3</td>
+<td align="center">-2</td>
+<td align="center">-1</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><img src="figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p><img src="figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+</div>
+<div id="covariance-and-a-re-examination-of-variance" class="section level3 hasAnchor" number="16.1.5">
+<h3><span class="header-section-number">16.1.5</span> Covariance and a re-examination of variance<a href="bivariate-relationships.html#covariance-and-a-re-examination-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Remember the variance tells us how much scores deviate from the mean for a single variable.</p></li>
+<li><p>It is closely linked to the sum of squares, indeed we use the sum of squares to calculate the variance.</p></li>
+<li><p>Covariance is similar - it tells is by how much scores on two variables differ from their respective means.</p></li>
+</ul>
+<p><span class="math inline">\(s^2=\frac{\Sigma(X_i - \bar{X})}{n-1}^2\)</span></p>
+<p><span class="math inline">\(s^2=\frac{\Sigma(X_i - \bar{X})(X_i - \bar{X})}{n-1}\)</span></p>
+</div>
+<div id="here-we-are-examining-the-covariance-so-the-calculation-changes-a-bit." class="section level3 hasAnchor" number="16.1.6">
+<h3><span class="header-section-number">16.1.6</span> Here we are examining the ‘covariance’ so the calculation changes a bit.<a href="bivariate-relationships.html#here-we-are-examining-the-covariance-so-the-calculation-changes-a-bit." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Calculate the error (residual value) between the mean and each subject’s score for the first variable (<em>X</em>).</p></li>
+<li><p>Calculate the error (residual value) between the mean and their score for the second variable (<em>y</em>).</p></li>
+<li><p>Multiply the error values (the residual values).</p></li>
+<li><p>Add these values and you get the cross product deviations.</p></li>
+<li><p>The covariance is the mean (average) of the cross-product deviations:</p></li>
+</ul>
+<p><span class="math inline">\(cov(X,Y)=\frac{\Sigma(X_i - \bar{X})(Y_i - \bar{Y})}{n-1}\)</span></p>
+<p>From our example, and plugging in the values:</p>
+<p><span class="math inline">\(cov(X,Y)=\frac{(-0.4)(-3)+(-1.4)(-2)+(-1.4)(-1)+(0.6)(2)+(2.6)(4)}{4}\)</span></p>
+<p><span class="math inline">\(cov(X,Y)=\frac{1.2+2.8+1.4+1.2+10.4}{4}\)</span></p>
+<p><span class="math inline">\(cov(X,Y)=\frac{17}{4}\)</span></p>
+<p><span class="math inline">\(cov(X,Y)=4.25\)</span></p>
+</div>
+</div>
+<div id="limitations-of-covariance" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Limitations of Covariance<a href="bivariate-relationships.html#limitations-of-covariance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The magnitude of the covariance is dependent on the units of measurement.</p>
+<ul>
+<li><p>e.g. the covariance of two variables measured in miles might be 4.25, but if the same scores are converted to kilometres, the covariance is changed…</p></li>
+<li><p>To address this issue we can standarize the covariance value by standardization: Divide by the standard deviations of both variables. The standardized version of covariance is known as the correlation coefficient. It is unaffected by units of measurement.</p></li>
+</ul>
+</div>
+<div id="the-correlation-coefficient" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> The Correlation Coefficient<a href="bivariate-relationships.html#the-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(r=\frac{cov_{X,Y}}{s_Xs_Y}\)</span></p>
+<p><span class="math inline">\(r=\frac{\Sigma(X_i - \bar{X})(Y_i - \bar{Y})}{(n-1)s_Xs_Y}\)</span></p>
+<p><span class="math inline">\(r=\frac{cov_{XY}}{s_Xs_Y}\)</span></p>
+<p><span class="math inline">\(r=\frac{4.25}{1.67 * 2.92}\)</span></p>
+<p><span class="math inline">\(r=0.87\)</span></p>
+<p>Termed Pearson-product moment correlation coefficient</p>
+<p>It ranges between -1 and +1</p>
+<ul>
+<li>A value of zero, indicates that there is no relationship</li>
+</ul>
+<p>It is a testable hypothesis</p>
+<p>Testing <span class="math inline">\(H_0: \rho=0\)</span> versus <span class="math inline">\(H_A: \rho\ne0\)</span></p>
+<p>The standard error of the correlation coefficient is calculated as:</p>
+<p><span class="math inline">\(S_r=\sqrt\frac{1-r^2}{n-2}\)</span></p>
+<p>It is a testable hypothesis</p>
+<p><em>r</em> = 0.870</p>
+<p><em>n</em> = 12 (new data set, with more samples)</p>
+<p>We will calculate the critical value:</p>
+<p><span class="math inline">\(t=\frac{r}{S_r}= \frac{0.870}{0.156}= 5.58\)</span></p>
+<p>t<sub>0.05(2),10</sub> =2.228</p>
+<p>Testing <span class="math inline">\(H_0: \rho=0\)</span> versus <span class="math inline">\(H_A: \rho\ne0\)</span></p>
+<p>Coefficient of determination, r^2</p>
+<ul>
+<li>By squaring the value of r you get the proportion of variance in one variable shared by the other.</li>
+</ul>
+<p>Square of correlation coefficient (<span class="math inline">\(r^2\)</span>), known as coefficient of determination, represents the proportion of variation in one variable that is accounted for by the variation in the other variable.</p>
+<p>For example, if height and weight of a group of persons have a correlation coefficient of (<span class="math inline">\(\rho = 0.80\)</span>), one can estimate that 64% (0.80 × 0.80 = 0.64) of variation in their weights is accounted for by the variation in their heights.</p>
+</div>
+<div id="non-parametric-correlation" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Non-parametric Correlation<a href="bivariate-relationships.html#non-parametric-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Spearman’s Rank Correlation Coefficient is used to discover the strength of a link between two sets of data.</p>
+<p>This worked example is taken from: <a href="https://geographyfieldwork.com/SpearmansRank.htm" class="uri">https://geographyfieldwork.com/SpearmansRank.htm</a>. I found it to be a very elegant and real world example. There is also the case of tied ranks in this example, which is useful.</p>
+<p>Hypothesis:</p>
+<p>We might expect to find that the price of a bottle of water decreases as distance from the Contemporary Art Museum (tourist area) increases. Higher property rents close to the museum should be reflected in higher prices in the shops.</p>
+<p>The hypothesis might be written like this:</p>
+<p>The price of a convenience item decreases as distance from the Contemporary Art Museum increases.</p>
+<p>Note in the column “Rank Price” there is no rank 3 or 4. In this case of the tied ranks</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Store</th>
+<th align="right">Distance (m)</th>
+<th align="right">Rank distance</th>
+<th align="right">Price</th>
+<th align="right">Rank price</th>
+<th align="right">Difference between ranks (d)</th>
+<th align="right">d x d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">50</td>
+<td align="right">10</td>
+<td align="right">1.80</td>
+<td align="right">2.0</td>
+<td align="right">8.0</td>
+<td align="right">64.00</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">175</td>
+<td align="right">9</td>
+<td align="right">1.20</td>
+<td align="right">3.5</td>
+<td align="right">5.5</td>
+<td align="right">30.25</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">270</td>
+<td align="right">8</td>
+<td align="right">2.00</td>
+<td align="right">1.0</td>
+<td align="right">7.0</td>
+<td align="right">49.00</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">375</td>
+<td align="right">7</td>
+<td align="right">1.00</td>
+<td align="right">6.0</td>
+<td align="right">1.0</td>
+<td align="right">1.00</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">425</td>
+<td align="right">6</td>
+<td align="right">1.00</td>
+<td align="right">6.0</td>
+<td align="right">0.0</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">580</td>
+<td align="right">5</td>
+<td align="right">1.20</td>
+<td align="right">3.5</td>
+<td align="right">1.5</td>
+<td align="right">2.25</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">710</td>
+<td align="right">4</td>
+<td align="right">0.80</td>
+<td align="right">9.0</td>
+<td align="right">-5.0</td>
+<td align="right">25.00</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">790</td>
+<td align="right">3</td>
+<td align="right">0.60</td>
+<td align="right">10.0</td>
+<td align="right">-7.0</td>
+<td align="right">49.00</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">890</td>
+<td align="right">2</td>
+<td align="right">1.00</td>
+<td align="right">6.0</td>
+<td align="right">-4.0</td>
+<td align="right">16.00</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">980</td>
+<td align="right">1</td>
+<td align="right">0.85</td>
+<td align="right">8.0</td>
+<td align="right">-7.0</td>
+<td align="right">49.00</td>
+</tr>
+</tbody>
+</table>
+<p>Next, we will calculate the coefficient (<span class="math inline">\(R_s\)</span>) using the formula below. The answer will always be between 1.0 (a perfect positive correlation) and -1.0 (a perfect negative correlation).</p>
+<p><span class="math inline">\(R_s = 1 - \frac{6\Sigma{d^2}}{n^3-n}\)</span>.</p>
+<p>Now to put all these values into the formula.</p>
+<ul>
+<li>Find the value of all the <span class="math inline">\(d^2\)</span> values by adding up all the values in the difference² column.</li>
+<li>In our example this is 285.5.</li>
+<li>Multiplying this by 6 gives 1713.</li>
+<li>Now for the bottom line of the equation. The value n is the number of sites at which you took measurements. This, in our example is 10. Substituting these values into n³ - n we get 1000 - 10</li>
+<li>We now have the formula:
+<span class="math inline">\(R_s = 1 - \frac{1713}{990}\)</span>, which gives a value for R:
+1 - 1.73 = -0.73</li>
+</ul>
+<p>The closer (<span class="math inline">\(R_s\)</span>) is to +1 or -1, the stronger the likely correlation. A perfect positive correlation is +1 and a perfect negative correlation is -1. The Rs value of -0.73 suggests a fairly strong negative relationship.</p>
+<p>Now, let’s determine if this calculated value is signifcantly different from zero.</p>
+<p>We will use the Student’s <em>t</em>-distribution. Similar to Pearson’s coefficient, the <em>t</em>-value is found by:</p>
+<p><span class="math inline">\(t = R_s\sqrt{\frac{n - 2}{1 - {R_s}^2}}\)</span></p>
+<p><span class="math inline">\(t_{calc} = -0.73\sqrt{\frac{8}{1 - ({-0.73})^2}}\)</span></p>
+<p><span class="math inline">\(t_{critical} = t_{\alpha = 0.05, df = 9} = 2.262\)</span>, this is Table B.3 in Zar 4th edition (Critical Values of the <em>t</em> distribution).</p>
+<p>So, we would reject the null hypothesis,</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-power.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
