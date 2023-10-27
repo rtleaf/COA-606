@@ -220,11 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Intercept (value of <em>Y</em> when <em>X</em> = 0).</p></li>
 <li><p>Location where the regression line crosses the <em>Y</em>-axis (ordinate).</p></li>
 </ul>
-<p><img src="figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 </div>
 <div id="intercepts-and-gradients" class="section level2 hasAnchor" number="17.4">
 <h2><span class="header-section-number">17.4</span> Intercepts and Gradients<a href="linear-regression.html#intercepts-and-gradients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 </div>
 <div id="the-method-of-least-squares" class="section level2 hasAnchor" number="17.5">
 <h2><span class="header-section-number">17.5</span> The Method of Least Squares<a href="linear-regression.html#the-method-of-least-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -237,19 +237,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb80-5"><a href="linear-regression.html#cb80-5" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">&quot;Size of Spider&quot;</span>, </span>
 <span id="cb80-6"><a href="linear-regression.html#cb80-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Anxiety&quot;</span>)</span>
 <span id="cb80-7"><a href="linear-regression.html#cb80-7" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0 =</span> <span class="dv">0</span>, <span class="at">y0 =</span> <span class="dv">3</span>, <span class="at">x1 =</span> <span class="dv">23</span>, <span class="at">y1 =</span> <span class="dv">41</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>This figure shows the residual (observed - expected) value of the best fit model.</p>
 <p>Our task is to minimize the <span class="math inline">\(SS\)</span> value.</p>
-<p><img src="figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>Let’s look at a some cases for alternative candidate model parameters:</p>
 <p>Our task is to minimize the <span class="math inline">\(SS\)</span> value.</p>
-<p><img src="figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 </div>
 <div id="sum-of-squares-components" class="section level2 hasAnchor" number="17.6">
 <h2><span class="header-section-number">17.6</span> Sum of Squares Components<a href="linear-regression.html#sum-of-squares-components" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once the best fit model is derived, we can make inference about the quality of the model (relative to the null model) and the hypothesis <span class="math inline">\(\beta_1 = 0\)</span>.</p>
 <p>Let’s take a close look at the three sum of squares components.</p>
-<p><img src="figure-html/unnamed-chunk-139-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 </div>
 <div id="total-ss-sst-sst" class="section level2 hasAnchor" number="17.7">
 <h2><span class="header-section-number">17.7</span> Total SS (SS<sub>T</sub>, SST)<a href="linear-regression.html#total-ss-sst-sst" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>SS<sub>T</sub> uses the differences between the observed data and the mean value of <em>Y</em> (the null model)</p></li>
 <li><p><span class="math inline">\(TSS =\sum(Y_i - \bar{Y})^2\)</span></p></li>
 </ul>
-<p><img src="figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 </div>
 <div id="residual-ss-or-error-ss-ssr" class="section level2 hasAnchor" number="17.8">
 <h2><span class="header-section-number">17.8</span> Residual SS or Error SS (SS<sub>R</sub>)<a href="linear-regression.html#residual-ss-or-error-ss-ssr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -272,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Residual/error variability (variability between the regression model and the actual data).</p></li>
 <li><p><span class="math inline">\(RSS =\sum(Y_i - \hat{Y})^2\)</span></p></li>
 </ul>
-<p><img src="figure-html/unnamed-chunk-141-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 </div>
 <div id="model-ss-or-regression-ss-ssm" class="section level2 hasAnchor" number="17.9">
 <h2><span class="header-section-number">17.9</span> Model SS or Regression SS (SS<sub>M</sub>)<a href="linear-regression.html#model-ss-or-regression-ss-ssm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>This is the improvement we get from fitting the model to the data relative to the null model.</p></li>
 <li><p><span class="math inline">\(SS_M=\sum(\hat{Y}_i - \bar{Y})^2\)</span></p></li>
 </ul>
-<p><img src="figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 </div>
 <div id="the-ss-components-are-related-and-useful-for-understanding-the-model" class="section level2 hasAnchor" number="17.10">
 <h2><span class="header-section-number">17.10</span> The SS components are related and useful for understanding the model<a href="linear-regression.html#the-ss-components-are-related-and-useful-for-understanding-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><img src="figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>We find that the TSS is = 19.65</p>
 <p>We find that the Model SS = 19.13</p>
 <table>
@@ -558,7 +558,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.18</span> An R example<a href="linear-regression.html#an-r-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="linear-regression.html#cb81-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
 <span id="cb81-2"><a href="linear-regression.html#cb81-2" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>mpg <span class="sc">~</span> mtcars<span class="sc">$</span>hp)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="linear-regression.html#cb82-1" tabindex="-1"></a>model. <span class="ot">&lt;-</span> <span class="fu">lm</span>(mtcars<span class="sc">$</span>mpg <span class="sc">~</span> mtcars<span class="sc">$</span>hp)</span>
 <span id="cb82-2"><a href="linear-regression.html#cb82-2" tabindex="-1"></a></span>
 <span id="cb82-3"><a href="linear-regression.html#cb82-3" tabindex="-1"></a><span class="fu">summary</span>(model.)<span class="sc">$</span>coef</span></code></pre></div>
@@ -617,7 +617,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb84-9"><a href="linear-regression.html#cb84-9" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">cbind</span>(new_hp, pred.vals)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
 <span id="cb84-10"><a href="linear-regression.html#cb84-10" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">cbind</span>(new_hp, pred.vals)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
 <span id="cb84-11"><a href="linear-regression.html#cb84-11" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">cbind</span>(new_hp, pred.vals)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 </div>
 <div id="an-r-example---prediction-intervals" class="section level2 hasAnchor" number="17.21">
 <h2><span class="header-section-number">17.21</span> An R example - Prediction Intervals<a href="linear-regression.html#an-r-example---prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -632,7 +632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-9"><a href="linear-regression.html#cb85-9" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">cbind</span>(new_hp, pred.vals)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
 <span id="cb85-10"><a href="linear-regression.html#cb85-10" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">cbind</span>(new_hp, pred.vals)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
 <span id="cb85-11"><a href="linear-regression.html#cb85-11" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">cbind</span>(new_hp, pred.vals)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 
 </div>
 </div>
